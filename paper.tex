@@ -1,0 +1,1222 @@
+\documentclass[english]{short-notes}
+
+\title{Hochschild cohomology of torus-equivariant D-modules}
+\author{Clemens Koppensteiner}
+
+\usepackage{math-gl}
+
+\addbibresource{math.bib}
+
+
+\let\stack\mathbf
+
+\newcommand\catDModHol[1]{\catDMod[\mathup{hol}]{#1}}
+\newcommand\catDModMon[2]{\catDMod{#1}^{#2-\mathup{mon}}}
+\newcommand\catDModHolMon[2]{\catDModHol{#1}^{#2-\mathup{mon}}}
+
+\newcommand\dR{\mathrm{dR}}
+\newcommand{\renstar}{\blacktriangle}
+
+\newcommand{\HCoh}{\operatorname{HH}^\cx}
+\newcommand\ΓdR{Γ_{\mkern-4mu\dR}}
+
+\newcommand\opalg[1]{#1^{\mathrm{op}}}
+
+\renewcommand\B{\stack{B}}
+\newcommand\mappingstack{\mathbfup{Maps}}
+\newcommand\X{\mathbb{X}}
+
+\newcommand\Γsub[1]{\Gamma_{\mkern-3mu#1}}
+
+\newcommand\ls[1]{\mathbfcal{L} #1}
+\newcommand\lsY[1]{\mathbfcal{L}_{\stack Y} #1}
+\newcommand\cls[1]{\overline{\mathbfcal{L}} #1}
+\newcommand\clsY[1]{\overline{\mathbfcal{L}}_{\stack Y} #1}
+\newcommand\lsc[1]{\mathbfcal{L}^c #1}
+\newcommand\lscY[1]{\mathbfcal{L}_{\stack Y}^c #1}
+
+\newfontfamily\cyrillicfont[Script=Cyrillic]{XITS}
+\newcommand\cyrmath[1]{\textit{\cyrillicfont #1}}
+
+%\newcommand\schemels[1]{\mathcal{L}\mkern2.5mu #1}
+%\newcommand\schemecls[1]{\overline{\mathcal{L}}\mkern2.5mu #1}
+%\newcommand\schemelsc[1]{\mathcal{L}\mkern2.5mu^c #1}
+\newcommand\schemels[2][]{\cyrmath{Л}\mkern1.5mu^{#1}#2}
+\newcommand\schemelsY[2][]{\schemels[#1]{_{\stack Y}#2}}
+\newcommand\schemecls[2][]{\overline{\cyrmath{Л}}\mkern1.5mu^{#1}#2}
+\newcommand\schemeclsY[2][]{\schemecls[#1]{_{\stack Y}#2}}
+\newcommand\schemelsc[2][]{\cyrmath{Л}\mkern1.5mu^{\if\relax\detokenize{#1}\relax\else#1,\fi c} #2}
+\newcommand\schemelscY[2][]{\schemelsc[#1]{_{\stack Y}#2}}
+
+\newcommand\schemei{\cyrmath{и}}
+\newcommand\schemej{\cyrmath{й}}
+\newcommand\schemeq{\cyrmath{к}}
+\newcommand\schemeh{h'}
+%\newcommand\schemep{\cyrmath{п}}
+%\newcommand\schemei{\tilde{\imath}}
+%\newcommand\schemej{\tilde{\jmath}}
+%\newcommand\schemeq{\tilde{q}}
+%\newcommand\schemeh{\tilde{h}}
+
+\newcommand\Stab{\operatorname{Stab}}
+
+\newcommand\goodstack{good}
+\newcommand\Goodstack{Good}
+\newcommand\goodness{goodness}
+
+\newcommand\dualize{\mathbb D}
+
+% Formatting of upper case roman numerals (in references).
+\newcommand{\RomanNum}[1]{\textsc{\MakeLowercase{#1}}}
+
+\begin{document}
+
+\maketitle
+
+\section{Introduction}
+
+Given a manifold $X$ and a category of sheaves on $X$, microlocal geometry asks whether these sheaves can be localized not just on $X$ but also with respect to codirections, i.e.~on the cotangent space $T^*X$.
+For example, for constructible sheaves this leads to the notion of microsupport discussed in detail in \cite{KashiwaraSchapira:1994:SheavesOnManifolds}.
+More generally, given a category of sheaves on a space $X$, we can ask whether it is possible to localize them on some space that is strictly larger than $X$ itself.
+
+Even more generally one can ask the following question: Given a $k$-linear category $\cat C$, can one find a space over which $\cat C$ localizes?
+For co-complete compactly generated triangulated categories one answer is provided by \cite{BensonIyengarKrause:2008:LocalCohomologyAndSupportForTriangulatedCategories}:
+To each map from a graded-commutative ring $R$ to the center of $\cat C$ the authors associate the \emph{triangulated support} functor $\supp_R$, assigning to each object $A ∈ \cat C$ a subset $\supp_R A \subseteq \Spec R$.
+This construction can be used to unify various theories of support in different areas of mathematics (though it does not yield the microlocal support of constructible sheaves).
+
+We are led to consider the universal algebra acting on the category with this construction, i.e.~the \emph{Hochschild cohomology} of $\cat C$.
+For a complete (pre-triangulated) dg category $\cat C$ the Hochschild cohomology is the dg algebra of derived endomorphisms of the identity functor of $\cat C$:
+\[
+    \HCoh(\cat C)
+    = \operatorname{\mathbf{R}Hom}(\id[\cat C], \id[\cat C])
+    = \Hom_{\cat{Funct}(\cat C, \cat C)}(\id[\cat C], \id[\cat C]).
+\]
+The ring $R = \bigoplus \operatorname{HH}^{2n}(\HCoh(\cat C)$ is commutative and hence one can define for each $A ∈ \cat C$ the support $\supp_R A$ as a subset of $\Spec R$.
+Thus understanding the Hochschild cohomology of a dg category can be an important step to understanding the category itself.
+
+This construction, applied to the category of (ind-)coherent sheaves on a (quasismooth, dg-) scheme yields the singular support of coherent sheaves which already served as the motivation for the first part of this thesis.
+More concretely, Arinkin and Gaitsgory used singular support for the category $\catIndCoh{\LocSys_G}$ in their formulation of the geometric Langlands conjecture \cite{ArinkinGaitsgory:2015:SingularSupport}.
+By Langlands duality, one should then have a matching support theory for the category $\catDMod{\Bun_G}$ and the question arises whether it is possible to formulate this theory in a way that is intrinsic to D-modules.
+
+A first step to this -- and also a problem of independent interest -- is to understand the Hochschild cohomology of the category $\catDMod{\stack X}$ of D-modules on a stack $\stack X$.
+We will review the general setup and basic properties of D-modules on (QCA) stacks in Chapter~\ref{ch:d-mod:pre}.
+The upshot is that we have an isomorphism of dg algebras
+\begin{equation}
+    \label{eq:intro:d-mod:d-mod-hcoh}
+    \HCoh(\catDMod{\stack X}) \cong \Hom_{\catDMod{X×X}}(Δ_*ω_{\stack X}, Δ_*ω_{\stack X}),
+\end{equation}
+where $Δ\colon \stack X × \stack X → \stack X$ is the diagonal morphism and $ω_{\stack X}$ is the dualizing module.
+In particular if $\stack X$ is a (separated) scheme, then $Δ$ is a closed embedding and $(Δ^*,Δ_*)$ adjunction combined with Kashiwara's Lemma show that $\HCoh(\catDMod{\stack X})$ is isomorphic to the de Rham cohomology of $\stack X$.
+However, if $\stack X$ is not an algebraic space (and hence $Δ$ is not proper) then the situation becomes more complicated.
+
+By Verdier duality and adjunction we can always rewrite \eqref{eq:intro:d-mod:d-mod-hcoh} as
+\[
+    \HCoh(\catDMod{\stack X}) \cong
+    \opalg{\Hom_{\catDMod{X}}(k_{\stack X}, Δ^!Δ_!k_{\stack X})} =
+    \opalg{\ΓdR(\stack X, Δ^!Δ_!k_{\stack X})}.
+\]
+It is now tempting to look at the Cartesian square
+\[
+    \begin{tikzcd}
+        \ls \stack X \arrow[r, "p₁"] \arrow[d, "p₂"] & \stack X \arrow[d, "Δ"] \\
+        \stack X \arrow[r, "Δ"] & \stack X × \stack X
+    \end{tikzcd}
+\]
+where
+\[
+    \ls \stack X = \stack X ×\limits_{\stack X × \stack X} \stack X
+\]
+is the (derived) loop space of $\stack X$ and try to express the Hochschild cohomology as the cohomology of some sheaf on $\ls \stack X$.
+Naively we could expect the existence of an isomorphism
+\begin{equation}
+    \label{eq:intro:d-mod:naive}
+    \ΓdR(\stack X, Δ^!Δ_!k_{\stack X}) \cong
+    \ΓdR(\stack X, p_{2,!}p₁^! k_{\stack X}).
+\end{equation}
+Unfortunately, the two sides are in general not isomorphic (the stack $\stack X = \ps1/\as1$ is an easy counter-example).
+
+In Chapter~\ref{ch:d-mod:strategy} we will investigate how to quantify the cone of the morphism
+\[
+    p_{2,!}p₁^! k_{\stack X} → Δ^!Δ_! k_{\stack X}
+\]
+and thus the failure of the naive isomorphism \eqref{eq:intro:d-mod:naive} to hold.
+As an application, we will prove the following theorem, giving a class of stacks where \eqref{eq:intro:d-mod:naive} is indeed an isomorphism.
+
+\begin{Thm}\label{thm:d-mod:main}
+    Let $G \cong \Gm^n$ be a torus acting locally linearly on a scheme $X$ of finite type over $k$.
+    Then there is a canonical isomorphism of algebras
+    \[
+        \HCoh\bigl(\catDMod{X/G}\bigr)
+        \cong
+        \opalg{\ΓdR\bigl(X/G,\,p_{2,!} p₁^! k_{X/G}\bigr)},
+    \]
+    where the algebra structure on $\ΓdR\bigl(X/G,\,p_{2,!} p₁^! k_{X/G}\bigr)$ is induced by the groupoid structure on $\ls(X/G)$.
+\end{Thm}
+
+\section{Prerequisites}%
+\label{ch:d-mod:pre}
+
+We fix an algebraically closed base field $k$ of characteristic $0$.
+All stacks in this thesis are assumed to be algebraic QCA stacks over $k$.
+As we will summarize in Section~\ref{sec:d-mod:pre:d-mods}, the QCA condition ensures that the category of D-modules on stacks is well-behaved.
+In particular for any stack $\stack X$ we have:
+\begin{itemize}
+    \item The diagonal morphism $Δ\colon \stack X → \stack X × \stack X$ is schematic.
+    \item There exists a scheme $Z$ with a smooth and surjective map $Z → \stack X$.
+    \item $\stack X$ is quasi-compact.
+    \item The automorphism groups of the geometric points of $\stack X$ are affine.
+    \item The loop space (or inertia stack) $\ls \stack X = \stack X ×_{\stack X × \stack X} \stack X$ is of finite presentation over $\stack X$.
+\end{itemize}
+The first two conditions ensure that the stack is algebraic, the other three that it is quasi-compact with affine automorphism group (QCA).
+For details on QCA stacks we refer to~\cite{DrinfeldGaitsgory:2013:FinitenessQuestions}.
+Every quotient of a scheme of finite type over $k$ by an affine algebraic group is a QCA stack, and we will be mainly interested in these.
+
+In order to correctly define categories of D-modules on stacks it is necessary to work with dg-categories.
+We refer to \cite{Keller:2006:OnDGCategories} for an introduction to dg categories.
+It is often convenient to regard (pretriangulated) dg categories as $k$-linear stable $(∞,1)$-categories \cite{Lurie:2009:HigherToposTheory,Lurie:2014-draft:HigherAlgebra}, which can be done via the nerve construction \cite{Cohn:arXiv:DGCategoriesAreStableInfinityCategories,Faonte:arXiv:SimplicialNerveOfAnAinfinityCategory}. %\cite[Section~1.3.1]{Lurie:2014-draft:HigherAlgebra}
+We will switch between those two languages without explicitly mentioning the intervening constructions and apply results from \cite{Lurie:2014-draft:HigherAlgebra} to dg categories.
+Fortunately, a superficial knowledge of dg/$∞$-categories should be sufficient for reading this thesis.
+
+\subsection{D-modules on stacks}
+\label{sec:d-mod:pre:d-mods}
+
+We will be primarily concerned with D-modules on (quotient) stacks.
+Unfortunately there is currently no comprehensive text available that covers all the basic constructions and properties of D-modules on stacks (or even the \emph{dg category} of D-modules on schemes).
+Thus we collect all the relevant properties (without proof) in this section.
+The upshot is that the familiar \enquote{six functors formalism} essentially works for holonomic D-modules and schematic morphisms of stacks.
+
+The category of D-modules on a stack $\stack X$ can be either constructed via descent \cite{BeilinsonDrifeld:unpublished:Hitchin,DrinfeldGaitsgory:2013:FinitenessQuestions} or equivalently as ind-coherent sheaves on the de Rham space of $\stack X$ \cite{GaitsgoryRozenblyum:2014:CrystalsAndDModules}.
+While the first construction is more \enquote{hands on}, the second construction is often more useful from a theoretical point of view.
+It is explained in detail in the upcoming book \cite{GaitsgoryRozenblyum:prelim:StudyInDAG} (see also \cite{FrancisGaitsgory:2012:ChiralKoszulDuality} for an overview).
+Many basic properties of the category $\catDMod{\stack X}$ are explored in \cite{DrinfeldGaitsgory:2013:FinitenessQuestions} and most of the following assertions are taken from there.
+
+For any morphism $f\colon \stack X → \stack Y$ the constructions yield a continuous functor $f^!\colon \catDMod{\stack Y} → \catDMod{\stack X}$ and (after some work) a not necessarily continuous functor $f_*\colon \catDMod{\stack X} → \catDMod{\stack Y}$.
+If $p\colon \stack X → \pt$ is the structure map then we set
+\[
+    \ΓdR(\stack X,\, {-}) = p_*({-}) \colon \catDMod{\stack X} → \catVect.
+\]
+The functor $\ΓdR$ is representable by a D-module $k_{\stack X}$, i.e.
+\[
+    \ΓdR(\stack X,\, {-}) = \Hom_{\catDMod{\stack X}}(k_{\stack X},\, {-}).
+\]
+Again we note that $\ΓdR(\stack X,\, {-})$ is usually not continuous and hence the object $k_{\stack X}$ not compact.
+
+Let $Δ\colon \stack X → \stack X × \stack X$ be the diagonal.
+The category $\catDMod{\stack X}$ has a monoidal structure given by the tensor product
+\[
+    \sheaf F \otimes \sheaf G = Δ^!\bigl( \sheaf F \boxtimes \sheaf G \bigr).
+\]
+The unit for this monoidal structure is $ω_{\stack X} = p^! k$.
+
+We will be mainly concerned with the subcategory of holonomic D-modules since they enjoy extended functoriality.
+\begin{Def}
+    A $D$-module $\sheaf F ∈ \catDMod{\stack X}$ is called \emph{holonomic} if $f^!\sheaf F$ is holonomic for any smooth morphism $f\colon Z → \stack X$ from a scheme $Z$.
+    The full subcategory of holonomic D-modules will be denoted $\catDModHol{\stack X}$.
+\end{Def}
+
+The following assertions mostly follow from their corresponding counterparts for schemes.
+We refer to \cite{Braverman:LecturesOnAlgebraicDmodules} for proofs in the case of non-smooth schemes.
+
+\begin{Prop}
+    Let $f\colon \stack X → \stack Y$ be a schematic morphism.
+    Then $f^!$ and $f_*$ restrict to functors
+    \[
+        f^!\colon \catDModHol{\stack Y} → \catDModHol{\stack X}
+        \quad\text{and}\quad
+        f_*\colon \catDModHol{\stack X} → \catDModHol{\stack Y}.
+    \]
+\end{Prop}
+
+The Verdier duality functor on schemes induces an involutive anti auto-equivalence
+\[
+    \dualize_{\stack X}\colon \catDModHol{\stack X}^\mathrm{op} → \catDModHol{\stack X}
+\]
+such that for each smooth morphism $Z → \stack X$ of relative dimension $d$ from a scheme $Z$ one has
+\[
+    f^! ∘ \dualize_{\stack X} \cong \dualize_{Z} ∘ f^![-2d].
+\]
+The Verdier duality functor then allows us to define the \emph{non-standard functors} $f_!$ and $f^*$ for any schematic morphism $f\colon \stack X → \stack Y$ by
+\begin{align*}
+    f^* & = \dualize_{\stack X} ∘ f^! ∘ \dualize_{\stack Y} \colon \catDModHol{\stack Y} → \catDModHol{\stack X} \\
+    \intertext{and}
+    f_! & = \dualize_{\stack Y} ∘ f_* ∘ \dualize_{\stack X} \colon \catDModHol{\stack X} → \catDModHol{\stack Y}.
+\end{align*}
+We obtain adjoint pairs $(f_!,\, f^!)$ and $(f^*,\, f_*)$.
+In some situations we can identify the non-standard functors with their standard counterparts.
+If $f$ is smooth of relative dimension $d$ then $f^* = f^![-2d]$.
+If $f$ is proper then $f_! = f_*$ and in particular $f_*$ is left adjoint to $f^!$.
+The objects $ω_{\stack X}$ and $k_{\stack X}$ are always holonomic and
+\[
+    \dualize_{\stack X} ω_{\stack X} = k_{\stack X}.
+\]
+We have $k_{\stack X} = f^* k_{\stack Y}$ and if $\stack X$ is smooth, then $k_{\stack X} = ω_{\stack X}[-2\dim \stack X]$.
+
+We will make use of the following lemma which follows from \cite[Lemma~5.1.6]{DrinfeldGaitsgory:2013:FinitenessQuestions}.
+
+\begin{Lem}
+    For a smooth and schematic morphism $f$ the functor $f^!$ is conservative.
+\end{Lem}
+
+\begin{Prop}[{\cite[\RomanNum{III}.4.2.1.3]{GaitsgoryRozenblyum:prelim:StudyInDAG}}]
+    \label{prop:d-mod:pre:base-change}%
+    Consider a Cartesian square
+    \[
+        \begin{tikzcd}
+            \stack Z \arrow[d, "p"] \arrow[r, "q"] & \stack X₁ \arrow[d, "f"] \\
+            \stack X₂ \arrow[r, "g"] & \stack Y
+        \end{tikzcd}
+    \]
+    with schematic morphism $f$ (and hence $p$).
+    Then there is a base change isomorphism
+    \[
+        p_* q^! \isoto g^! f_*
+    \]
+    of functors from $\catDMod{\stack{X₁}}$ to $\catDMod{\stack{X₂}}$.
+    If furthermore $f$ (and hence $p$) is proper, then this isomorphism coincides with the natural transformation
+    \[
+        p_* q^! →
+        p_* q^! f^! f_* =
+        p_* p^! g^! f_* →
+        g^! f_*
+    \]
+    induced by $(f_*,\,f^!)$ and $(p_*,\, p^!)$ adjunctions.
+\end{Prop}
+
+\begin{Prop}
+    \label{prop:d-mod:pre:projection-formula}%
+    If $f\colon \stack X → \stack Y$ is a schematic morphism then the projection formula holds, i.e.~there is a functorial isomorphism
+    \[
+        \sheaf F \otimes f_*(\sheaf G) \cong f_*\bigl( f^! \sheaf F \otimes \sheaf G)
+    \]
+    for $\sheaf F ∈ \catDMod{\stack Y}$ and $\sheaf G ∈ \catDMod{\stack X}$.
+\end{Prop}
+
+\begin{Rem}
+    Propositions \ref{prop:d-mod:pre:base-change} and \ref{prop:d-mod:pre:projection-formula} hold more generally when $f$ is merely a \enquote{safe} morphism.
+    Alternatively they hold in full generality after replacing $f_*$ by the \enquote{renormalized de Rham pushforward}.
+    We fill not use either notion in this thesis and refer the interested reader to \cite{DrinfeldGaitsgory:2013:FinitenessQuestions}.
+\end{Rem}
+
+For D-modules on stacks we have the usual recollement package.
+Let $i\colon \stack Z \hookrightarrow \stack X$ be a closed embedding and $j\colon \stack U \hookrightarrow \stack X$ the complementary open.
+We have adjoint pairs $(i_*,\, i^!)$ and $(j^!,\, j_*)$.
+
+\begin{Prop}[{\cite[Section~2.5]{GaitsgoryRozenblyum:2014:CrystalsAndDModules}}]
+    \label{prop:d-mod:recollement-std}%
+    There is an exact triangle of functors
+    \[
+        i_*i^! → \id → j_*j^!
+    \]
+    on $\catDMod{\stack X}$, the adjunction morphisms
+    \[
+        \id → i^!i_*
+        \quad\text{and}\quad
+        j^!j_* → \id
+    \]
+    are isomorphisms, the functors $j^!i_*$ and $i^!j_*$ vanish and $i_*$ and $j_*$ are full embeddings.
+\end{Prop}
+
+On holonomic D-modules we have the additional adjoint pairs $(i^*,\, i_*)$ and $(j_!,\, j^*)$.
+By applying duality to Proposition~\ref{prop:d-mod:recollement-std} we obtain the distinguished triangle
+\[
+    j_! j^* → \id → i_*i^*
+\]
+and the identity $i^*j_! = 0$ on holonomic D-modules.
+Further, the functor $j_!$ is a full embedding $\catDModHol{\stack U} \hookrightarrow \catDModHol{\stack X}$.
+
+It is often useful to consider the pullback of a D-module on $\stack X$ to a smooth cover.
+
+\begin{Def}
+    \label{def:d-mod:pre:monodromic}%
+    Let $X$ be a scheme with an action of an algebraic group $G$ and let $p\colon X → X/G$ be the quotient map.
+    The \emph{monodromic} subcategory $\catDModMon{X}{G} ⊆ \catDMod{X}$ is the full subcategory generated by the essential image of $p^!\colon \catDMod{X/G} → \catDMod{X}$ (or equivalently by the essential image of $p^*$).
+\end{Def}
+
+\begin{Thm}[Contraction principle~{\cite[Proposition~3.2.2]{DrinfeldGaitsgory:2014:OnATheoremOfBraden}}]
+    \label{thm:d-mod:pre:contraction_principle}%
+    Let $X$ be a scheme with an action by $\Gm$ that extends to an action of the monoid $\as 1$.
+    Let $i\colon X^0 \hookrightarrow X$ be the closed subscheme of $\Gm$-fixed points and let $π\colon X → X^0$ be the contraction morphism induced by the $\Gm$-equivariant morphism $\as 1 → \{0\}$.
+    Then there is an isomorphism of functors
+    \[
+        i^* \cong π_* \colon \catDModMon{X}{\Gm} → \catDMod{X^0}.
+    \]
+\end{Thm}
+
+
+\subsection{Monads}
+\label{sec:d-mod:pre:monads}
+
+We will deduce Theorem~\ref{thm:d-mod:main} from a isomorphism of monads on $\catDMod{\stack X}$.
+In this section we give a short introduction to the theory of monads and the specific constructions that we will use.
+However, in the interest of readability we will mainly do so informally, skipping over the intricacies of $∞$-categories.
+The interested reader can find the correct $∞$-categorical formulations in the given references.
+
+Thus we think of a \emph{monad} on a category $\cat C$ as consisting of a triple $(T, η, μ)$, where $T\colon \cat C → \cat C$ is an endofunctor of $\cat C$, and $η\colon \id_{\cat C} → T$ and $μ\colon T∘T → T$ are natural transformations such that the diagrams
+\begin{equation}
+    \label{eq:d-mod:pre:monad-identities}
+    \begin{tikzcd}
+        T³ \arrow[r, "Tμ"] \arrow[d, "μT"'] & T² \arrow[d, "μ"] \\
+        T² \arrow[r, "μ"'] & T
+    \end{tikzcd}
+    \quad\text{and}\quad
+    \begin{tikzcd}
+        T \arrow[r, "Tη"] \arrow[d, "ηT"'] \arrow[dr, equal] & T² \arrow[d, "μ"] \\
+        T² \arrow[r, "μ"'] & T
+    \end{tikzcd}
+\end{equation}
+commute.
+Alternatively, we can think of $T$ being a monoid in the category of endofunctors of $\cat C$ with the monoidal structure given by composition of endofunctors.
+This definition also gives the correct generalization to $∞$-categories \cite[Definition~4.7.0.1]{Lurie:2014-draft:HigherAlgebra}.
+
+Let $X$ be an object of the category $\cat C$.
+Then $T$ gives the vector space $\Hom_{\cat C}(X, TX)$ the structure of a dg algebra with multiplication map
+\[
+    (f,g) \mapsto μ_X ∘ Tf ∘ g,
+\]
+\[
+    \begin{tikzcd}
+        X \arrow[r, "g"] & TX \arrow[r, "Tf"] & T²X \arrow[r, "μ_X"] & TX.
+    \end{tikzcd}
+\]
+The identities~\ref{eq:d-mod:pre:monad-identities} ensure that the algebra is associative and unital.
+
+The most common source of monads is from a pair of adjoint functors $F\colon \cat C \rightleftarrows \cat D \cocolon G$.
+One simply sets $T = G ∘ F$ and $η$ and $μ$ are given by the adjunction morphisms
+\[
+    \id[\cat C] → G ∘ F = T
+    \qquad\text{and}\qquad
+    T² = G ∘ (F ∘ G) ∘ F → G ∘ F = T.
+\]
+We note that the correct construction in more complicated in the $∞$-categorical case and refer to \cite[Section~4.7]{Lurie:2014-draft:HigherAlgebra}.
+For any $X ∈ \cat C$ the algebra construction above gives an isomorphism of algebras
+\[
+    \Hom_{\cat C}(X, (GF)(X)) \cong
+    \Hom_{\cat D}(FX, FX).
+\]
+
+Another common way to obtain monads in geometry is via a groupoid.
+Recall that a groupoid $G_{\cx}$ in stacks consists of a stack $\stack G₀$ of \enquote{objects} and a stack $\stack G₁$ of \enquote{morphisms} together with
+\begin{itemize}
+    \item \emph{source} and \emph{target} maps $s,t\colon \stack G₁ \rightrightarrows \stack G₀$,
+    \item a \emph{unit} $e\colon G₀ → G₁$,
+    \item a \emph{multiplication} (or \emph{composition}) map $m\colon \stack G₁ ×\limits_{s,\stack G₀,t} \stack G₁ → \stack G₁$,
+    \item an \emph{inverse} map $ι\colon \stack G₁ → \stack G₁$,
+\end{itemize}
+such that
+\begin{itemize}
+    \item $s ∘ e = t ∘ e = \id_{\stack G₀}$,
+    \item $s ∘ m = s ∘ p₂$ and $t ∘ m = t ∘ p₁$ (where $p_i\colon \stack G₁ ×_{s,\stack G₀,t} \stack G₁$ are the projection maps).
+    \item $m$ is associative,
+    \item $ι$ interchanges $s$ and $t$ and is an inverse for $m$,
+\end{itemize}
+where all identities have to be understood in the correct $∞$-categorical way \cite[Section~6.1.2]{Lurie:2009:HigherToposTheory}.
+
+\begin{Ex}
+    For our purpose the most important example is the following:
+    Let $f\colon \stack X → \stack S$ be a morphism of stacks.
+    We set $\stack G_0 = \stack X$ and $\stack G₁ = \stack X ×_\stack S \stack X$.
+    The source and target maps are given by $p₁$ and $p₂$, the unit by the diagonal $Δ\colon \stack X → \stack X×_\stack S\stack X$, the inverse by interchanging the factors and multiplication is $p₁₃\colon \stack X ×_\stack S \stack X ×_\stack S \stack X → \stack X×_\stack S\stack X$.
+\end{Ex}
+
+Let us for the moment assume that $s$ (and hence $t$) is proper and schematic.
+In this case the maps $e$ and $m$ are also proper, since $s ∘ e = \id_{\stack G₀}$ and $s ∘ m = s ∘ p₂$ are proper.
+In particular the functors $e^!\colon \catDMod{\stack G₁} → \catDMod{\stack G₀}$ and $m^!\colon \catDMod{\stack G₁} → \catDMod{\stack G₁ ×_{\stack G₀} \stack G₁}$ have left adjoints given by $e_*$ and $m_*$ respectively.
+This allows us to give the endofunctor $T = s_*t^!$ of $\catDMod{\stack G₀}$ the structure of a monad in the following way:
+
+\begin{itemize}
+    \item By $(e_*,e^!)$-adjunction we have a transformation
+        \[
+            \id = (s∘e)_*(t∘e)^! = s_*e_*e^!t^! → s_*t^! = T.
+        \]
+    \item Consider the following commutative diagram
+        \[
+            \begin{tikzcd}[column sep=small]
+                {} & & \stack G₁ \arrow[dddll, bend right, "s"] \arrow[dddrr, bend left, "t"] & & \\
+                & & \stack G₁ ×_{\stack G₀} \stack G₁ \arrow[u, "m"] \arrow[dl, "p₂"] \arrow[dr, "p₁"] & & \\
+                & \stack G₁ \arrow[dl, "s"] \arrow[dr, "t"] & & \stack G₁ \arrow[dl, "s"] \arrow[dr, "t"] & \\
+                \stack G₀ & & \stack G₀ & & \stack G₀
+            \end{tikzcd}
+        \]
+        with Cartesian middle square.
+        Proper base change and $(m_*,m^!)$-adjunction gives a transformation
+        \[
+            T² =
+            s_*t^!s_*t^! =
+            (s∘p₂)_*(t∘p₁)^! =
+            (s∘m)_*(t∘m)^! =
+            s_*m_*m^!t^! →
+            s_*t^! =
+            T.
+        \]
+\end{itemize}
+
+In the non-$∞$-categorical setting one could easily check by hand that this is indeed a monad.
+To obtain the corresponding derived statement one applies an argument similar to \cite[Section~\RomanNum{II}.1.7.2]{GaitsgoryRozenblyum:prelim:StudyInDAG}.
+We will discuss a version of this below.
+
+Let now $f\colon \stack X → \stack Y$ be schematic and proper.
+The Cartesian diagram
+\[
+    \begin{tikzcd}
+        \stack X ×_{\stack Y} \stack X \arrow[r, "p_s"] \arrow[d, "p_t"] & \stack X \arrow[d, "f"] \\
+        \stack X \arrow[r, "f"] & \stack Y
+    \end{tikzcd}
+\]
+induces a groupoid with $\stack{G}₀ = \stack X$ and $\stack{G}₁ = \stack X ×_{\stack Y} \stack X$.
+The above constructions now give two monads on $\catDMod{\stack{X}}$: one by $(f_*,f^!)$ adjunction and one from the groupoid structure.
+The base change isomorphism
+\[
+    p_{t,*} p_s^! → f^! f_*
+\]
+gives an identification of these monads and hence of the algebras that they induce, i.e.~for any $\sheaf F ∈ \catDMod{\stack X}$ we have
+\[
+    \Hom(\sheaf F,\, p_{t,*} p_s^!\sheaf F) \cong
+    \Hom(\sheaf F,\, f^! f_* \sheaf F) \cong
+    \Hom(f_*\sheaf F,\, f_* \sheaf F).
+\]
+
+We will need to apply this construction for non-proper $f$.
+Unfortunately, in this case none of the adjunctions used to define the monads are available.
+We rectify this by restricting to the full subcategory of of holonomic D-modules and using the $!$-pushforward functors instead of the $*$-pushforward ones.
+Of course, by doing so we do not automatically have base change isomorphisms available anymore.
+Thus we have to explicitly require that all necessary base changes hold (this is usually called the Beck-Chevalley condition).
+
+In order to formulate the condition, we need the concept of the \emph{nerve} of a groupoid.
+This is the simplicial stack, also denoted $\stack{G}_\cx$, with
+\[
+    \stack G_i = \underbrace{\stack G₁ ×_{\stack G₀} \dotsb ×_{\stack G₀} \stack G₁}_{\text{$i$ factors}}.
+\]
+We refer to \cite[Section~6.1.2]{Lurie:2009:HigherToposTheory} for the correct $∞$-categorical setup.
+The following lemma is now an immediate corollary of \cite[Lemma~\RomanNum{II}.1.7.1.4]{GaitsgoryRozenblyum:prelim:StudyInDAG} or \cite[Theorem~4.7.6.2]{Lurie:2014-draft:HigherAlgebra}.
+
+\begin{Lem}
+    \label{lem:d-mod:pre:groupoid_monad_hol}%
+    Let $f\colon \stack X → \stack Y$ be a schematic morphism of stacks and let $\stack G_\cx$ be the corresponding groupoid.
+    For each map $F\colon [n] → [m]$ in $\cat{Δ}^{\mathrm{op}}$ consider the corresponding square
+    \[
+        \begin{tikzcd}
+            \stack G_{n+1} \arrow[r, "p_s"] \arrow[d, "p_{F+1}"] & \stack G_n \arrow[d, "p_F"] \\
+            \stack G_{m+1} \arrow[r, "p_s"] & \stack G_m
+        \end{tikzcd}
+    \]
+    where the vertical arrows are induced by $F$.
+    Assume that for each such square the base change composition
+    \[
+        p_{F+1,!} p_s^! →
+        p_{F+1,!} p_s^! p_F^! p_{F,!} =
+        p_{F+1,!} p_{F+1}^! p_s^!  p_{F,!} →
+        p_s^! p_{F,!}
+    \]
+    given by the adjunction morphisms is an isomorphism of functors from the category $\catDModHol{\stack G_n}$ to $\catDModHol{\stack G_{m+1}}$.
+    Then the endofunctor $p_{t,!} p_s^!$ of $\catDModHol{\stack X}$ has a canonical structure of a monad and as such is isomorphic to the adjunction monad $f^!f_!$.
+\end{Lem}
+
+\subsection{Hochschild cohomology}
+
+We recall that the Hochschild cohomology of a dg category $\cat C$ is the algebra of derived endomorphisms of the identity functor,
+\[
+    \HCoh(\cat C) = \mathbb{R}\mathrm{Hom}(\id[\cat C],\, \id[\cat C]).
+\]
+For the exact definition of the category $\mathbb{R}\mathrm{Hom} = \cat{Funct}(\cat C, \cat C)$ we refer to \cite{Keller:2006:OnDGCategories}.
+Instead we will give a more concrete construction via kernels which can be applied to $\catDMod{\stack X}$.
+For this let us restrict to the case of co-complete dg categories and let $\cat{Funct}_{\mathrm{cont}}(\cat C, \cat C)$ be the full subcategory of $\cat{Funct}(\cat C, \cat C)$ spanned by the continuous functors.
+Then, since $\id[\cat C]$ is evidently continuous, we have
+\[
+    \HCoh(\cat C) =
+    \Hom_{\cat{Funct}_{\mathrm{cont}}(\cat C, \cat C)}(\id[\cat C], \id[\cat C]).
+\]
+Let us further assume that $\cat C$ is dualizable with dual $\cat C^\dual$.
+Thus there is a unit map
+\[
+    η\colon \catVect → \cat C^\dual \otimes \cat C
+\]
+and a counit map
+\[
+    ε\colon \cat C^\dual \otimes \cat C → \catVect
+\]
+fulfilling the usual compatibilities (cf.~\cite[Section~2]{BenZviNadler:arXiv:NonlinearTraces}).
+Let $u = η(k)$.
+Then to each continuous endofunctor $F$ of $\cat C$ we can associate its kernel $\id[\cat C^\dual] \otimes F(u) ∈ \cat C^\dual \otimes \cat C$ and conversely to each kernel $Q ∈ \cat C^\dual \otimes \cat C$ we can associate the endofunctor
+\[
+    \cat C
+    \xrightarrow{\id[\cat C] \otimes Q}
+    \cat C \otimes \cat C^\dual \otimes \cat C
+    \xrightarrow{ε \otimes \id[\cat C]}
+    \cat C.
+\]
+These assignments are mutually inverse and give an equivalence of dg categories
+\[
+    \cat{Funct}_{\mathrm{cont}}(\cat C, \cat C)
+    \cong
+    \cat C^\dual \otimes \cat C.
+\]
+In particular, the kernel for the identity is $u$ and hence we have
+\[
+    \HCoh(\cat C) =
+    \Hom_{\cat C^\dual \otimes \cat C}(u, u).
+\]
+Let us now consider the case of $\cat C = \catDMod{\stack X}$ for a stack $X$.
+Let $p\colon \stack X → \pt$ be the structure morphism and $Δ\colon \stack X → \stack X × \stack X$ the diagonal.
+By \cite[Section~8.4]{DrinfeldGaitsgory:2013:FinitenessQuestions} the category $\catDMod{\stack X}$ is dualizable and there is a canonical indentification
+\[
+    \catDMod{\stack X}^\dual \otimes \catDMod{\stack X} \cong \catDMod{\stack X × \stack X}
+\]
+such that the unit map is given by $Δ_*p^!$ and thus we have
+\[
+    u = Δ_*ω_{\stack X}.
+\]
+We summarize the above discussion in the following lemma.
+
+\begin{Lem}\label{lem:d-mod:pre:hcoh}
+    Let $\stack X$ be a stack.
+    Then the Hochschild cohomology of $\catDMod{\stack X}$ is given by the dg algebra
+    \[
+        \HCoh(\catDMod{\stack X}) =
+        \Hom_{\catDMod{\stack X × \stack X}}(Δ_*ω_{\stack X},\, Δ_*ω_{\stack X}).
+    \]
+\end{Lem}
+
+\section{Base change for non-proper maps}
+\label{ch:d-mod:strategy}
+
+Let $\stack X$ be any stack, where we recall that all stacks are assumed to be QCA.
+We are interested in computing the Hochschild cohomology
+\[
+    \HCoh\bigl(\catDMod{\stack X}\bigr).
+\]
+Let $Δ\colon \stack X → \stack X × \stack X$ is the diagonal map, which by assumption is schematic.
+The dualizing module $ω_{\stack X}$ is always holonomic.
+Thus we have $\dualize Δ_* ω_{\stack X} = Δ_! k_{\stack X}$.
+With this we observe that
+\begin{align*}
+    \HCoh\bigl(\catDMod{\stack X}\bigr)
+    & = \Hom_{\catDMod{\stack X × \stack X}}(Δ_* ω_{\stack X},\, Δ_* ω_{\stack X}) & &\text{(Lemma~\ref{lem:d-mod:pre:hcoh})} \\
+    & = \opalg{\Hom_{\catDMod{\stack X × \stack X}}(Δ_! k_{\stack X},\, Δ_! k_{\stack X})} & & \text{(duality)} \\
+    & = \opalg{\Hom_{\catDMod{\stack X × \stack X}}(k_{\stack X},\, Δ^! Δ_! k_{\stack X})} & & \text{(adjunction)} \\
+    & = \opalg{\ΓdR\bigl(\stack X,\, Δ^! Δ_! k_{\stack X}\bigr)},
+\end{align*}
+where the algebra structure on $\ΓdR\bigl(\stack X,\, Δ^! Δ_! k_{\stack X}\bigr) = \Hom_{\catDMod{\stack X × \stack X}}(k_{\stack X},\, Δ^! Δ_! k_{\stack X})$ is the one induced by the $(Δ_!,Δ^!)$-adjunction monad.
+Consider the Cartesian square
+\[
+    \begin{tikzcd}
+        \ls{\stack X} \arrow[r, "p₁"] \arrow[d, "p₂"] & \stack X \arrow[d, "Δ"] \\
+        \stack X \arrow[r, "Δ"] & \stack X × \stack X
+    \end{tikzcd}
+\]
+Let us assume for the moment that $Δ$ (and hence $p_i$) was proper.
+Then $Δ_* = Δ_!$ and $p_{2,*} = p_{2,!}$ and by Section~\ref{sec:d-mod:pre:monads} we have an isomorphism of monads
+\begin{equation}
+    \label{eq:d-mod:central_iso}
+    p_{2,!} p₁^! → Δ^!Δ_!,
+\end{equation}
+which induces an isomorphism of algebras
+\[
+    \ΓdR\bigl(\stack X,\, p_{2,!} p₁^! k_{\stack X}\bigr)
+    →
+    \ΓdR\bigl(\stack X,\, Δ^! Δ_! k_{\stack X}\bigr).
+\]
+Of course, if $X$ is not an algebraic space, then $Δ$ is not proper (nor is it in general smooth).
+Thus in general \eqref{eq:d-mod:central_iso} is not an isomorphism and there is no canonical structure of monad on $p_{2,!} p₁^!$.
+We would like to apply Lemma~\ref{lem:d-mod:pre:groupoid_monad_hol} to construct a monad in special cases.
+Thus the goal of this chapter is to give a criterion for the assumptions of Lemma~\ref{lem:d-mod:pre:groupoid_monad_hol}, i.e.~for base change to hold.
+
+\begin{Ex}
+    The base change morphism \eqref{eq:d-mod:central_iso} is also an isomorphism if $Δ$ is smooth.
+    In particular this implies that the \enquote{naive expectation} holds for $\stack X = \B G$ for any algebraic group $G$, i.e.~we have
+    \[
+        \HCoh(\catDMod{\B G}) = \opalg{\ΓdR\bigl(\B G,\, p_{2,!} p₁^! k_{\B G}\bigr)}.
+    \]
+    An argument similar to \cite{BenZvi:mathoverflow:CohomologyOfGmodG} shows that there is a further isomorphism
+    \[
+        \ΓdR\bigl(\B G,\, p_{2,!} p₁^! k_{\stack X}\bigr) \cong
+        \ΓdR(G, k_G)^\dual \otimes \ΓdR(\B G, k_{\B G}).
+    \]
+    Alternatively, we can use the identification
+    \[
+        \catDMod{\B G} \cong \catModules{\ΓdR(G, k_{G})^\dual},
+    \]
+    where the algebra structure on $\ΓdR(G, k_G)^\dual$ is induced by the group multiplication \cite[Section~7.2]{DrinfeldGaitsgory:2013:FinitenessQuestions}.
+    If $G$ is reductive, then $\ΓdR(G, k_G)^\dual$ is an exterior algebra and thus its Hochschild cohomology can be computed directly.
+\end{Ex}
+
+\subsection{A lemma on base change}\label{sec:d-mod:strategy:base-change}
+
+Consider a Cartesian diagram of stacks
+\[
+    \begin{tikzcd}
+        \stack Z \arrow[d, "p"] \arrow[r, "q"] & \stack X₁ \arrow[d, "f"] \\
+        \stack X₂ \arrow[r, "g"] & \stack Y
+    \end{tikzcd}
+\]
+with $f$ and $g$ schematic.
+We have a morphism of functors $\catDModHol{\stack X₁} → \catDModHol{\stack X₂}$,
+\begin{equation}
+    \label{eq:d-mod:base-change-morphism}
+     p_! q^! → g^! f_!
+\end{equation}
+induced by adjunctions
+\begin{equation}
+    \label{eq:d-mod:base-change-adjunctions}
+    p_! q^! →
+    p_! q^! f^! f_! =
+    p_! p^! g^! f_! →
+    g^! f_!.
+\end{equation}
+If $f$ is proper, then \eqref{eq:d-mod:base-change-morphism} is an isomorphism by Proposition~\ref{prop:d-mod:pre:base-change}.
+To understand the behavior for non-proper $f$, we will approximate it by a proper morphism.
+
+\begin{Def}
+    A \emph{relative compactification} of a morphism $f\colon \stack X → \stack Y$ is a commutative diagram
+    \[
+        \begin{tikzcd}
+            \stack X \arrow[r, hook, "j"] \arrow[dr, "f"'] & \bar{\stack X} \arrow[d, "\bar f"] \\
+            & \stack Y
+        \end{tikzcd}
+    \]
+    where $j$ is an open embedding and $\bar f$ is proper.
+\end{Def}
+
+\begin{Ex}
+    A famous example of such a relative compactification is Drinfeld's compactification of the morphism $\Bun_B → \Bun_G$, where $\Bun_G$ is the stack of $G$-bundles on a curve $C$ with $G$ reductive and $B$ is a Borel subgroup of $G$ \cite{BravermanGaitsgory:2002:GeometricEisensteinSeries}.
+\end{Ex}
+
+Let us assume that in the above situation there exists a relative compactification of $f\colon \stack X₁ → \stack Y$.
+Let $\stack X₁^c$ be the closed complement of the open inclusion $j\colon \stack X₁ \hookrightarrow \bar{\stack X}₁$.
+Similarly, we let $\bar{\stack Z} = \stack X₂ ×_{\stack Y} \bar{\stack X}₁$ and $\stack Z^c = \stack X₂ ×_{\stack Y} \stack X₁^c$.
+The notation for the corresponding inclusion and projection maps is summarized in the following Cartesian diagrams.
+\[
+    \begin{tikzcd}
+        \bar{\stack Z} \arrow[d, "\bar p"] \arrow[r, "\bar q"] & \bar{\stack X}₁ \arrow[d, "\bar f"] \\
+        \stack X₂ \arrow[r, "g"] & \stack Y
+    \end{tikzcd}
+    \qquad\qquad
+    \begin{tikzcd}
+        \stack Z^c \arrow[r, hook, "i"] \arrow[d] & \bar{\stack Z} \arrow[d, "\bar q"] \\
+        \stack X₁^c \arrow[r, hook] & \bar{\stack X}₁
+    \end{tikzcd}
+\]
+We note that $\bar{\stack Z}$ is the disjoint union of the closed substack $\stack Z^c$ and the open substack $\stack Z$.
+
+\begin{Lem}
+    \label{lem:d-mod:base-change-criterion}%
+    The cone of the morphism~\eqref{eq:d-mod:base-change-morphism} is
+    \[
+        \bar p_! i_*i^* \bar{q}^! j_!.
+    \]
+    In particular, if $i^* \bar{q}^! j_! = 0$, then~\eqref{eq:d-mod:base-change-morphism} is an isomorphism of functors.
+\end{Lem}
+
+\begin{proof}
+    Let $\tilde\jmath\colon \stack Z \hookrightarrow \bar{\stack Z}$ be the open inclusion complement to $i$.
+    We split the adjunction in \eqref{eq:d-mod:base-change-adjunctions} in two by using the compositions
+    \[
+        f = \bar f ∘ j
+        ,\
+        p = \bar p ∘ \tilde\jmath
+        \text{ and }
+        q = \bar q ∘ \tilde\jmath.
+    \]
+    Thus the adjunction $p_!q^!→ p_!q^!f^!f_!$ becomes the sequence
+    \[
+        p_!q^! →
+        p_!q^! j^! j_! →
+        p_!q^! j^! \bar f^! \bar f_! j_!.
+    \]
+    The equality $p_! q^! f^! f_! = p_! p^! g^! f_!$ then becomes
+    \[
+        p_! q^! j^! \bar f^! \bar f_! j_! =
+        p_! \tilde\jmath^! \bar q^! \bar f^! \bar f_! j_! =
+        p_! \tilde\jmath^! \bar p^! g^! \bar f_! j_!.
+    \]
+    Finally the adjunction $p_! p^! g^! f_! → g^! f_!$ becomes
+    \[
+        p_! \tilde\jmath^! \bar p^! g^! \bar f_! j_! =
+        \bar p_! \tilde\jmath_! \tilde\jmath^! \bar p^! g^! \bar f_! j_! →
+        \bar p_! \bar p^! g^! \bar f_! j_! →
+        g^! \bar f_! j_! =
+        g^! f_!.
+    \]
+    Let us apply the same adjunction morphisms in a different order.
+    First the inclusions
+    \[
+        p_!q^!
+        \xrightarrow{α}
+        p_!q^! j^! j_!
+        =
+        \bar p_! \tilde\jmath_! \tilde\jmath^! \bar q^! j_!
+        \xrightarrow{β}
+        \bar p_! \bar q^! j_!,
+    \]
+    and then the actual base change
+    \begin{equation}
+        \label{eq:lem:d-mod:base-change-criterion:pf:split_morphism_base_change}
+        \bar p_! \bar q^! j_!
+        →
+        \bar p_! \bar q^! \bar f^! \bar f_! j_!
+        =
+        \bar p_! \bar p^! g^! \bar f_! j_!
+        →
+        g^! \bar f_! j_!
+        =
+        g^! f_!.
+    \end{equation}
+    We note that the adjunction $α\colon \id → j^!j_!$ is an isomorphism and the composition of the maps in \eqref{eq:lem:d-mod:base-change-criterion:pf:split_morphism_base_change} is exactly the isomorphism of proper base change (cf.~Proposition~\ref{prop:d-mod:pre:base-change}).
+    Thus the cone of the whole composition is the same as the cone of the morphism $β$, which is given by the recollement triangle
+    \[
+        \bar p_! \tilde\jmath_! \tilde\jmath^! \bar q^! j_!
+        \xrightarrow{β}
+        \bar p_! \bar q^! j_!
+        \xrightarrow{\phantom{β}}
+        \bar p_! i_* i^* \bar q^! j_!
+        \xrightarrow{+1}.
+        \qedhere
+    \]
+\end{proof}
+
+\subsection{Relative compactification for quotient stacks}
+\label{sec:d-mod:strategy:compactification}%
+
+In the preceding section we simply assumed that a relative compactification of the diagonal exists.
+We will now construct such a compactification for quotient stacks.
+Thus let $X$ be a scheme of finite type over $k$ and let $G$ be an affine algebraic group over $k$ acting on $X$.
+Let $\stack X = X/G$ be the corresponding quotient stack.
+
+Constructing a relative compactification of $Δ\colon \stack X → \stack X × \stack X$ is the same as first constructing a $G × G$-equivariant relative compactification of $(\proj2, a)\colon G × X → X × X$ (where $a\colon G × X → X$ is the action map) and then taking the quotient by the $G × G$ action\footnote{%
+    Here $G × G$ acts on $G × X$ by $(s₁,s₂) \cdot (g,x) = (s₂gs₁^{-1},\, s₁x)$.
+}.
+We let
+\[
+    Γ = \bigl\{(g, x, x, gx) ∈ G × X × X × X\bigr\}
+\]
+be the graph of $(\proj2, a)$.
+
+We pick a $G×G$-equivariant compactification $\bar G$ of $G$ and let $\bar Γ$ be the closure of $Γ$ in $\bar G × X × X × X$.
+We have an open embedding $j$ of $G × X \cong Γ$ into $\bar Γ$ and proper map $f\colon \bar Γ → X × X$ given by projection on the last two factors.
+The composition $f ∘ j$ is equal to $(\proj2, a)$.
+
+Instead of viewing $Γ$ as the graph of $(\proj2, a)$ we can drop the third factor and regard $Γ$ as the graph of the action map, i.e.
+\[
+    \Γsub{a} = \bigl\{(g, x, gx) ∈ G × X × X\bigr\}.
+\]
+The closure $\bar{ \Γsub{a}}$ of $\Γsub a$ in $\bar G × X × X$ identifies with $\bar Γ$.
+Thus for ease of notation we will from now on always set $Γ = \Γsub a$ and $\bar Γ = \bar{\Γsub a}$.
+
+\begin{Def}
+    Let $\stack X = X/G$.
+    With the above construction we set
+    \[
+        \bar{\stack X} = \rquot{\bar Γ}{G×G}.
+    \]
+    We have an open embedding $j\colon X \hookrightarrow \bar{\stack X}$ and a proper morphism $\bar Δ\colon \bar{\stack X} → \stack X × \stack X$ induced by the map $f$ above, such that $Δ = \bar Δ ∘ j$.
+\end{Def}
+
+\begin{Rem}
+    In the case of $G = \Gm$ the compactification $\bar Γ$ is explicitly described in \cite{DrinfeldGaitsgory:2014:OnATheoremOfBraden}.
+    In particular, if $X$ is smooth it is shown there that $\bar Γ$ is smooth over $\bar G = \ps1$.
+    It is possible to extend the methods of \cite{DrinfeldGaitsgory:2014:OnATheoremOfBraden} to quotients by higher dimensional tori.
+    The resulting constructions are highly useful for doing explicit computations.
+\end{Rem}
+
+It is useful to consider only partial compactifications.
+For this let $V$ be a $G$-stable subvariety of $\bar G$ and let $\bar{\Γsub V}$ be the closure of $Γ$ in $G × V$.
+We set
+\[
+    \bar{\stack X}_V = \rquot{\bar{\Γsub V}}{G×G}.
+\]
+Clearly, if $\left\{V_i\right\}$ is an open cover of $\bar G$ by $G$-stable subvarieties, then $\left\{\bar{\stack X}_{V_i}\right\}$ is an open cover of $\bar{\stack X}$.
+
+\subsection{\Goodstack\ stacks}
+
+Let $\stack X = X/G$ be a quotient stack as before.
+For any morphism of stacks $h\colon \stack Y → \stack X$ we set $\lsY{\stack X} = \stack X ×_{\stack X × \stack X} \stack Y$.
+Thus we have the Cartesian diagram
+\[
+    \begin{tikzcd}
+        \lsY \stack X \arrow[r, "q_{\stack Y}"] \arrow[d] & \stack X \arrow[d, "Δ"] \\
+        \stack Y \arrow[r, "Δ∘h"] & \stack X × \stack X
+    \end{tikzcd}
+\]
+Let us fix a relative compactification $\bar Δ \colon \bar{\stack X} → \stack X × \stack X$ as in Section~\ref{sec:d-mod:strategy:compactification}.
+Using the notation of Section~\ref{sec:d-mod:strategy:base-change} we set $\clsY{\stack X} = \bar{\stack X} ×_{\stack X × \stack X} \stack Y$ and $\lscY{\stack X} = {\stack X}^c ×_{\stack X × \stack X} \stack Y$.
+We let $\bar q_{\stack Y}\colon \clsY\stack X → \bar{\stack X}$ be the projection morphism and $i_{\stack Y}\colon \lscY\stack X \hookrightarrow \clsY\stack X$ the inclusion.
+Thus we have the following central diagram
+\[
+    \begin{tikzcd}
+        \lsY\stack X \arrow[r, hook] \arrow[d, "q_{\stack Y}"] & \clsY\stack X \arrow[d, "\bar q_{\stack Y}"] & \lscY\stack X \arrow[l, hook', "i_{\stack Y}"'] \arrow[d] \\
+        \stack X \arrow[r, hook, "j"] & \bar{\stack X} & \stack X^c \arrow[l, hook']
+    \end{tikzcd}
+\]
+
+\begin{Def}
+    A quotient stack $\stack X = X/G$ is called \emph{\goodstack} if for every quotient stack $\stack Y = Y/G$ and schematic morphism $\stack Y → \stack X$ the functor $i_{\stack Y}^* \bar q_{\stack Y}^! j_!$ vanishes on $\catDModHol{\stack X}$.
+\end{Def}
+
+We will show in Chapter~\ref{ch:d-mod:torus} that any stack of the form $\rquot{X}{\Gm^n}$ is \goodstack.
+The reason for this definition is the following theorem which lets us compute the Hochschild cohomology of $\catDMod{\stack X}$ for \goodstack\ quotient stacks.
+
+\begin{Thm}\label{thm:d-mod:good-is-good}
+    If $\stack X = X/G$ is \goodstack, then there exists a canonical structure of monad on $p_{2,!}p₁^!$ and the morphism $p_{2,!}p₁^! → Δ^!Δ_!$ is an isomorphism of monads.
+    In particular there is an isomorphism of algebras
+    \[
+        \HCoh\bigl(\catDMod{\stack X}\bigr)
+        \cong
+        \opalg{\ΓdR\bigl(\stack X,\, p_{2,!} p₁^! k_{\stack X}\bigr)}.
+    \]
+\end{Thm}
+
+In other words, Theorem~\ref{thm:d-mod:main} holds for \goodstack\ stacks.
+
+\begin{proof}
+    We apply Lemma~\ref{lem:d-mod:pre:groupoid_monad_hol} to the groupoid $\ls\stack X \rightrightarrows \stack X$.
+    Thus we let $\stack G_\cx$ be the simplicial stack with
+    \[
+        \stack G_i = \underbrace{\ls\stack X ×_{\stack X} \dotsb ×_{\stack X} \ls\stack X}_{\text{$i$ factors}}.
+    \]
+    Any morphism $F\colon [n] → [m]$ in $\cat{Δ}^{\mathrm{op}}$ induces a diagram
+    \[
+        \begin{tikzcd}
+            \stack G_{n+1} \arrow[d] \arrow[r] & \stack G_{m+1} \arrow[d] \arrow[r] & \stack X \arrow[d, "Δ"] \\
+            \stack G_{n} \arrow[r] & \stack G_m \arrow[r] & \stack X × \stack X
+        \end{tikzcd}
+    \]
+    We have to show that base change holds along the left-hand square.
+    But by the assumption and Lemma~\ref{lem:d-mod:base-change-criterion}, base change holds along the outer rectangle and the left-hand square.
+    Thus it also holds along the left-hand square.
+\end{proof}
+
+\begin{Rem}
+    We expect that most quotient stacks are not \goodstack.
+    For example, a direct computation shows that Theorem~\ref{thm:d-mod:main} does not hold for the stack $\ps1/\as1$, and hence it is not \goodstack.
+    For non-\goodstack\ stacks, Lemma~\ref{lem:d-mod:base-change-criterion} instead gives a description of how much the naive expectation for $\HCoh\bigl(\catDMod{\stack X}\bigr)$ fails.
+\end{Rem}
+
+We finish this section with some useful observations for proving that a stack is \goodstack.
+
+\begin{Lem}
+    If $\stack X₁ = X₁/G₁$ and $\stack X₂ = X₂/G₂$ are \goodstack, then $\stack X₁ × \stack X₂$ is \goodstack.
+\end{Lem}
+
+\begin{proof}
+    Follows from compatibility of $i_{\stack Y}^*\bar{q}_{\stack Y}^!j_!$ with $\boxtimes$ and coproducts.
+    (Note that $\lscY{(\stack X₁ × \stack X₂)} = \lscY \stack{X₁} × \clsY \stack{X₂} ∪ \clsY{\stack X₁} × \lscY{\stack X₂}$.)
+\end{proof}
+
+\begin{Lem}
+    Let $U$ be a $G$-equivariant open subset of $X$.
+    If $X/G$ is \goodstack\ then $U/G$ is \goodstack.
+\end{Lem}
+
+\begin{proof}
+    Let $\stack U = U/G$ and let $\stack Y$ be a quotient stack mapping into $\stack U$ (and hence also into $\stack X$).
+    Consider the diagram
+    \begin{equation}
+        \label{eq:lem:d-mod:cover:diagram}
+        \begin{tikzcd}
+            \lscY \stack U \arrow[r, hook, "i_{\stack U, \stack Y}"] \arrow[d, hook, "α"] & \clsY{\stack U} \arrow[r, "\bar q_{\stack U,\stack Y}"] \arrow[d, hook, "β"] & \bar{\stack U} \arrow[d, hook, "γ"] & \stack U \arrow[l, hook', "j_{\stack U}"'] \arrow[d, hook, "δ"] \\
+            \lscY \stack X \arrow[r, hook, "i_{\stack X, \stack Y}"]                      & \clsY{\stack X} \arrow[r, "\bar q_{\stack X,\stack Y}"]                      & \bar{\stack X}                      & \stack X \arrow[l, hook', "j_{\stack X}"']
+        \end{tikzcd}
+    \end{equation}
+    The vertical arrows are open embeddings and all squares are Cartesian (where we use the same compactification of $G$ for $\bar{\stack X}$ and $\bar{\stack U}$).
+    Thus
+    \begin{equation*}
+        i_{\stack U, \stack Y}^* \bar q_{\stack U,\stack Y}^! j_{\stack U,!} =
+        i_{\stack U, \stack Y}^* \bar q_{\stack U,\stack Y}^! j_{\stack U,!} δ^* δ_*=
+        α^* i_{\stack X, \stack Y}^* \bar q_{\stack X, \stack Y}^! j_{\stack X,!} δ_* =
+        0.
+        \qedhere
+    \end{equation*}
+\end{proof}
+
+The same argument can be used to reduce the computation to a smooth cover.
+We will now introduce notation for the special case of the cover $\bar Γ → \bar{\stack X}$.
+The corresponding covers of the other relevant stacks are introduced in the following diagram with Cartesian squares.
+\begin{equation}
+    \label{eq:d-mod:strategy:scheme-cover}
+    \begin{tikzcd}
+        \schemelscY \stack X \arrow[r, hook, "\schemei_{\stack Y}"] \arrow[d] & \schemeclsY \stack X \arrow[r, "\bar\schemeq_{\stack Y}"] \arrow[d] & \bar Γ \arrow[d] & Γ \arrow[l, hook', "\schemej"'] \arrow[d] \\
+        \lscY \stack X \arrow[r, hook, "i_{\stack Y}"]                        & \clsY \stack X \arrow[r, "\bar q_{\stack Y}"]                       & \bar{\stack X}   & \stack X \arrow[l, hook', "j"']
+    \end{tikzcd}
+\end{equation}
+We note that all vertical morphisms are smooth and the spaces in the top row are schemes.
+Let $\schemeh\colon X → Y$ be the $G$-equivariant morphism of schemes inducing $h$ on quotient stacks.
+Then the scheme $\schemeclsY \stack X$ is given by
+\[
+    \schemeclsY \stack X =
+    \biggl\{
+        \bigl(g₁,\, y,\, g₂\bigr) ∈ G × Y × \bar G : \bigl(g₂,\, \schemeh(y),\, g₁\schemeh(y)\bigr) ∈ \bar Γ
+    \biggr\}.
+\]
+
+\begin{Lem}\label{lem:d-mod:strategy:scheme-cover}
+    A stack $X/G$ is \goodstack\ if and only if for each morphism $Y/G → X/G$ the composition $\schemei_{\stack Y}^* \bar\schemeq_{\stack Y}^! \schemej_!$ vanishes on $\catDModHolMon{Γ}{G×G}$.
+\end{Lem}
+
+\begin{proof}
+    Follows from the fact that pullback along the smooth vertical morphisms in \eqref{eq:d-mod:strategy:scheme-cover} is conservative \cite[Lemma~5.1.6]{DrinfeldGaitsgory:2013:FinitenessQuestions} and permutes with the other morphisms up to a shift.
+\end{proof}
+
+\begin{Lem}
+    \label{lem:d-mod:strategy:cover}%
+    If there exists a $G$-stable open cover $U_i$ of $X$ such that all stacks $U_i/G$ are \goodstack, then $X/G$ is \goodstack.
+\end{Lem}
+
+\begin{proof}
+    Let $\stack U_i = U_i/G$ be the corresponding quotient stacks.
+    We first show that the stacks $\lscY{\stack U_i}$ form an open cover of $\lscY{\stack X}$\footnote{
+        This is not completely obvious, since the $\bar{\stack U}_i$ do not necessarily form a cover of $\bar{\stack X}$.
+        For example, consider $\ps1$ with the usual linear $\Gm$-action and the usual affine cover.
+    }.
+    For this it suffices to show that the open subschemes $\schemeclsY \stack U_i$ cover $\schemeclsY \stack X$.
+    Let $(g₁, y, g₂)$ be a point of $\schemeclsY \stack X$.
+    Then there exists some $U_i$ with $h'(y) ∈ U_i$.
+    But then $g₁h'(y)$ is also in $U_i$ and hence $(h'(y), g₂, g₁h'(y)) ∈ \bar{\stack U}_i$.
+    Thus $(g₁, y, g₂)$ is in $\schemeclsY \stack U_i$.
+
+    It now suffices to show that the restrictions of $i_{\stack Y}^*\bar{q}_{\stack Y}^!j_! \sheaf F$ to $\lscY{\stack U_i}$ vanish for every $\sheaf F ∈ \catDMod{\stack X}$.
+    But this follows from the diagram~\eqref{eq:lem:d-mod:cover:diagram} (for $\stack U_i$ instead of $\stack U$) and the \goodness\ of $\stack U_i$.
+\end{proof}
+
+Let $\left\{V_i\right\}$ be a $G$-stable open cover of $\bar G$ and consider the corresponding open cover $\left\{\bar{\stack X}_{V_i}\right\}$ of $\stack X$.
+We obtain open covers $\left\{\cls_{V_i,\stack Y} \stack X\right\}$ and $\left\{\lsc_{V_i,\stack Y} \stack X\right\}$ of $\clsY{\stack X}$ and $\lscY{\stack X}$ respectively.
+We let $i_{V_i,\stack X}$, $\bar q_{V_i,\stack X}$ and $j_{V_i}$ be the corresponding maps, i.e.
+\[
+    \begin{tikzcd}
+        \cls_{V_i,\stack Y} \stack X \arrow[r, hook, "i_{V_i,\stack X}"] &
+        \lsc_{V_i,\stack Y} \stack X \arrow[r, "\bar q_{V_i,\stack X}"] &
+        \bar{\stack X}_{V_i} &
+        \stack X \arrow[l, hook', "j_{V_i}"'].
+    \end{tikzcd}
+\]
+
+\begin{Lem}\label{lem:d-mod:strategy:cover-by-relative-compactifications}
+    With the above notation, the $\stack X$ is \goodstack\ if and only $i_{V_i,\stack Y}^* \bar q_{V_i,\stack Y}^! j_{V_i,!}$ vanishes on $\catDModHol{\stack X}$ for all $V_i$ and all $\stack Y → \stack X$.
+\end{Lem}
+
+\begin{proof}
+    Similar to the proof of Lemma~\ref{lem:d-mod:strategy:cover}.
+\end{proof}
+
+\section{Torus quotients}
+\label{ch:d-mod:torus}
+
+In this chapter we will apply the tools from the previous chapter to torus quotient stacks.
+Specifically, we will prove the following theorem.
+
+\begin{Thm}
+    \label{thm:d-mod:torus:is-good}%
+    Let $G \cong \Gm^n$ be a torus acting locally linearly on a scheme $X$ of finite type over $k$.
+    Then the stack $\stack X = X/G$ is good.
+\end{Thm}
+
+Together with Theorem~\ref{thm:d-mod:good-is-good} this implies our main result, Theorem~\ref{thm:d-mod:main}.
+
+\begin{Rem}
+    We only use the assumption that the action is locally linear to prove Lemma~\ref{lem:d-mod:finitely_many_stabilizers}, i.e.~that $\Stab\stack X$ is locally finite.
+    Thus it would suffice to assume that $X$ can be covered by open subschemes for which Lemma~\ref{lem:d-mod:finitely_many_stabilizers} holds.
+\end{Rem}
+
+\begin{Rem}
+    Theorem~\ref{thm:d-mod:torus:is-good} actually holds for $G$ the product of a torus and a finite Abelian group.
+    The argument is exactly the same.
+\end{Rem}
+
+By Lemma~\ref{lem:d-mod:strategy:cover}, it suffices to prove Theorem~\ref{thm:d-mod:torus:is-good} for stacks $X/G$ with $X$ affine.
+We fix an isomorphism $G \cong \Gm^n$ and compactify $G$ to $\bigl(\ps1\bigr)^n$.
+The variety $\bigl(\ps1\bigr)^n$ can be covered by $G$-equivariant open subvarieties of the form $\as n$.
+Thus by Lemma~\ref{lem:d-mod:strategy:cover-by-relative-compactifications}, it suffices to check \goodness\ for the relative compactification $\Gm^n \subseteq \as n$.
+To simplify notation, we drop the subscript $\as n$ from the notation and set $\bar{\stack X} = \bar{\stack X}_{\as n}$ and similarly for the various maps.
+
+We fix a quotient stack $\stack Y = Y/G$ and a morphism $h\colon \stack Y → \stack X$, induced by a $G$-equivariant morphism $\schemeh\colon Y → X$.
+According to Lemma~\ref{lem:d-mod:strategy:scheme-cover}, rather than working with stack directly, we can base change to schemes.
+We will use the notation of Lemma~\ref{lem:d-mod:strategy:scheme-cover}, but for ease of notation we will drop the subscript $\stack Y$ from the maps.
+Thus we are concerned with the diagram
+\[
+    \begin{tikzcd}
+        \schemelscY \stack X \arrow[r, hook, "\schemei"] &
+        \schemeclsY \stack X \arrow[r, "\bar\schemeq"] &
+        \bar Γ &
+        Γ \arrow[l, hook', "\schemej"'],
+    \end{tikzcd}
+\]
+where we have to show that $\schemei^* \bar\schemeq^! \schemej_!$ vanishes on $\catDModHolMon{Γ}{G×G}$.
+
+The general idea is to introduce a $\Gm$-action that contracts $\schemelscY \stack X$ onto $\schemeclsY \stack X$.
+In order to do so, we will cut the scheme
+\[
+    \schemeclsY \stack X =
+    \biggl\{
+        \bigl(g₁,\, y,\, g₂\bigr) ∈ G × Y × \bar G : \bigl(g₂,\, \schemeh(y),\, g₁\schemeh(y)\bigr) ∈ \bar Γ
+    \biggr\}
+\]
+into pieces according to the subgroups of $G$ that stabilize $\schemeh(y)$.
+For this let $\Stab\stack X$ be the set of all closed subgroups of $G$ that are stabilizers of points of $X$, i.e.
+\[
+    \Stab\stack X = \{ G_x : x ∈ X \}.
+\]
+
+\begin{Lem}
+    \label{lem:d-mod:finitely_many_stabilizers}%
+    The set $\Stab\stack X$ is finite.
+\end{Lem}
+
+\begin{proof}
+    Since $X$ is affine, it can be embedded $G$-equivariantly into some $\as m$ with a linear $T$-action.
+    For $\as m/T$ the statement is easy to see.
+\end{proof}
+
+Let $S$ be closed subgroup of $G$ and let $X^S$ be the $S$-fixed points of $X$.
+Since $G$ is Abelian (and hence $S$ a normal subgroup), $X^S$ is a $G$-stable closed subscheme of $X$.
+Hence $X^S/G$ is a closed substack of $\stack X$.
+Let $\bar S$ be the closure of $S$ in $\bar G = \as n$ and consider the space
+\[
+    \schemecls[S]_{\stack Y} \stack X =
+    \biggl\{
+        \bigl(g₁,\, y,\, g₂\bigr) ∈ G × Y × \bar G : \schemeh(y) ∈ X^S,\, \bigl(g₂,\, \schemeh(y),\, g₁\schemeh(y)\bigr) ∈ \bar Γ \text{ and } g₂ ∈ g₁\bar S
+    \biggr\}
+    ⊆ 
+    \schemecls_{\stack Y} \stack X.
+\]
+
+\begin{Lem}
+    \label{lem:d-mod:stabilizers_cover}%
+    The subspaces $\schemecls[S]_{\stack Y} \stack X$ for $S ∈ \Stab\stack X$ cover $\schemecls_{\stack Y}\stack X$.
+\end{Lem}
+
+\begin{proof}
+    Let $\schemelsY \stack X$ be the smooth cover of $\ls_{\stack Y}\stack X$.
+    Consider the spaces
+    \[
+        \schemelsY[S] \stack X = 
+        \biggl\{
+            \bigl(g₁,\, y,\, g₂\bigr) ∈ G × Y × G : \schemeh(y) ∈ X^S,\, \bigl(g₂,\, \schemeh(y),\, g₁\schemeh(y)\bigr) ∈ Γ \text{ and } g₂ ∈ g₁S
+        \biggr\}
+        \subseteq \schemelsY \stack X.
+    \]
+    The closure of $\schemelsY[S] \stack X$ in $\schemeclsY \stack X$ is exactly $\schemeclsY[S] \stack X$.
+    It is easy to see that the subspaces $\schemelsY[S] \stack X$ for $S ∈ \Stab \stack X$ cover $\schemelsY[S] \stack X$.
+    Now the statement follows from the fact that the closure of a finite union is the union of the individual closures.
+\end{proof}
+
+It will be useful to have a slight generalization of the schemes $\schemeclsY[S] \stack X$.
+Let $S₁ \subseteq S₂$ be two subgroups of $G$ contained in $\Stab\stack X$.
+We set
+\[
+    \schemeclsY[S₁,S₂] \stack X =
+    \biggl\{
+        \bigl(g₁,\, y,\, g₂\bigr) ∈ G × Y × \bar G : \schemeh(y) ∈ X^{S₂},\, \bigl(g₂,\, \schemeh(y),\, g₁\schemeh(y)\bigr) ∈ \bar Γ \text{ and } g₂ ∈ g₁\bar S₁
+    \biggr\}.
+\]
+Clearly we have $\schemeclsY[S₁,S₂]{\stack X} \subseteq \schemecls[S₁]{\stack X}$ and $\schemeclsY[S] \stack X = \schemeclsY[S,S] \stack X$.
+
+Consider the Cartesian square of closed embeddings
+\[
+    \begin{tikzcd}
+        \schemelscY[S₁,S₂] \stack X \arrow[r, hook, "i_{S₁,S₂}^c"] \arrow[d, hook, "\schemei^{S₁,S₂}"] & \schemelscY\stack X \arrow[d, hook, "\schemei"] 
+        \\
+        \schemeclsY[S₁,S₂] \stack X \arrow[r, hook, "i_{S₁,S₂}"]   & \schemeclsY\stack X 
+    \end{tikzcd}
+\]
+
+\begin{Lem}\label{lem:d-mod:key_for_stablizier}%
+    For any $S₁ ⊆ S₂$ in $\Stab\stack X$ and any $\sheaf F ∈ \catDModHolMon{Γ}{G×G}$ we have
+    \[
+        \schemei^{S₁,S₂,*} i_{S₁,S₂}^! \bar\schemeq^! \schemej_! \sheaf F = 0.
+    \]
+\end{Lem}
+
+
+\begin{proof}
+    The scheme $\schemelsc[S₁,S₂] \stack X$ is given by
+    \[
+        \biggl\{
+            \bigl(g₁,\, y,\, g₂\bigr) ∈ G × Y × \bar G : \schemeh(y) ∈ X^{S₂},\, \bigl(g₂,\, \schemeh(y),\, g₁\schemeh(y)\bigr) ∈ \bar Γ \text{ and } g₂ ∈ g₁(\bar S₁ \setminus S₁)
+        \biggr\}.
+    \]
+    If $S₁ = \bar S₁$ the statement is trivially true.
+    Otherwise the scheme $\bar S₁ \setminus S₁$ is the union of hyperplanes $H_i$ of $\bar S₁$.
+    It suffices to prove the statement when further restricting to 
+    \[
+        \biggl\{
+            \bigl(g₁,\, y,\, g₂\bigr) ∈ G × Y × \bar G : \schemeh(y) ∈ X^{S₂},\, \bigl(g₂,\, \schemeh(y),\, g₁\schemeh(y)\bigr) ∈ \bar Γ \text{ and } g₂ ∈ g₁H_i
+        \biggr\}.
+    \]
+    for all $i$. 
+    Let $H$ be one such hyperplane.
+    We will assume that $H$ is contained in the closure of the connected component of $1 ∈ S₁$. 
+    The proof for $H$ in a different component is the same, up to a shift by an element of $G$.
+    Let $\schemei_H$ be the inclusion of
+    \[
+        Z = 
+        \biggl\{
+            \bigl(g₁,\, y,\, g₂\bigr) ∈ G × Y × \bar G : \schemeh(y) ∈ X^{S₂},\, \bigl(g₂,\, \schemeh(y),\, g₁\schemeh(y)\bigr) ∈ \bar Γ \text{ and } g₂ ∈ g₁H
+        \biggr\}
+    \]
+    into $\schemeclsY[S₁,S₂] \stack X$.
+    We want to compute
+    \[
+        \schemei_H^{*} i_{S₁,S₂}^! \bar\schemeq^! \schemej_! \sheaf F.
+    \]
+    We will do so be introducing a contractive $\Gm$-action on $\bar Γ$ and $\schemelsY[S₁,S₂]\stack X$ such that the morphism
+    \[
+        κ ∘ i_{S₁,S₂}\colon \schemeclsY[S₁,S₂]\stack X → \bar Γ
+    \]
+    is $\Gm$-equivariant.
+
+    We write $G \cong G₁ × S₁$ for some subgroup $G₁$ of $G$.
+    This given a corresponding decomposition of the monad $\bar G \cong \as n$ as $\bar G = \bar G₁ \bar S₁$.
+    Let $H' = \bar G₁ H$.
+    We note that $G ∩ H' = \emptyset$.
+    
+    We chose an action $μ$ of $\Gm$ on $\bar S₁$ that contracts $\bar S₁$ onto $H$.
+    This induces an action of $\Gm$ on $\bar G = \bar G₁ \bar S₁$ by $u \cdot ts = tμ(u,s)$, contracting $\bar G$ onto $H'$.
+    Further we obtain an action of $\Gm$ on $\bar Γ$ that keeps the first $X$ coordinate fixed.
+    By construction this action contracts $\bar Γ$ onto a closed subvariety of $\bar Γ \setminus Γ$.
+    We will denote this subvariety by $Z₁$ and the contraction morphism $π₁\colon \bar Γ → Z₁$ by $π₁$.
+    
+    We can also lift the action to $\schemeclsY[S₁,S₂]\stack X$ where it contracts onto $Z$.
+    We will denote the corresponding contraction morphism by $π\colon \schemeclsY[S₁,S₂]\stack X → Z$.
+    The morphism $κ ∘ i_{S₁,S₂}\colon \schemeclsY[S₁,S₂]\stack X → \bar Γ$ is equivariant with respect to these $\Gm$-actions and on its image the action keeps the second $X$-coordinate fixed.
+
+    We note that the D-modules $\schemej_!\sheaf F$ and $i_{S₁,S₂}^! \bar\schemeq^! \schemej_! \sheaf F$ are monodromic with respect to these $\Gm$-actions.
+    Thus the contraction principle Theorem~\ref{thm:d-mod:pre:contraction_principle} implies that
+    \[
+        \schemei_H^* i_{S₁,S₂}^! \bar\schemeq^! \schemej_! \sheaf F = π_* i_{S₁,S₂}^! \bar\schemeq^! \schemej_! \sheaf F.
+    \]
+    By construction, the square
+    \[
+        \begin{tikzcd}
+            \schemecls[S₁,S₂] \stack X \arrow[r, "π"] \arrow[d, "\schemeq ∘ i_{S₁,S₂}"] & Z \arrow[d] \\
+            \bar Γ \arrow[r, "π₁"] & Z₁
+        \end{tikzcd}
+    \]
+    is Cartesian. 
+    Let us call the right vertical map $f$.
+    Base change yields
+    \[
+        π_* i_{S₁,S₂}^!\bar\schemeq^!\schemej_! \sheaf F = 
+        f^!π_{1,*} \schemej_! \sheaf F.
+    \]
+    Finally, let $i_{Z₁}\colon Z₁ \hookrightarrow \bar Γ$ be the inclusion.
+    Applying the contraction principle again we obtain
+    \[
+        f^!π_{1,*} \schemej_! \sheaf F =
+        f^!i_{Z₁}^* \schemej_! \sheaf F =
+        0.
+        \qedhere
+    \]
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{thm:d-mod:torus:is-good}]
+    By Lemma~\ref{lem:d-mod:stabilizers_cover} the closed subschemes $\schemeclsY[S]\stack X$ for $S ∈ \Stab \stack X$ cover $\schemeclsY\stack X$.
+    If $S₁,\, S₂ ∈ \Stab\stack X$, then
+    \[
+        \schemeclsY[S₁]\stack X ∩ \schemeclsY[S₂]\stack X = 
+        \schemeclsY[S₁∩S₂,\, S₁S₂].
+    \]
+    Thus the theorem follows from an iterated Mayer-Vietoris argument using Lemmas~\ref{lem:d-mod:key_for_stablizier}.
+\end{proof}
+
+
+\printbibliography
+
+\end{document}
