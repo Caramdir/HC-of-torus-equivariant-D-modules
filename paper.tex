@@ -74,9 +74,9 @@
 \maketitle
 
 \begin{abstract}
-    This article is dedicated to understanding the support theory (in the sense of \cite{BensonIyengarKrause:2008:LocalCohomologyAndSupportForTriangulatedCategories}) of equivariant D-modules.
     We discuss how to compute the Hochschild cohomology of the category of D-modules on a quotient stack via a relative compactification of the diagonal morphism.
     We then apply this construction to the case of torus-equivariant D-modules and describe the Hochschild cohomology as the cohomology of a D-module on the loop space of the quotient stack.
+    This work is motivated by a desire to understand the support theory (in the sense of \cite{BensonIyengarKrause:2008:LocalCohomologyAndSupportForTriangulatedCategories}) of equivariant D-modules.
 \end{abstract}
 
 \section{Introduction}
@@ -517,7 +517,7 @@ The following lemma is now an immediate corollary of \cite[Lemma~\RomanNum{II}.1
     Then the endofunctor $p_{t,!} p_s^!$ of $\catDModHol{\stack X}$ has a canonical structure of a monad and as such is isomorphic to the adjunction monad $f^!f_!$.
 \end{Lem}
 
-\subsection{Hochschild cohomology}
+\section{Hochschild cohomology}
 
 We recall that the Hochschild cohomology of a dg category $\cat C$ is the algebra of derived endomorphisms of the identity functor,
 \[
@@ -567,7 +567,7 @@ By \cite[Section~8.4]{DrinfeldGaitsgory:2013:FinitenessQuestions} the category $
 \[
     \catDMod{\stack X}^\dual \otimes \catDMod{\stack X} \cong \catDMod{\stack X × \stack X}
 \]
-such that the unit map is given by $Δ_*p^!$ and thus we have
+such that the unit map is given by $Δ_*p^!$, i.e.~we have
 \[
     u = Δ_*ω_{\stack X}.
 \]
@@ -581,9 +581,6 @@ We summarize the above discussion in the following lemma.
         \Hom_{\catDMod{\stack X × \stack X}}(Δ_*ω_{\stack X},\, Δ_*ω_{\stack X}).
     \]
 \end{Lem}
-
-\section{Base change for non-proper maps}
-\label{ch:d-mod:strategy}
 
 Let $\stack X$ be any stack, where we recall that all stacks are assumed to be QCA.
 We are interested in computing the Hochschild cohomology
@@ -645,6 +642,7 @@ Thus the goal of this chapter is to give a criterion for the assumptions of Lemm
     If $G$ is reductive, then $\ΓdR(G, k_G)^\dual$ is an exterior algebra and thus its Hochschild cohomology can be computed directly.
 \end{Ex}
 
+\section{Base change}
 \subsection{A lemma on base change}\label{sec:d-mod:strategy:base-change}
 
 Consider a Cartesian diagram of stacks
