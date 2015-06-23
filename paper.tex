@@ -1073,7 +1073,7 @@ Let $\bar S$ be the closure of $S$ in $\bar G = \as n$ and consider the space
     \biggl\{
         \bigl(g₁,\, y,\, g₂\bigr) ∈ G × Y × \bar G : \schemeh(y) ∈ X^S,\, \bigl(g₂,\, \schemeh(y),\, g₁\schemeh(y)\bigr) ∈ \bar Γ \text{ and } g₂ ∈ g₁\bar S
     \biggr\}
-    ⊆ 
+    ⊆
     \schemecls_{\stack Y} \stack X.
 \]
 
@@ -1086,7 +1086,7 @@ Let $\bar S$ be the closure of $S$ in $\bar G = \as n$ and consider the space
     Let $\schemelsY \stack X$ be the smooth cover of $\ls_{\stack Y}\stack X$.
     Consider the spaces
     \[
-        \schemelsY[S] \stack X = 
+        \schemelsY[S] \stack X =
         \biggl\{
             \bigl(g₁,\, y,\, g₂\bigr) ∈ G × Y × G : \schemeh(y) ∈ X^S,\, \bigl(g₂,\, \schemeh(y),\, g₁\schemeh(y)\bigr) ∈ Γ \text{ and } g₂ ∈ g₁S
         \biggr\}
@@ -1111,9 +1111,9 @@ Clearly we have $\schemeclsY[S₁,S₂]{\stack X} \subseteq \schemecls[S₁]{\st
 Consider the Cartesian square of closed embeddings
 \[
     \begin{tikzcd}
-        \schemelscY[S₁,S₂] \stack X \arrow[r, hook, "α_{S₁,S₂}^c"] \arrow[d, hook, "\schemei^{S₁,S₂}"] & \schemelscY\stack X \arrow[d, hook, "\schemei"] 
+        \schemelscY[S₁,S₂] \stack X \arrow[r, hook, "α_{S₁,S₂}^c"] \arrow[d, hook, "\schemei^{S₁,S₂}"] & \schemelscY\stack X \arrow[d, hook, "\schemei"]
         \\
-        \schemeclsY[S₁,S₂] \stack X \arrow[r, hook, "α_{S₁,S₂}"]   & \schemeclsY\stack X 
+        \schemeclsY[S₁,S₂] \stack X \arrow[r, hook, "α_{S₁,S₂}"]   & \schemeclsY\stack X
     \end{tikzcd}
 \]
 
@@ -1134,19 +1134,19 @@ Consider the Cartesian square of closed embeddings
     \]
     If $S₁ = \bar S₁$ the statement is trivially true.
     Otherwise the scheme $\bar S₁ \setminus S₁$ is the union of hyperplanes $H_i$ of $\bar S₁$.
-    It suffices to prove the statement when further restricting to 
+    It suffices to prove the statement when further restricting to
     \[
         \biggl\{
             \bigl(g₁,\, y,\, g₂\bigr) ∈ G × Y × \bar G : \schemeh(y) ∈ X^{S₂},\, \bigl(g₂,\, \schemeh(y),\, g₁\schemeh(y)\bigr) ∈ \bar Γ \text{ and } g₂ ∈ g₁H_i
         \biggr\}.
     \]
-    for all $i$. 
+    for all $i$.
     Let $H$ be one such hyperplane.
-    We will assume that $H$ is contained in the closure of the connected component of $1 ∈ S₁$. 
+    We will assume that $H$ is contained in the closure of the connected component of $1 ∈ S₁$.
     The proof for $H$ in a different component is the same, up to a shift by an element of $G$.
     Let $\schemei_H$ be the inclusion of
     \[
-        Z = 
+        Z =
         \biggl\{
             \bigl(g₁,\, y,\, g₂\bigr) ∈ G × Y × \bar G : \schemeh(y) ∈ X^{S₂},\, \bigl(g₂,\, \schemeh(y),\, g₁\schemeh(y)\bigr) ∈ \bar Γ \text{ and } g₂ ∈ g₁H
         \biggr\}
@@ -1166,13 +1166,13 @@ Consider the Cartesian square of closed embeddings
     This given a corresponding decomposition of the monad $\bar G \cong \as n$ as $\bar G = \bar G₁ \bar S₁$.
     Let $H' = \bar G₁ H$.
     We note that $G ∩ H' = \emptyset$.
-    
+
     We chose an action $μ$ of $\Gm$ on $\bar S₁$ that contracts $\bar S₁$ onto $H$.
     This induces an action of $\Gm$ on $\bar G = \bar G₁ \bar S₁$ by $u \cdot ts = tμ(u,s)$, contracting $\bar G$ onto $H'$.
     Further we obtain an action of $\Gm$ on $\bar Γ$ that keeps the first $X$ coordinate fixed.
     By construction this action contracts $\bar Γ$ onto a closed subvariety of $\bar Γ \setminus Γ$.
     We will denote this subvariety by $Z₁$ and the contraction morphism $π₁\colon \bar Γ → Z₁$ by $π₁$.
-    
+
     We can also lift the action to $\schemeclsY[S₁,S₂]\stack X$ where it contracts onto $Z$.
     We will denote the corresponding contraction morphism by $π\colon \schemeclsY[S₁,S₂]\stack X → Z$.
     The morphism $\schemebarq ∘ α_{S₁,S₂}\colon \schemeclsY[S₁,S₂]\stack X → \bar Γ$ is equivariant with respect to these $\Gm$-actions and on its image the action keeps the second $X$-coordinate fixed.
@@ -1189,11 +1189,11 @@ Consider the Cartesian square of closed embeddings
             \bar Γ \arrow[r, "π₁"] & Z₁
         \end{tikzcd}
     \]
-    is Cartesian. 
+    is Cartesian.
     Let us call the right vertical map $f$.
     Base change yields
     \[
-        π_* α_{S₁,S₂}^!\schemebarq^!\schemej_! \sheaf F = 
+        π_* α_{S₁,S₂}^!\schemebarq^!\schemej_! \sheaf F =
         f^!π_{1,*} \schemej_! \sheaf F.
     \]
     Finally, let $i_{Z₁}\colon Z₁ \hookrightarrow \bar Γ$ be the inclusion.
@@ -1210,7 +1210,7 @@ Consider the Cartesian square of closed embeddings
     By Lemma~\ref{lem:stabilizers_cover} the closed subschemes $\schemeclsY[S]\stack X$ for $S ∈ \Stab \stack X$ cover $\schemeclsY\stack X$.
     If $S₁,\, S₂ ∈ \Stab\stack X$, then
     \[
-        \schemeclsY[S₁]\stack X ∩ \schemeclsY[S₂]\stack X = 
+        \schemeclsY[S₁]\stack X ∩ \schemeclsY[S₂]\stack X =
         \schemeclsY[S₁∩S₂,\, S₁S₂].
     \]
     Thus the theorem follows from an iterated Mayer-Vietoris argument using Lemmas~\ref{lem:key_for_stablizier}.
