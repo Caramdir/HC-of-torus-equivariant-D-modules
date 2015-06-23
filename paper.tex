@@ -101,8 +101,8 @@ For a complete (pre-triangulated) dg category $\cat C$ the Hochschild cohomology
 The ring $R = \bigoplus \operatorname{HH}^{2n}(\HCoh(\cat C)$ is commutative and hence one can define for each $A ∈ \cat C$ the support $\supp_R A$ as a subset of $\Spec R$.
 Thus understanding the Hochschild cohomology of a dg category can be an important step to understanding the category itself.
 
-This construction, applied to the category of (ind-)coherent sheaves on a (quasismooth, dg-) scheme yields the singular support of coherent sheaves which already served as the motivation for the first part of this thesis.
-More concretely, Arinkin and Gaitsgory used singular support for the category $\catIndCoh{\LocSys_G}$ in their formulation of the geometric Langlands conjecture \cite{ArinkinGaitsgory:2015:SingularSupport}.
+This construction, applied to the category of (ind-)coherent sheaves on a (quasismooth, dg-) scheme yields the singular support of coherent sheaves introduced in \cite{ArinkinGaitsgory:2015:SingularSupport}.
+More concretely, the authors used this notion of singular support for the category $\catIndCoh{\LocSys_G}$ in their formulation of the geometric Langlands conjecture.
 By Langlands duality, one should then have a matching support theory for the category $\catDMod{\Bun_G}$ and the question arises whether it is possible to formulate this theory in a way that is intrinsic to D-modules.
 
 A first step to this -- and also a problem of independent interest -- is to understand the Hochschild cohomology of the category $\catDMod{\stack X}$ of D-modules on a stack $\stack X$.
@@ -164,8 +164,8 @@ As an application, we will prove the following theorem, giving a class of stacks
 \label{sec:pre}
 
 We fix an algebraically closed base field $k$ of characteristic $0$.
-All stacks in this thesis are assumed to be algebraic QCA stacks over $k$.
-As we will summarize in Section~\ref{sec:pre:d-mods}, the QCA condition ensures that the category of D-modules on stacks is well-behaved.
+All stacks will be assumed to be algebraic QCA stacks over $k$.
+As we will summarize below, the QCA condition ensures that the category of D-modules on stacks is well-behaved.
 In particular for any stack $\stack X$ we have:
 \begin{itemize}
     \item The diagonal morphism $Δ\colon \stack X → \stack X × \stack X$ is schematic.
@@ -182,7 +182,7 @@ In order to correctly define categories of D-modules on stacks it is necessary t
 We refer to \cite{Keller:2006:OnDGCategories} for an introduction to dg categories.
 It is often convenient to regard (pretriangulated) dg categories as $k$-linear stable $(∞,1)$-categories \cite{Lurie:2009:HigherToposTheory,Lurie:2014-draft:HigherAlgebra}, which can be done via the nerve construction \cite{Cohn:arXiv:DGCategoriesAreStableInfinityCategories,Faonte:arXiv:SimplicialNerveOfAnAinfinityCategory}. %\cite[Section~1.3.1]{Lurie:2014-draft:HigherAlgebra}
 We will switch between those two languages without explicitly mentioning the intervening constructions and apply results from \cite{Lurie:2014-draft:HigherAlgebra} to dg categories.
-Fortunately, a superficial knowledge of dg/$∞$-categories should be sufficient for reading this thesis.
+Fortunately, a superficial knowledge of dg/$∞$-categories should be sufficient for reading this article.
 
 \subsection{D-modules on stacks}
 \label{sec:pre:d-mods}
@@ -301,7 +301,7 @@ We will make use of the following lemma which follows from \cite[Lemma~5.1.6]{Dr
 \begin{Rem}
     Propositions \ref{prop:pre:base-change} and \ref{prop:pre:projection-formula} hold more generally when $f$ is merely a \enquote{safe} morphism.
     Alternatively they hold in full generality after replacing $f_*$ by the \enquote{renormalized de Rham pushforward}.
-    We fill not use either notion in this thesis and refer the interested reader to \cite{DrinfeldGaitsgory:2013:FinitenessQuestions}.
+    We fill not use either notion here and refer the interested reader to \cite{DrinfeldGaitsgory:2013:FinitenessQuestions}.
 \end{Rem}
 
 For D-modules on stacks we have the usual recollement package.
@@ -564,7 +564,7 @@ In particular, the kernel for the identity is $u$ and hence we have
 \]
 Let us now consider the case of $\cat C = \catDMod{\stack X}$ for a stack $X$.
 Let $p\colon \stack X → \pt$ be the structure morphism and $Δ\colon \stack X → \stack X × \stack X$ the diagonal.
-By \cite[Section~8.4]{DrinfeldGaitsgory:2013:FinitenessQuestions} the category $\catDMod{\stack X}$ is dualizable and there is a canonical indentification
+By \cite[Section~8.4]{DrinfeldGaitsgory:2013:FinitenessQuestions} the category $\catDMod{\stack X}$ is dualizable and there is a canonical identification
 \[
     \catDMod{\stack X}^\dual \otimes \catDMod{\stack X} \cong \catDMod{\stack X × \stack X}
 \]
@@ -583,13 +583,7 @@ We summarize the above discussion in the following lemma.
     \]
 \end{Lem}
 
-Let $\stack X$ be any stack, where we recall that all stacks are assumed to be QCA.
-We are interested in computing the Hochschild cohomology
-\[
-    \HCoh\bigl(\catDMod{\stack X}\bigr).
-\]
-Let $Δ\colon \stack X → \stack X × \stack X$ is the diagonal map, which by assumption is schematic.
-The dualizing module $ω_{\stack X}$ is always holonomic.
+Recall now that we assume $Δ$ to be schematic schematic and that the dualizing module $ω_{\stack X}$ is always holonomic.
 Thus we have $\dualize Δ_* ω_{\stack X} = Δ_! k_{\stack X}$.
 With this we observe that
 \begin{align*}
@@ -622,7 +616,7 @@ which induces an isomorphism of algebras
 Of course, if $X$ is not an algebraic space, then $Δ$ is not proper (nor is it in general smooth).
 Thus in general \eqref{eq:central_iso} is not an isomorphism and there is no canonical structure of monad on $p_{2,!} p₁^!$.
 We would like to apply Lemma~\ref{lem:pre:groupoid_monad_hol} to construct a monad in special cases.
-Thus the goal of this chapter is to give a criterion for the assumptions of Lemma~\ref{lem:pre:groupoid_monad_hol}, i.e.~for base change to hold.
+Thus the goal of the next section is to give a criterion for the assumptions of Lemma~\ref{lem:pre:groupoid_monad_hol}, i.e.~for base change to hold.
 
 \begin{Ex}
     The base change morphism \eqref{eq:central_iso} is also an isomorphism if $Δ$ is smooth.
@@ -1005,7 +999,7 @@ We let $i_{V_i,\stack X}$, $\bar q_{V_i,\stack X}$ and $j_{V_i}$ be the correspo
 \section{Torus quotients}
 \label{sec:torus}
 
-In this chapter we will apply the tools from the previous chapter to torus quotient stacks.
+In this section we will apply the tools from the previous section to torus quotient stacks.
 Specifically, we will prove the following theorem.
 
 \begin{Thm}
