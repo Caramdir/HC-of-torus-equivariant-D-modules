@@ -139,7 +139,7 @@ Naively we could expect the existence of an isomorphism
     \ΓdR(\stack X, Δ^!Δ_!k_{\stack X}) \cong
     \ΓdR(\stack X, p_{2,!}p₁^! k_{\stack X}).
 \end{equation}
-Unfortunately, the two sides are in general not isomorphic (the stack $\stack X = \ps1/\as1$ is an easy counter-example).
+Unfortunately, the two sides are in general not isomorphic (the stack $\stack X = \ps1/\Ga$ is an easy counter-example).
 
 In Section~\ref{sec:base-change} we will investigate how to quantify the cone of the morphism
 \[
@@ -644,7 +644,7 @@ Thus the goal of this chapter is to give a criterion for the assumptions of Lemm
 
 \section{Base change}
 \label{sec:base-change}
-\subsection{A lemma on base change}\label{sec:base-change:base-change}
+\subsection{The cone of the base-change map}\label{sec:base-change:cone}
 
 Consider a Cartesian diagram of stacks
 \[
@@ -842,7 +842,7 @@ Thus we have the Cartesian diagram
     \end{tikzcd}
 \]
 Let us fix a relative compactification $\bar Δ \colon \bar{\stack X} → \stack X × \stack X$ as in Section~\ref{sec:base-change:compactification}.
-Using the notation of Section~\ref{sec:base-change:base-change} we set $\clsY{\stack X} = \bar{\stack X} ×_{\stack X × \stack X} \stack Y$ and $\lscY{\stack X} = {\stack X}^c ×_{\stack X × \stack X} \stack Y$.
+Using the notation of Section~\ref{sec:base-change:cone} we set $\clsY{\stack X} = \bar{\stack X} ×_{\stack X × \stack X} \stack Y$ and $\lscY{\stack X} = {\stack X}^c ×_{\stack X × \stack X} \stack Y$.
 We let $\bar q_{\stack Y}\colon \clsY\stack X → \bar{\stack X}$ be the projection morphism and $i_{\stack Y}\colon \lscY\stack X \hookrightarrow \clsY\stack X$ the inclusion.
 Thus we have the following central diagram
 \[
@@ -891,7 +891,7 @@ In other words, Theorem~\ref{thm:main} holds for \goodstack\ stacks.
 
 \begin{Rem}
     We expect that most quotient stacks are not \goodstack.
-    For example, a direct computation shows that Theorem~\ref{thm:main} does not hold for the stack $\ps1/\as1$, and hence it is not \goodstack.
+    For example, a direct computation shows that Theorem~\ref{thm:main} does not hold for the stack $\ps1/\Ga$, and hence it is not \goodstack.
     For non-\goodstack\ stacks, Lemma~\ref{lem:base-change-criterion} instead gives a description of how much the naive expectation for $\HCoh\bigl(\catDMod{\stack X}\bigr)$ fails.
 \end{Rem}
 
