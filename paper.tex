@@ -39,25 +39,24 @@
 \newfontfamily\cyrillicfont[Script=Cyrillic]{XITS}
 \newcommand\cyrmath[1]{\textit{\cyrillicfont #1}}
 
-%\newcommand\schemels[1]{\mathcal{L}\mkern2.5mu #1}
-%\newcommand\schemecls[1]{\overline{\mathcal{L}}\mkern2.5mu #1}
-%\newcommand\schemelsc[1]{\mathcal{L}\mkern2.5mu^c #1}
-\newcommand\schemels[2][]{\cyrmath{Л}\mkern1.5mu^{#1}#2}
+\newcommand\schemels[2][]{L^{#1}#2}
 \newcommand\schemelsY[2][]{\schemels[#1]{_{\stack Y}#2}}
-\newcommand\schemecls[2][]{\overline{\cyrmath{Л}}\mkern1.5mu^{#1}#2}
+\newcommand\schemecls[2][]{\overline{L}^{#1}#2}
 \newcommand\schemeclsY[2][]{\schemecls[#1]{_{\stack Y}#2}}
-\newcommand\schemelsc[2][]{\cyrmath{Л}\mkern1.5mu^{\if\relax\detokenize{#1}\relax\else#1,\fi c} #2}
+\newcommand\schemelsc[2][]{L^{\if\relax\detokenize{#1}\relax\else#1,\fi c} #2}
 \newcommand\schemelscY[2][]{\schemelsc[#1]{_{\stack Y}#2}}
 
-\newcommand\schemei{\cyrmath{и}}
-\newcommand\schemej{\cyrmath{й}}
-\newcommand\schemeq{\cyrmath{к}}
+\newcommand\schemei{i'}
+\newcommand\schemej{j'}
+\newcommand\schemeq{q'}
+\newcommand\schemebarq{\bar{q}'}
+\newcommand\dropprimes{%
+    \renewcommand\schemei{i}%
+    \renewcommand\schemej{j}%
+    \renewcommand\schemeq{q}%
+    \renewcommand\schemebarq{\bar{q}}%
+}
 \newcommand\schemeh{h'}
-%\newcommand\schemep{\cyrmath{п}}
-%\newcommand\schemei{\tilde{\imath}}
-%\newcommand\schemej{\tilde{\jmath}}
-%\newcommand\schemeq{\tilde{q}}
-%\newcommand\schemeh{\tilde{h}}
 
 \newcommand\Stab{\operatorname{Stab}}
 
@@ -933,7 +932,7 @@ The corresponding covers of the other relevant stacks are introduced in the foll
 \begin{equation}
     \label{eq:base-change:scheme-cover}
     \begin{tikzcd}
-        \schemelscY \stack X \arrow[r, hook, "\schemei_{\stack Y}"] \arrow[d] & \schemeclsY \stack X \arrow[r, "\bar\schemeq_{\stack Y}"] \arrow[d] & \bar Γ \arrow[d] & Γ \arrow[l, hook', "\schemej"'] \arrow[d] \\
+        \schemelscY \stack X \arrow[r, hook, "\schemei_{\stack Y}"] \arrow[d] & \schemeclsY \stack X \arrow[r, "\schemebarq_{\stack Y}"] \arrow[d] & \bar Γ \arrow[d] & Γ \arrow[l, hook', "\schemej"'] \arrow[d] \\
         \lscY \stack X \arrow[r, hook, "i_{\stack Y}"]                        & \clsY \stack X \arrow[r, "\bar q_{\stack Y}"]                       & \bar{\stack X}   & \stack X \arrow[l, hook', "j"']
     \end{tikzcd}
 \end{equation}
@@ -948,7 +947,7 @@ Then the scheme $\schemeclsY \stack X$ is given by
 \]
 
 \begin{Lem}\label{lem:base-change:scheme-cover}
-    A stack $X/G$ is \goodstack\ if and only if for each morphism $Y/G → X/G$ the composition $\schemei_{\stack Y}^* \bar\schemeq_{\stack Y}^! \schemej_!$ vanishes on $\catDModHolMon{Γ}{G×G}$.
+    A stack $X/G$ is \goodstack\ if and only if for each morphism $Y/G → X/G$ the composition $(\schemei_{\stack Y})^* (\schemebarq_{\stack Y})^! \schemej_!$ vanishes on $\catDModHolMon{Γ}{G×G}$.
 \end{Lem}
 
 \begin{proof}
@@ -1028,17 +1027,18 @@ To simplify notation, we drop the subscript $\as n$ from the notation and set $\
 
 We fix a quotient stack $\stack Y = Y/G$ and a morphism $h\colon \stack Y → \stack X$, induced by a $G$-equivariant morphism $\schemeh\colon Y → X$.
 According to Lemma~\ref{lem:base-change:scheme-cover}, rather than working with stack directly, we can base change to schemes.
-We will use the notation of Lemma~\ref{lem:base-change:scheme-cover}, but for ease of notation we will drop the subscript $\stack Y$ from the maps.
+We will use the notation of Lemma~\ref{lem:base-change:scheme-cover}, but for ease of notation we will drop the subscript $\stack Y$ and the primes from the maps.
+\dropprimes%
 Thus we are concerned with the diagram
 \[
     \begin{tikzcd}
         \schemelscY \stack X \arrow[r, hook, "\schemei"] &
-        \schemeclsY \stack X \arrow[r, "\bar\schemeq"] &
+        \schemeclsY \stack X \arrow[r, "\schemebarq"] &
         \bar Γ &
         Γ \arrow[l, hook', "\schemej"'],
     \end{tikzcd}
 \]
-where we have to show that $\schemei^* \bar\schemeq^! \schemej_!$ vanishes on $\catDModHolMon{Γ}{G×G}$.
+where we have to show that $\schemei^* \schemebarq^! \schemej_!$ vanishes on $\catDModHolMon{Γ}{G×G}$.
 
 The general idea is to introduce a $\Gm$-action that contracts $\schemelscY \stack X$ onto $\schemeclsY \stack X$.
 In order to do so, we will cut the scheme
@@ -1111,16 +1111,16 @@ Clearly we have $\schemeclsY[S₁,S₂]{\stack X} \subseteq \schemecls[S₁]{\st
 Consider the Cartesian square of closed embeddings
 \[
     \begin{tikzcd}
-        \schemelscY[S₁,S₂] \stack X \arrow[r, hook, "i_{S₁,S₂}^c"] \arrow[d, hook, "\schemei^{S₁,S₂}"] & \schemelscY\stack X \arrow[d, hook, "\schemei"] 
+        \schemelscY[S₁,S₂] \stack X \arrow[r, hook, "α_{S₁,S₂}^c"] \arrow[d, hook, "\schemei^{S₁,S₂}"] & \schemelscY\stack X \arrow[d, hook, "\schemei"] 
         \\
-        \schemeclsY[S₁,S₂] \stack X \arrow[r, hook, "i_{S₁,S₂}"]   & \schemeclsY\stack X 
+        \schemeclsY[S₁,S₂] \stack X \arrow[r, hook, "α_{S₁,S₂}"]   & \schemeclsY\stack X 
     \end{tikzcd}
 \]
 
 \begin{Lem}\label{lem:key_for_stablizier}%
     For any $S₁ ⊆ S₂$ in $\Stab\stack X$ and any $\sheaf F ∈ \catDModHolMon{Γ}{G×G}$ we have
     \[
-        \schemei^{S₁,S₂,*} i_{S₁,S₂}^! \bar\schemeq^! \schemej_! \sheaf F = 0.
+        \schemei^{S₁,S₂,*} α_{S₁,S₂}^! \schemebarq^! \schemej_! \sheaf F = 0.
     \]
 \end{Lem}
 
@@ -1154,11 +1154,11 @@ Consider the Cartesian square of closed embeddings
     into $\schemeclsY[S₁,S₂] \stack X$.
     We want to compute
     \[
-        \schemei_H^{*} i_{S₁,S₂}^! \bar\schemeq^! \schemej_! \sheaf F.
+        (\schemei_H)^{*} α_{S₁,S₂}^! \schemebarq^! \schemej_! \sheaf F.
     \]
     We will do so be introducing a contractive $\Gm$-action on $\bar Γ$ and $\schemelsY[S₁,S₂]\stack X$ such that the morphism
     \[
-        κ ∘ i_{S₁,S₂}\colon \schemeclsY[S₁,S₂]\stack X → \bar Γ
+        \schemebarq ∘ α_{S₁,S₂}\colon \schemeclsY[S₁,S₂]\stack X → \bar Γ
     \]
     is $\Gm$-equivariant.
 
@@ -1175,17 +1175,17 @@ Consider the Cartesian square of closed embeddings
     
     We can also lift the action to $\schemeclsY[S₁,S₂]\stack X$ where it contracts onto $Z$.
     We will denote the corresponding contraction morphism by $π\colon \schemeclsY[S₁,S₂]\stack X → Z$.
-    The morphism $κ ∘ i_{S₁,S₂}\colon \schemeclsY[S₁,S₂]\stack X → \bar Γ$ is equivariant with respect to these $\Gm$-actions and on its image the action keeps the second $X$-coordinate fixed.
+    The morphism $\schemebarq ∘ α_{S₁,S₂}\colon \schemeclsY[S₁,S₂]\stack X → \bar Γ$ is equivariant with respect to these $\Gm$-actions and on its image the action keeps the second $X$-coordinate fixed.
 
-    We note that the D-modules $\schemej_!\sheaf F$ and $i_{S₁,S₂}^! \bar\schemeq^! \schemej_! \sheaf F$ are monodromic with respect to these $\Gm$-actions.
+    We note that the D-modules $\schemej_!\sheaf F$ and $α_{S₁,S₂}^! \schemebarq^! \schemej_! \sheaf F$ are monodromic with respect to these $\Gm$-actions.
     Thus the contraction principle Theorem~\ref{thm:pre:contraction_principle} implies that
     \[
-        \schemei_H^* i_{S₁,S₂}^! \bar\schemeq^! \schemej_! \sheaf F = π_* i_{S₁,S₂}^! \bar\schemeq^! \schemej_! \sheaf F.
+        (\schemei_H)^* α_{S₁,S₂}^! \schemebarq^! \schemej_! \sheaf F = π_* α_{S₁,S₂}^! \schemebarq^! \schemej_! \sheaf F.
     \]
     By construction, the square
     \[
         \begin{tikzcd}
-            \schemecls[S₁,S₂] \stack X \arrow[r, "π"] \arrow[d, "\schemeq ∘ i_{S₁,S₂}"] & Z \arrow[d] \\
+            \schemecls[S₁,S₂] \stack X \arrow[r, "π"] \arrow[d, "\schemebarq ∘ α_{S₁,S₂}"] & Z \arrow[d] \\
             \bar Γ \arrow[r, "π₁"] & Z₁
         \end{tikzcd}
     \]
@@ -1193,7 +1193,7 @@ Consider the Cartesian square of closed embeddings
     Let us call the right vertical map $f$.
     Base change yields
     \[
-        π_* i_{S₁,S₂}^!\bar\schemeq^!\schemej_! \sheaf F = 
+        π_* α_{S₁,S₂}^!\schemebarq^!\schemej_! \sheaf F = 
         f^!π_{1,*} \schemej_! \sheaf F.
     \]
     Finally, let $i_{Z₁}\colon Z₁ \hookrightarrow \bar Γ$ be the inclusion.
