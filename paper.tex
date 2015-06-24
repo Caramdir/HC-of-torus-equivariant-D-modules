@@ -8,13 +8,16 @@
 \addbibresource{math.bib}
 
 
+\renewcommand\dual{\vee}
+
 \let\stack\mathbf
+\let\sheaf\mathcal
 \let\shortbar\bar
 \let\bar\overline
 
-\newcommand\catDModHol[1]{\catDMod[\mathup{hol}]{#1}}
-\newcommand\catDModMon[2]{\catDMod{#1}^{#2-\mathup{mon}}}
-\newcommand\catDModHolMon[2]{\catDModHol{#1}^{#2-\mathup{mon}}}
+\newcommand\catDModHol[1]{\catDMod[\mathrm{hol}]{#1}}
+\newcommand\catDModMon[2]{\catDMod{#1}^{#2-\mathrm{mon}}}
+\newcommand\catDModHolMon[2]{\catDModHol{#1}^{#2-\mathrm{mon}}}
 
 \newcommand\dR{\mathrm{dR}}
 \newcommand{\renstar}{\blacktriangle}
@@ -24,19 +27,19 @@
 
 \newcommand\opalg[1]{#1^{\mathrm{op}}}
 
-\renewcommand\B{\stack{B}}
+\newcommand\B{\stack{B}}
 \newcommand\mappingstack{\mathbfup{Maps}}
 \newcommand\X{\mathbb{X}}
 
 \newcommand\Γsub[1]{\Gamma_{\mkern-3mu#1}}
 \newcommand\barΓsub[1]{\bar{\Gamma}_{\mkern-3mu#1}}
 
-\newcommand\ls[1]{\mathbfcal{L} #1}
-\newcommand\lsY[1]{\mathbfcal{L}_{\stack Y} #1}
-\newcommand\cls[1]{\overline{\mathbfcal{L}} #1}
-\newcommand\clsY[1]{\overline{\mathbfcal{L}}_{\stack Y} #1}
-\newcommand\lsc[1]{\mathbfcal{L}^c #1}
-\newcommand\lscY[1]{\mathbfcal{L}_{\stack Y}^c #1}
+\newcommand\ls[1]{\mathcal{L} #1}
+\newcommand\lsY[1]{\mathcal{L}_{\stack Y} #1}
+\newcommand\cls[1]{\overline{\mathcal{L}} #1}
+\newcommand\clsY[1]{\overline{\mathcal{L}}_{\stack Y} #1}
+\newcommand\lsc[1]{\mathcal{L}^c #1}
+\newcommand\lscY[1]{\mathcal{L}_{\stack Y}^c #1}
 
 \newcommand\schemels[2][]{L^{#1}#2}
 \newcommand\schemelsY[2][]{\schemels[#1]{_{\stack Y}#2}}
@@ -129,7 +132,7 @@ It is now tempting to look at the Cartesian square
 \]
 where
 \[
-    \ls \stack X = \stack X ×\limits_{\stack X × \stack X} \stack X
+    \ls \stack X = \stack X ×_{\stack X × \stack X} \stack X
 \]
 is the (derived) loop space of $\stack X$ and try to express the Hochschild cohomology as the cohomology of some sheaf on $\ls \stack X$.
 We could expect the existence of an isomorphism
@@ -411,7 +414,7 @@ Recall that a groupoid $G_{\cx}$ in stacks consists of a stack $\stack G₀$ of 
 \begin{itemize}
     \item \emph{source} and \emph{target} maps $s,t\colon \stack G₁ \rightrightarrows \stack G₀$,
     \item a \emph{unit} $e\colon G₀ → G₁$,
-    \item a \emph{multiplication} (or \emph{composition}) map $m\colon \stack G₁ ×\limits_{s,\stack G₀,t} \stack G₁ → \stack G₁$,
+    \item a \emph{multiplication} (or \emph{composition}) map $m\colon \stack G₁ ×_{s,\stack G₀,t} \stack G₁ → \stack G₁$,
     \item an \emph{inverse} map $ι\colon \stack G₁ → \stack G₁$,
 \end{itemize}
 such that
