@@ -2,6 +2,7 @@
 
 \title{Hochschild cohomology of torus-equivariant D-modules}
 \author{Clemens Koppensteiner}
+\date{June~24, 2015}
 
 \addbibresource{math.bib}
 
@@ -157,8 +158,8 @@ By Verdier duality and adjunction we can always rewrite \eqref{eq:intro:d-mod-hc
 It is now tempting to look at the Cartesian square
 \[
     \begin{tikzcd}
-        \ls \stack X \arrow[r, "p₁"] \arrow[d, "p₂"] & \stack X \arrow[d, "Δ"] \\
-        \stack X \arrow[r, "Δ"] & \stack X × \stack X
+        \ls \stack X \arrow{r}{p₁} \arrow{d}{p₂} & \stack X \arrow{d}{Δ} \\
+        \stack X \arrow{r}{Δ} & \stack X × \stack X
     \end{tikzcd}
 \]
 where
@@ -305,8 +306,8 @@ We will make use of the following lemma which follows from \cite[Lemma~5.1.6]{Dr
     Consider a Cartesian square
     \[
         \begin{tikzcd}
-            \stack Z \arrow[d, "p"] \arrow[r, "q"] & \stack X₁ \arrow[d, "f"] \\
-            \stack X₂ \arrow[r, "g"] & \stack Y
+            \stack Z \arrow{d}{p} \arrow{r}{q} & \stack X₁ \arrow{d}{f} \\
+            \stack X₂ \arrow{r}{g} & \stack Y
         \end{tikzcd}
     \]
     with schematic morphism $f$ (and hence $p$).
@@ -401,13 +402,13 @@ Thus we think of a \emph{monad} on a category $\cat C$ as consisting of a triple
 \begin{equation}
     \label{eq:pre:monad-identities}
     \begin{tikzcd}
-        T³ \arrow[r, "Tμ"] \arrow[d, "μT"'] & T² \arrow[d, "μ"] \\
-        T² \arrow[r, "μ"'] & T
+        T³ \arrow{r}{Tμ} \arrow{d}[swap]{μT} & T² \arrow{d}{μ} \\
+        T² \arrow{r}[swap]{μ} & T
     \end{tikzcd}
     \quad\text{and}\quad
     \begin{tikzcd}
-        T \arrow[r, "Tη"] \arrow[d, "ηT"'] \arrow[dr, equal] & T² \arrow[d, "μ"] \\
-        T² \arrow[r, "μ"'] & T
+        T \arrow{r}{Tη} \arrow{d}[swap]{ηT} \arrow{dr}[description]{\id} & T² \arrow{d}{μ} \\
+        T² \arrow{r}[swap]{μ} & T
     \end{tikzcd}
 \end{equation}
 commute.
@@ -421,7 +422,7 @@ Then $T$ gives the vector space $\Hom_{\cat C}(X, TX)$ the structure of a dg alg
 \]
 \[
     \begin{tikzcd}
-        X \arrow[r, "g"] & TX \arrow[r, "Tf"] & T²X \arrow[r, "μ_X"] & TX.
+        X \arrow{r}{g} & TX \arrow{r}{Tf} & T²X \arrow{r}{μ_X} & TX.
     \end{tikzcd}
 \]
 The identities~\ref{eq:pre:monad-identities} ensure that the algebra is associative and unital.
@@ -477,9 +478,9 @@ This allows us to give the endofunctor $T = s_*t^!$ of $\catDMod{\stack G₀}$ t
     \item Consider the following commutative diagram
         \[
             \begin{tikzcd}[column sep=small]
-                {} & & \stack G₁ \arrow[dddll, bend right, "s"] \arrow[dddrr, bend left, "t"] & & \\
-                & & \stack G₁ ×_{\stack G₀} \stack G₁ \arrow[u, "m"] \arrow[dl, "p₂"] \arrow[dr, "p₁"] & & \\
-                & \stack G₁ \arrow[dl, "s"] \arrow[dr, "t"] & & \stack G₁ \arrow[dl, "s"] \arrow[dr, "t"] & \\
+                {} & & \stack G₁ \arrow[bend right]{dddll}[swap]{s} \arrow[bend left]{dddrr}{t} & & \\
+                & & \stack G₁ ×_{\stack G₀} \stack G₁ \arrow{u}{m} \arrow{dl}{p₂} \arrow{dr}{p₁} & & \\
+                & \stack G₁ \arrow{dl}{s} \arrow{dr}{t} & & \stack G₁ \arrow{dl}{s} \arrow{dr}{t} & \\
                 \stack G₀ & & \stack G₀ & & \stack G₀
             \end{tikzcd}
         \]
@@ -504,8 +505,8 @@ Let now $f\colon \stack X → \stack Y$ be schematic and proper.
 The Cartesian diagram
 \[
     \begin{tikzcd}
-        \stack X ×_{\stack Y} \stack X \arrow[r, "p_s"] \arrow[d, "p_t"] & \stack X \arrow[d, "f"] \\
-        \stack X \arrow[r, "f"] & \stack Y
+        \stack X ×_{\stack Y} \stack X \arrow{r}{p_s} \arrow{d}{p_t} & \stack X \arrow{d}{f} \\
+        \stack X \arrow{r}{f} & \stack Y
     \end{tikzcd}
 \]
 induces a groupoid with $\stack{G}₀ = \stack X$ and $\stack{G}₁ = \stack X ×_{\stack Y} \stack X$.
@@ -541,8 +542,8 @@ The following lemma is now an immediate corollary of \cite[Lemma~\RomanNum{II}.1
     For each map $F\colon [n] → [m]$ in $\cat{Δ}^{\mathrm{op}}$ consider the corresponding square
     \[
         \begin{tikzcd}
-            \stack G_{n+1} \arrow[r, "p_s"] \arrow[d, "p_{F+1}"] & \stack G_n \arrow[d, "p_F"] \\
-            \stack G_{m+1} \arrow[r, "p_s"] & \stack G_m
+            \stack G_{n+1} \arrow{r}{p_s} \arrow{d}{p_{F+1}} & \stack G_n \arrow{d}{p_F} \\
+            \stack G_{m+1} \arrow{r}{p_s} & \stack G_m
         \end{tikzcd}
     \]
     where the vertical arrows are induced by $F$.
@@ -636,8 +637,8 @@ where the algebra structure on $\ΓdR\bigl(\stack X,\, Δ^! Δ_! k_{\stack X}\bi
 Consider the Cartesian square
 \[
     \begin{tikzcd}
-        \ls{\stack X} \arrow[r, "p₁"] \arrow[d, "p₂"] & \stack X \arrow[d, "Δ"] \\
-        \stack X \arrow[r, "Δ"] & \stack X × \stack X
+        \ls{\stack X} \arrow{r}{p₁} \arrow{d}{p₂} & \stack X \arrow{d}{Δ} \\
+        \stack X \arrow{r}{Δ} & \stack X × \stack X
     \end{tikzcd}
 \]
 Let us assume for the moment that $Δ$ (and hence $p_i$) was proper.
@@ -683,8 +684,8 @@ Thus the goal of the next section is to give a criterion for the assumptions of 
 Consider a Cartesian diagram of stacks
 \[
     \begin{tikzcd}
-        \stack Z \arrow[d, "p"] \arrow[r, "q"] & \stack X₁ \arrow[d, "f"] \\
-        \stack X₂ \arrow[r, "g"] & \stack Y
+        \stack Z \arrow{d}{p} \arrow{r}{q} & \stack X₁ \arrow{d}{f} \\
+        \stack X₂ \arrow{r}{g} & \stack Y
     \end{tikzcd}
 \]
 with $f$ and $g$ schematic.
@@ -708,7 +709,7 @@ To understand the behavior for non-proper $f$, we will approximate it by a prope
     A \emph{relative compactification} of a morphism $f\colon \stack X → \stack Y$ is a commutative diagram
     \[
         \begin{tikzcd}
-            \stack X \arrow[r, hook, "j"] \arrow[dr, "f"'] & \bar{\stack X} \arrow[d, "\bar f"] \\
+            \stack X \arrow[hook]{r}{j} \arrow{dr}[swap]{f} & \bar{\stack X} \arrow{d}{\bar f} \\
             & \stack Y
         \end{tikzcd}
     \]
@@ -725,13 +726,13 @@ Similarly, we let $\bar{\stack Z} = \stack X₂ ×_{\stack Y} \bar{\stack X}₁$
 The notation for the corresponding inclusion and projection maps is summarized in the following Cartesian diagrams.
 \[
     \begin{tikzcd}
-        \bar{\stack Z} \arrow[d, "\bar p"] \arrow[r, "\bar q"] & \bar{\stack X}₁ \arrow[d, "\bar f"] \\
-        \stack X₂ \arrow[r, "g"] & \stack Y
+        \bar{\stack Z} \arrow{d}{\bar p} \arrow{r}{\bar q} & \bar{\stack X}₁ \arrow{d}{\bar f} \\
+        \stack X₂ \arrow{r}{g} & \stack Y
     \end{tikzcd}
     \qquad\qquad
     \begin{tikzcd}
-        \stack Z^c \arrow[r, hook, "i"] \arrow[d] & \bar{\stack Z} \arrow[d, "\bar q"] \\
-        \stack X₁^c \arrow[r, hook] & \bar{\stack X}₁
+        \stack Z^c \arrow[hook]{r}{i} \arrow{d} & \bar{\stack Z} \arrow{d}{\bar q} \\
+        \stack X₁^c \arrow[hook]{r} & \bar{\stack X}₁
     \end{tikzcd}
 \]
 We note that $\bar{\stack Z}$ is the disjoint union of the closed substack $\stack Z^c$ and the open substack $\stack Z$.
@@ -871,8 +872,8 @@ For any morphism of stacks $h\colon \stack Y → \stack X$ we set $\lsY{\stack
 Thus we have the Cartesian diagram
 \[
     \begin{tikzcd}
-        \lsY \stack X \arrow[r, "q_{\stack Y}"] \arrow[d] & \stack X \arrow[d, "Δ"] \\
-        \stack Y \arrow[r, "Δ∘h"] & \stack X × \stack X
+        \lsY \stack X \arrow{r}{q_{\stack Y}} \arrow{d} & \stack X \arrow{d}{Δ} \\
+        \stack Y \arrow{r}{Δ∘h} & \stack X × \stack X
     \end{tikzcd}
 \]
 Let us fix a relative compactification $\shortbar Δ \colon \bar{\stack X} → \stack X × \stack X$ as in Section~\ref{sec:base-change:compactification}.
@@ -881,8 +882,8 @@ We let $\bar q_{\stack Y}\colon \clsY\stack X → \bar{\stack X}$ be the project
 Thus we have the following central diagram
 \[
     \begin{tikzcd}
-        \lsY\stack X \arrow[r, hook] \arrow[d, "q_{\stack Y}"] & \clsY\stack X \arrow[d, "\bar q_{\stack Y}"] & \lscY\stack X \arrow[l, hook', "i_{\stack Y}"'] \arrow[d] \\
-        \stack X \arrow[r, hook, "j"] & \bar{\stack X} & \stack X^c \arrow[l, hook']
+        \lsY\stack X \arrow[hook]{r} \arrow{d}{q_{\stack Y}} & \clsY\stack X \arrow{d}{\bar q_{\stack Y}} \arrow[hookleftarrow]{r}{i_{\stack Y}} & \lscY\stack X \arrow{d} \\
+        \stack X \arrow[hook]{r}{j} & \bar{\stack X} \arrow[hookleftarrow]{r} & \stack X^c
     \end{tikzcd}
 \]
 
@@ -914,8 +915,8 @@ In other words, Theorem~\ref{thm:main} holds for \goodstack\ stacks.
     Any morphism $F\colon [n] → [m]$ in $\cat{Δ}^{\mathrm{op}}$ induces a diagram
     \[
         \begin{tikzcd}
-            \stack G_{n+1} \arrow[d] \arrow[r] & \stack G_{m+1} \arrow[d] \arrow[r] & \stack X \arrow[d, "Δ"] \\
-            \stack G_{n} \arrow[r] & \stack G_m \arrow[r] & \stack X × \stack X
+            \stack G_{n+1} \arrow{d} \arrow{r} & \stack G_{m+1} \arrow{d} \arrow{r} & \stack X \arrow{d}{Δ} \\
+            \stack G_{n} \arrow{r} & \stack G_m \arrow{r} & \stack X × \stack X
         \end{tikzcd}
     \]
     We have to show that base change holds along the left-hand square.
@@ -951,8 +952,8 @@ We finish this section with some useful observations for proving that a stack is
     \begin{equation}
         \label{eq:lem:cover:diagram}
         \begin{tikzcd}
-            \lscY \stack U \arrow[r, hook, "i_{\stack U, \stack Y}"] \arrow[d, hook, "α"] & \clsY{\stack U} \arrow[r, "\bar q_{\stack U,\stack Y}"] \arrow[d, hook, "β"] & \bar{\stack U} \arrow[d, hook, "γ"] & \stack U \arrow[l, hook', "j_{\stack U}"'] \arrow[d, hook, "δ"] \\
-            \lscY \stack X \arrow[r, hook, "i_{\stack X, \stack Y}"]                      & \clsY{\stack X} \arrow[r, "\bar q_{\stack X,\stack Y}"]                      & \bar{\stack X}                      & \stack X \arrow[l, hook', "j_{\stack X}"']
+            \lscY \stack U \arrow[hook]{r}{i_{\stack U, \stack Y}} \arrow[hook]{d}{α} & \clsY{\stack U} \arrow{r}{\bar q_{\stack U,\stack Y}} \arrow[hook]{d}{β} & \bar{\stack U} \arrow[hook]{d}{γ} \arrow[hookleftarrow]{r}{j_{\stack U}} & \stack U  \arrow[hook]{d}{δ} \\
+            \lscY \stack X \arrow[hook]{r}{i_{\stack X, \stack Y}}                    & \clsY{\stack X} \arrow{r}{\bar q_{\stack X,\stack Y}}                    & \bar{\stack X}                    \arrow[hookleftarrow]{r}{j_{\stack X}} & \stack X 
         \end{tikzcd}
     \end{equation}
     The vertical arrows are open embeddings and all squares are Cartesian (where we use the same compactification of $G$ for $\bar{\stack X}$ and $\bar{\stack U}$).
@@ -972,8 +973,8 @@ The corresponding covers of the other relevant stacks are introduced in the foll
 \begin{equation}
     \label{eq:base-change:scheme-cover}
     \begin{tikzcd}
-        \schemelscY \stack X \arrow[r, hook, "\schemei_{\stack Y}"] \arrow[d] & \schemeclsY \stack X \arrow[r, "\schemebarq_{\stack Y}"] \arrow[d] & \bar Γ \arrow[d] & Γ \arrow[l, hook', "\schemej"'] \arrow[d] \\
-        \lscY \stack X \arrow[r, hook, "i_{\stack Y}"]                        & \clsY \stack X \arrow[r, "\bar q_{\stack Y}"]                       & \bar{\stack X}   & \stack X \arrow[l, hook', "j"']
+        \schemelscY \stack X \arrow[hook]{r}{\schemei_{\stack Y}} \arrow{d} & \schemeclsY \stack X \arrow{r}{\schemebarq_{\stack Y}} \arrow{d} & \bar Γ \arrow{d} \arrow[hookleftarrow]{r}{\schemej} & Γ \arrow{d} \\
+        \lscY \stack X \arrow[hook]{r}{i_{\stack Y}}                        & \clsY \stack X \arrow{r}{\bar q_{\stack Y}}                      & \bar{\stack X}   \arrow[hookleftarrow]{r}{j} & \stack X
     \end{tikzcd}
 \end{equation}
 We note that all vertical morphisms are smooth and the spaces in the top row are schemes.
@@ -1020,10 +1021,10 @@ We obtain open covers $\left\{\cls_{V_i,\stack Y} \stack X\right\}$ and $\left\{
 We let $i_{V_i,\stack X}$, $\bar q_{V_i,\stack X}$ and $j_{V_i}$ be the corresponding maps, i.e.
 \[
     \begin{tikzcd}
-        \cls_{V_i,\stack Y} \stack X \arrow[r, hook, "i_{V_i,\stack X}"] &
-        \lsc_{V_i,\stack Y} \stack X \arrow[r, "\bar q_{V_i,\stack X}"] &
-        \bar{\stack X}_{V_i} &
-        \stack X \arrow[l, hook', "j_{V_i}"'].
+        \cls_{V_i,\stack Y} \stack X \arrow[hook]{r}{i_{V_i,\stack X}} &
+        \lsc_{V_i,\stack Y} \stack X \arrow{r}{\bar q_{V_i,\stack X}} &
+        \bar{\stack X}_{V_i} \arrow[hookleftarrow]{r}{j_{V_i}} &
+        \stack X.
     \end{tikzcd}
 \]
 
@@ -1072,10 +1073,10 @@ We will use the notation of Lemma~\ref{lem:base-change:scheme-cover}, but for ea
 Thus we are concerned with the diagram
 \[
     \begin{tikzcd}
-        \schemelscY \stack X \arrow[r, hook, "\schemei"] &
-        \schemeclsY \stack X \arrow[r, "\schemebarq"] &
-        \bar Γ &
-        Γ \arrow[l, hook', "\schemej"'],
+        \schemelscY \stack X \arrow[hook]{r}{\schemei} &
+        \schemeclsY \stack X \arrow{r}{\schemebarq} &
+        \bar Γ \arrow[hookleftarrow]{r}{\schemej} &
+        Γ,
     \end{tikzcd}
 \]
 where we have to show that $\schemei^* \schemebarq^! \schemej_!$ vanishes on $\catDModHolMon{Γ}{G×G}$.
@@ -1151,9 +1152,9 @@ Clearly we have $\schemeclsY[S₁,S₂]{\stack X} \subseteq \schemecls[S₁]{\st
 Consider the Cartesian square of closed embeddings
 \[
     \begin{tikzcd}
-        \schemelscY[S₁,S₂] \stack X \arrow[r, hook, "α_{S₁,S₂}^c"] \arrow[d, hook, "\schemei^{S₁,S₂}"] & \schemelscY\stack X \arrow[d, hook, "\schemei"]
+        \schemelscY[S₁,S₂] \stack X \arrow[hook]{r}{α_{S₁,S₂}^c} \arrow[hook]{d}{\schemei^{S₁,S₂}} & \schemelscY\stack X \arrow[hook]{d}{\schemei}
         \\
-        \schemeclsY[S₁,S₂] \stack X \arrow[r, hook, "α_{S₁,S₂}"]   & \schemeclsY\stack X
+        \schemeclsY[S₁,S₂] \stack X \arrow[hook]{r}{α_{S₁,S₂}}   & \schemeclsY\stack X
     \end{tikzcd}
 \]
 
@@ -1225,8 +1226,8 @@ Consider the Cartesian square of closed embeddings
     By construction, the square
     \[
         \begin{tikzcd}
-            \schemecls[S₁,S₂] \stack X \arrow[r, "π"] \arrow[d, "\schemebarq ∘ α_{S₁,S₂}"] & Z \arrow[d] \\
-            \bar Γ \arrow[r, "π₁"] & Z₁
+            \schemecls[S₁,S₂] \stack X \arrow{r}{π} \arrow{d}{\schemebarq ∘ α_{S₁,S₂}} & Z \arrow{d} \\
+            \bar Γ \arrow{r}{π₁} & Z₁
         \end{tikzcd}
     \]
     is Cartesian.
