@@ -29,3 +29,8 @@ comment.cut
 .tmp
 *.swp
 *.pdf
+bbx
+biblatex*
+blx-*
+cbx
+lbx
