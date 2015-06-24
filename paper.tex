@@ -9,6 +9,7 @@
 
 
 \let\stack\mathbf
+\let\shortbar\bar
 \let\bar\overline
 
 \newcommand\catDModHol[1]{\catDMod[\mathup{hol}]{#1}}
@@ -28,6 +29,7 @@
 \newcommand\X{\mathbb{X}}
 
 \newcommand\Γsub[1]{\Gamma_{\mkern-3mu#1}}
+\newcommand\barΓsub[1]{\bar{\Gamma}_{\mkern-3mu#1}}
 
 \newcommand\ls[1]{\mathbfcal{L} #1}
 \newcommand\lsY[1]{\mathbfcal{L}_{\stack Y} #1}
@@ -81,7 +83,7 @@
 
 \section{Introduction}
 
-Given a manifold $X$ and a category of sheaves on $X$, microlocal geometry asks whether these sheaves can be localized not just on $X$ but also with respect to codirections, i.e.~on the cotangent space $T^*X$.
+Given a manifold $X$ and a category of sheaves on $X$, microlocal geometry asks whether the sheaves can be localized not just on $X$ but also with respect to codirections, i.e.~on the cotangent space $T^*X$.
 For example, for constructible sheaves this leads to the notion of microsupport discussed in detail in \cite{KashiwaraSchapira:1994:SheavesOnManifolds}.
 More generally, given a category of sheaves on a space $X$, we can ask whether it is possible to localize them on some space that is strictly larger than $X$ itself.
 
@@ -90,17 +92,17 @@ For co-complete compactly generated triangulated categories one answer is provid
 To each map from a graded-commutative ring $R$ to the center of $\cat C$ the authors associate the \emph{triangulated support} functor $\supp_R$, assigning to each object $A ∈ \cat C$ a subset $\supp_R A \subseteq \Spec R$.
 This construction can be used to unify various theories of support in different areas of mathematics (though it does not yield the microlocal support of constructible sheaves).
 
-We are led to consider the universal algebra acting on the category with this construction, i.e.~the \emph{Hochschild cohomology} of $\cat C$.
+We are led to consider the universal algebra acting on $\cat C$ by this construction, i.e.~the \emph{Hochschild cohomology} of $\cat C$.
 For a complete (pre-triangulated) dg category $\cat C$ the Hochschild cohomology is the dg algebra of derived endomorphisms of the identity functor of $\cat C$:
 \[
     \HCoh(\cat C)
     = \operatorname{\mathbf{R}Hom}(\id[\cat C], \id[\cat C])
     = \Hom_{\cat{Funct}(\cat C, \cat C)}(\id[\cat C], \id[\cat C]).
 \]
-The ring $R = \bigoplus \operatorname{HH}^{2n}(\HCoh(\cat C)$ is commutative and hence one can define for each $A ∈ \cat C$ the support $\supp_R A$ as a subset of $\Spec R$.
+The ring $R = \bigoplus \operatorname{HH}^{2n}(\cat C)$ is commutative and hence one can define for each $A ∈ \cat C$ the support $\supp_R A$ as a subset of $\Spec R$.
 Thus understanding the Hochschild cohomology of a dg category can be an important step to understanding the category itself.
 
-This construction, applied to the category of (ind-)coherent sheaves on a (quasismooth, dg-) scheme yields the singular support of coherent sheaves introduced in \cite{ArinkinGaitsgory:2015:SingularSupport}.
+This construction, applied to the category of (ind-)coherent sheaves on a (quasismooth, dg-) scheme, yields the singular support of coherent sheaves introduced in \cite{ArinkinGaitsgory:2015:SingularSupport}.
 More concretely, the authors used this notion of singular support for the category $\catIndCoh{\LocSys_G}$ in their formulation of the geometric Langlands conjecture.
 By Langlands duality, one should then have a matching support theory for the category $\catDMod{\Bun_G}$ and the question arises whether it is possible to formulate this theory in a way that is intrinsic to D-modules.
 
@@ -133,12 +135,13 @@ where
     \ls \stack X = \stack X ×\limits_{\stack X × \stack X} \stack X
 \]
 is the (derived) loop space of $\stack X$ and try to express the Hochschild cohomology as the cohomology of some sheaf on $\ls \stack X$.
-Naively we could expect the existence of an isomorphism
+We could expect the existence of an isomorphism
 \begin{equation}
     \label{eq:intro:naive}
     \ΓdR(\stack X, Δ^!Δ_!k_{\stack X}) \cong
     \ΓdR(\stack X, p_{2,!}p₁^! k_{\stack X}).
 \end{equation}
+We refer to this as the \enquote{naive expectation}.
 Unfortunately, the two sides are in general not isomorphic (the stack $\stack X = \ps1/\Ga$ is an easy counter-example).
 
 In Section~\ref{sec:base-change} we will investigate how to quantify the cone of the morphism
@@ -165,7 +168,7 @@ As an application, we will prove the following theorem, giving a class of stacks
 We fix an algebraically closed base field $k$ of characteristic $0$.
 All stacks will be assumed to be algebraic QCA stacks over $k$.
 As we will summarize below, the QCA condition ensures that the category of D-modules on stacks is well-behaved.
-In particular for any stack $\stack X$ we have:
+Thus by definition for any stack $\stack X$ we have:
 \begin{itemize}
     \item The diagonal morphism $Δ\colon \stack X → \stack X × \stack X$ is schematic.
     \item There exists a scheme $Z$ with a smooth and surjective map $Z → \stack X$.
@@ -331,12 +334,15 @@ and the identity $i^*j_! = 0$ on holonomic D-modules.
 Further, the functor $j_!$ is a full embedding $\catDModHol{\stack U} \hookrightarrow \catDModHol{\stack X}$.
 
 It is often useful to consider the pullback of a D-module on $\stack X$ to a smooth cover.
+For quotient stacks we give the resulting subcategory a special name.
 
 \begin{Def}
     \label{def:pre:monodromic}%
     Let $X$ be a scheme with an action of an algebraic group $G$ and let $p\colon X → X/G$ be the quotient map.
     The \emph{monodromic} subcategory $\catDModMon{X}{G} ⊆ \catDMod{X}$ is the full subcategory generated by the essential image of $p^!\colon \catDMod{X/G} → \catDMod{X}$ (or equivalently by the essential image of $p^*$).
 \end{Def}
+
+For reference, we state the following theorem which will be a crucial ingredient in the proof of Theorem~\ref{thm:main}.
 
 \begin{Thm}[Contraction principle~{\cite[Proposition~3.2.2]{DrinfeldGaitsgory:2014:OnATheoremOfBraden}}]
     \label{thm:pre:contraction_principle}%
@@ -582,7 +588,7 @@ We summarize the above discussion in the following lemma.
     \]
 \end{Lem}
 
-Recall now that we assume $Δ$ to be schematic schematic and that the dualizing module $ω_{\stack X}$ is always holonomic.
+Recall now that we assume $Δ$ to be schematic and that the dualizing module $ω_{\stack X}$ is always holonomic.
 Thus we have $\dualize Δ_* ω_{\stack X} = Δ_! k_{\stack X}$.
 With this we observe that
 \begin{align*}
@@ -775,8 +781,8 @@ We note that $\bar{\stack Z}$ is the disjoint union of the closed substack $\sta
 \subsection{Relative compactification for quotient stacks}
 \label{sec:base-change:compactification}%
 
-In the preceding section we simply assumed that a relative compactification of the diagonal exists.
-We will now construct such a compactification for quotient stacks.
+In the preceding section we simply assumed that a relative compactification of the given map exists.
+We will now construct such a compactification for the diagonal map of a quotient stack.
 Thus let $X$ be a scheme of finite type over $k$ and let $G$ be an affine algebraic group over $k$ acting on $X$.
 Let $\stack X = X/G$ be the corresponding quotient stack.
 
@@ -797,8 +803,8 @@ Instead of viewing $Γ$ as the graph of $(\proj2, a)$ we can drop the third fact
 \[
     \Γsub{a} = \bigl\{(g, x, gx) ∈ G × X × X\bigr\}.
 \]
-The closure $\bar{ \Γsub{a}}$ of $\Γsub a$ in $\bar G × X × X$ identifies with $\bar Γ$.
-Thus for ease of notation we will from now on always set $Γ = \Γsub a$ and $\bar Γ = \bar{\Γsub a}$.
+The closure $\barΓsub{a}$ of $\Γsub a$ in $\bar G × X × X$ identifies with $\bar Γ$.
+Thus for ease of notation we will from now on always set $Γ = \Γsub a$ and $\bar Γ = \barΓsub{a}$.
 
 \begin{Def}
     Let $\stack X = X/G$.
@@ -806,21 +812,21 @@ Thus for ease of notation we will from now on always set $Γ = \Γsub a$ and $\b
     \[
         \bar{\stack X} = \rquot{\bar Γ}{G×G}.
     \]
-    We have an open embedding $j\colon X \hookrightarrow \bar{\stack X}$ and a proper morphism $\bar Δ\colon \bar{\stack X} → \stack X × \stack X$ induced by the map $f$ above, such that $Δ = \bar Δ ∘ j$.
+    We have an open embedding $j\colon X \hookrightarrow \bar{\stack X}$ and a proper morphism $\shortbar Δ\colon \bar{\stack X} → \stack X × \stack X$ induced by the map $f$ above, such that $Δ = \shortbar Δ ∘ j$.
 \end{Def}
 
 \begin{Rem}
     In the case of $G = \Gm$ the compactification $\bar Γ$ is explicitly described in \cite{DrinfeldGaitsgory:2014:OnATheoremOfBraden}.
     In particular, if $X$ is smooth it is shown there that $\bar Γ$ is smooth over $\bar G = \ps1$.
     It is possible to extend the methods of \cite{DrinfeldGaitsgory:2014:OnATheoremOfBraden} to quotients by higher dimensional tori.
-    The resulting constructions are highly useful for doing explicit computations.
+    The resulting constructions are useful for doing explicit computations.
 \end{Rem}
 
 It is useful to consider only partial compactifications.
-For this let $V$ be a $G$-stable subvariety of $\bar G$ and let $\bar{\Γsub V}$ be the closure of $Γ$ in $G × V$.
+For this let $V$ be a $G$-stable subvariety of $\bar G$ and let $\barΓsub{V}$ be the closure of $Γ$ in $G × V$.
 We set
 \[
-    \bar{\stack X}_V = \rquot{\bar{\Γsub V}}{G×G}.
+    \bar{\stack X}_V = \rquot{\barΓsub{V}}{G×G}.
 \]
 Clearly, if $\left\{V_i\right\}$ is an open cover of $\bar G$ by $G$-stable subvarieties, then $\left\{\bar{\stack X}_{V_i}\right\}$ is an open cover of $\bar{\stack X}$.
 
@@ -835,7 +841,7 @@ Thus we have the Cartesian diagram
         \stack Y \arrow[r, "Δ∘h"] & \stack X × \stack X
     \end{tikzcd}
 \]
-Let us fix a relative compactification $\bar Δ \colon \bar{\stack X} → \stack X × \stack X$ as in Section~\ref{sec:base-change:compactification}.
+Let us fix a relative compactification $\shortbar Δ \colon \bar{\stack X} → \stack X × \stack X$ as in Section~\ref{sec:base-change:compactification}.
 Using the notation of Section~\ref{sec:base-change:cone} we set $\clsY{\stack X} = \bar{\stack X} ×_{\stack X × \stack X} \stack Y$ and $\lscY{\stack X} = {\stack X}^c ×_{\stack X × \stack X} \stack Y$.
 We let $\bar q_{\stack Y}\colon \clsY\stack X → \bar{\stack X}$ be the projection morphism and $i_{\stack Y}\colon \lscY\stack X \hookrightarrow \clsY\stack X$ the inclusion.
 Thus we have the following central diagram
@@ -879,14 +885,14 @@ In other words, Theorem~\ref{thm:main} holds for \goodstack\ stacks.
         \end{tikzcd}
     \]
     We have to show that base change holds along the left-hand square.
-    But by the assumption and Lemma~\ref{lem:base-change-criterion}, base change holds along the outer rectangle and the left-hand square.
+    But by the assumption and Lemma~\ref{lem:base-change-criterion}, base change holds along the outer rectangle and the right-hand square.
     Thus it also holds along the left-hand square.
 \end{proof}
 
 \begin{Rem}
     We expect that most quotient stacks are not \goodstack.
     For example, a direct computation shows that Theorem~\ref{thm:main} does not hold for the stack $\ps1/\Ga$, and hence it is not \goodstack.
-    For non-\goodstack\ stacks, Lemma~\ref{lem:base-change-criterion} instead gives a description of how much the naive expectation for $\HCoh\bigl(\catDMod{\stack X}\bigr)$ fails.
+    For non-\goodstack\ stacks, the sheaf $i_{\stack X}^* \bar q_{\stack X}^! j_! k_{\stack X}$ instead gives a measurement for the failure of the naive expectation for $\HCoh\bigl(\catDMod{\stack X}\bigr)$.
 \end{Rem}
 
 We finish this section with some useful observations for proving that a stack is \goodstack.
@@ -1022,11 +1028,11 @@ Together with Theorem~\ref{thm:good-is-good} this implies our main result, Theor
 By Lemma~\ref{lem:base-change:cover}, it suffices to prove Theorem~\ref{thm:torus:is-good} for stacks $X/G$ with $X$ affine.
 We fix an isomorphism $G \cong \Gm^n$ and compactify $G$ to $\bigl(\ps1\bigr)^n$.
 The variety $\bigl(\ps1\bigr)^n$ can be covered by $G$-equivariant open subvarieties of the form $\as n$.
-Thus by Lemma~\ref{lem:base-change:cover-by-relative-compactifications}, it suffices to check \goodness\ for the relative compactification $\Gm^n \subseteq \as n$.
+Thus by Lemma~\ref{lem:base-change:cover-by-relative-compactifications}, it suffices to check \goodness\ for the partial compactification $\Gm^n \subseteq \as n$.
 To simplify notation, we drop the subscript $\as n$ from the notation and set $\bar{\stack X} = \bar{\stack X}_{\as n}$ and similarly for the various maps.
 
 We fix a quotient stack $\stack Y = Y/G$ and a morphism $h\colon \stack Y → \stack X$, induced by a $G$-equivariant morphism $\schemeh\colon Y → X$.
-According to Lemma~\ref{lem:base-change:scheme-cover}, rather than working with stack directly, we can base change to schemes.
+According to Lemma~\ref{lem:base-change:scheme-cover}, rather than working directly with the stacks, we can base change to schemes.
 We will use the notation of Lemma~\ref{lem:base-change:scheme-cover}, but for ease of notation we will drop the subscript $\stack Y$ and the primes from the maps.
 \dropprimes%
 Thus we are concerned with the diagram
@@ -1067,7 +1073,7 @@ For this let $\Stab\stack X$ be the set of all closed subgroups of $G$ that are 
 Let $S$ be closed subgroup of $G$ and let $X^S$ be the $S$-fixed points of $X$.
 Since $G$ is Abelian (and hence $S$ a normal subgroup), $X^S$ is a $G$-stable closed subscheme of $X$.
 Hence $X^S/G$ is a closed substack of $\stack X$.
-Let $\bar S$ be the closure of $S$ in $\bar G = \as n$ and consider the space
+Let $\bar S$ be the closure of $S$ in $\bar G = \as n$ and consider the closed subspace
 \[
     \schemecls[S]_{\stack Y} \stack X =
     \biggl\{
@@ -1163,7 +1169,7 @@ Consider the Cartesian square of closed embeddings
     is $\Gm$-equivariant.
 
     We write $G \cong G₁ × S₁$ for some subgroup $G₁$ of $G$.
-    This given a corresponding decomposition of the monad $\bar G \cong \as n$ as $\bar G = \bar G₁ \bar S₁$.
+    This gives a corresponding decomposition of the monoid $\bar G \cong \as n$ as $\bar G = \bar G₁ \bar S₁$.
     Let $H' = \bar G₁ H$.
     We note that $G ∩ H' = \emptyset$.
 
@@ -1213,7 +1219,7 @@ Consider the Cartesian square of closed embeddings
         \schemeclsY[S₁]\stack X ∩ \schemeclsY[S₂]\stack X =
         \schemeclsY[S₁∩S₂,\, S₁S₂].
     \]
-    Thus the theorem follows from an iterated Mayer-Vietoris argument using Lemmas~\ref{lem:key_for_stablizier}.
+    Thus the theorem follows from an iterated Mayer-Vietoris argument using Lemma~\ref{lem:key_for_stablizier}.
 \end{proof}
 
 
