@@ -12,7 +12,7 @@
 \let\shortbar\bar
 \let\bar\overline
 
-\newcommand\catDModHol[1]{\catDMod[\mathup{hol}]{#1}}
+%\newcommand\catDModHol[1]{\catDMod[\mathup{hol}]{#1}}
 \newcommand\catDModMon[2]{\catDMod{#1}^{#2-\mathup{mon}}}
 \newcommand\catDModHolMon[2]{\catDModHol{#1}^{#2-\mathup{mon}}}
 
@@ -20,7 +20,7 @@
 \newcommand{\renstar}{\blacktriangle}
 
 \newcommand{\HCoh}{\operatorname{HH}^\cx}
-\newcommand\ΓdR{Γ_{\mkern-4mu\dR}}
+\newcommand\GammadR{Γ_{\mkern-4mu\dR}}
 
 \newcommand\opalg[1]{#1^{\mathrm{op}}}
 
@@ -28,10 +28,10 @@
 \newcommand\mappingstack{\mathbfup{Maps}}
 \newcommand\X{\mathbb{X}}
 
-\newcommand\Γsub[1]{\Gamma_{\mkern-3mu#1}}
-\newcommand\barΓsub[1]{\bar{\Gamma}_{\mkern-3mu#1}}
+\newcommand\Gammasub[1]{\Gamma_{\mkern-3mu#1}}
+\newcommand\barGammasub[1]{\bar{\Gamma}_{\mkern-3mu#1}}
 
-\newcommand\ls[1]{\mathbfcal{L} #1}
+\renewcommand\ls[1]{\mathbfcal{L} #1}
 \newcommand\lsY[1]{\mathbfcal{L}_{\stack Y} #1}
 \newcommand\cls[1]{\overline{\mathbfcal{L}} #1}
 \newcommand\clsY[1]{\overline{\mathbfcal{L}}_{\stack Y} #1}
@@ -118,7 +118,7 @@ By Verdier duality and adjunction we can always rewrite \eqref{eq:intro:d-mod-hc
 \[
     \HCoh(\catDMod{\stack X}) \cong
     \opalg{\Hom_{\catDMod{X}}(k_{\stack X}, Δ^!Δ_!k_{\stack X})} =
-    \opalg{\ΓdR(\stack X, Δ^!Δ_!k_{\stack X})}.
+    \opalg{\GammadR(\stack X, Δ^!Δ_!k_{\stack X})}.
 \]
 It is now tempting to look at the Cartesian square
 \[
@@ -129,14 +129,14 @@ It is now tempting to look at the Cartesian square
 \]
 where
 \[
-    \ls \stack X = \stack X ×\limits_{\stack X × \stack X} \stack X
+    \ls \stack X = \stack X \mathop{×}\limits_{\stack X × \stack X} \stack X
 \]
 is the (derived) loop space of $\stack X$ and try to express the Hochschild cohomology as the cohomology of some sheaf on $\ls \stack X$.
 We could expect the existence of an isomorphism
 \begin{equation}
     \label{eq:intro:naive}
-    \ΓdR(\stack X, Δ^!Δ_!k_{\stack X}) \cong
-    \ΓdR(\stack X, p_{2,!}p₁^! k_{\stack X}).
+    \GammadR(\stack X, Δ^!Δ_!k_{\stack X}) \cong
+    \GammadR(\stack X, p_{2,!}p₁^! k_{\stack X}).
 \end{equation}
 We refer to this as the \enquote{naive expectation}.
 Unfortunately, the two sides are in general not isomorphic (the stack $\stack X = \ps1/\Ga$ is an easy counter-example).
@@ -154,9 +154,9 @@ As an application, we will prove the following theorem, giving a class of stacks
     \[
         \HCoh\bigl(\catDMod{X/G}\bigr)
         \cong
-        \opalg{\ΓdR\bigl(X/G,\,p_{2,!} p₁^! k_{X/G}\bigr)},
+        \opalg{\GammadR\bigl(X/G,\,p_{2,!} p₁^! k_{X/G}\bigr)},
     \]
-    where the algebra structure on $\ΓdR\bigl(X/G,\,p_{2,!} p₁^! k_{X/G}\bigr)$ is induced by the groupoid structure on $\ls(X/G)$.
+    where the algebra structure on $\GammadR\bigl(X/G,\,p_{2,!} p₁^! k_{X/G}\bigr)$ is induced by the groupoid structure on $\ls(X/G)$.
 \end{Thm}
 
 \subsection*{Acknowledgments}
@@ -202,13 +202,13 @@ Many basic properties of the category $\catDMod{\stack X}$ are explored in \cite
 For any morphism $f\colon \stack X → \stack Y$ the constructions yield a continuous functor $f^!\colon \catDMod{\stack Y} → \catDMod{\stack X}$ and (after some work) a not necessarily continuous functor $f_*\colon \catDMod{\stack X} → \catDMod{\stack Y}$.
 If $p\colon \stack X → \pt$ is the structure map then we set
 \[
-    \ΓdR(\stack X,\, {-}) = p_*({-}) \colon \catDMod{\stack X} → \catVect.
+    \GammadR(\stack X,\, {-}) = p_*({-}) \colon \catDMod{\stack X} → \catVect.
 \]
-The functor $\ΓdR$ is representable by a D-module $k_{\stack X}$, i.e.
+The functor $\GammadR$ is representable by a D-module $k_{\stack X}$, i.e.
 \[
-    \ΓdR(\stack X,\, {-}) = \Hom_{\catDMod{\stack X}}(k_{\stack X},\, {-}).
+    \GammadR(\stack X,\, {-}) = \Hom_{\catDMod{\stack X}}(k_{\stack X},\, {-}).
 \]
-Again we note that $\ΓdR(\stack X,\, {-})$ is usually not continuous and hence the object $k_{\stack X}$ not compact.
+Again we note that $\GammadR(\stack X,\, {-})$ is usually not continuous and hence the object $k_{\stack X}$ not compact.
 
 Let $Δ\colon \stack X → \stack X × \stack X$ be the diagonal.
 The category $\catDMod{\stack X}$ has a monoidal structure given by the tensor product
@@ -411,7 +411,7 @@ Recall that a groupoid $G_{\cx}$ in stacks consists of a stack $\stack G₀$ of 
 \begin{itemize}
     \item \emph{source} and \emph{target} maps $s,t\colon \stack G₁ \rightrightarrows \stack G₀$,
     \item a \emph{unit} $e\colon G₀ → G₁$,
-    \item a \emph{multiplication} (or \emph{composition}) map $m\colon \stack G₁ ×\limits_{s,\stack G₀,t} \stack G₁ → \stack G₁$,
+    \item a \emph{multiplication} (or \emph{composition}) map $m\colon \stack G₁ \mathop{×}\limits_{s,\stack G₀,t} \stack G₁ → \stack G₁$,
     \item an \emph{inverse} map $ι\colon \stack G₁ → \stack G₁$,
 \end{itemize}
 such that
@@ -596,9 +596,9 @@ With this we observe that
     & = \Hom_{\catDMod{\stack X × \stack X}}(Δ_* ω_{\stack X},\, Δ_* ω_{\stack X}) & &\text{(Lemma~\ref{lem:pre:hcoh})} \\
     & = \opalg{\Hom_{\catDMod{\stack X × \stack X}}(Δ_! k_{\stack X},\, Δ_! k_{\stack X})} & & \text{(duality)} \\
     & = \opalg{\Hom_{\catDMod{\stack X × \stack X}}(k_{\stack X},\, Δ^! Δ_! k_{\stack X})} & & \text{(adjunction)} \\
-    & = \opalg{\ΓdR\bigl(\stack X,\, Δ^! Δ_! k_{\stack X}\bigr)},
+    & = \opalg{\GammadR\bigl(\stack X,\, Δ^! Δ_! k_{\stack X}\bigr)},
 \end{align*}
-where the algebra structure on $\ΓdR\bigl(\stack X,\, Δ^! Δ_! k_{\stack X}\bigr) = \Hom_{\catDMod{\stack X × \stack X}}(k_{\stack X},\, Δ^! Δ_! k_{\stack X})$ is the one induced by the $(Δ_!,Δ^!)$-adjunction monad.
+where the algebra structure on $\GammadR\bigl(\stack X,\, Δ^! Δ_! k_{\stack X}\bigr) = \Hom_{\catDMod{\stack X × \stack X}}(k_{\stack X},\, Δ^! Δ_! k_{\stack X})$ is the one induced by the $(Δ_!,Δ^!)$-adjunction monad.
 Consider the Cartesian square
 \[
     \begin{tikzcd}
@@ -614,9 +614,9 @@ Then $Δ_* = Δ_!$ and $p_{2,*} = p_{2,!}$ and by Section~\ref{sec:pre:monads} w
 \end{equation}
 which induces an isomorphism of algebras
 \[
-    \ΓdR\bigl(\stack X,\, p_{2,!} p₁^! k_{\stack X}\bigr)
+    \GammadR\bigl(\stack X,\, p_{2,!} p₁^! k_{\stack X}\bigr)
     →
-    \ΓdR\bigl(\stack X,\, Δ^! Δ_! k_{\stack X}\bigr).
+    \GammadR\bigl(\stack X,\, Δ^! Δ_! k_{\stack X}\bigr).
 \]
 Of course, if $X$ is not an algebraic space, then $Δ$ is not proper (nor is it in general smooth).
 Thus in general \eqref{eq:central_iso} is not an isomorphism and there is no canonical structure of monad on $p_{2,!} p₁^!$.
@@ -627,19 +627,19 @@ Thus the goal of the next section is to give a criterion for the assumptions of 
     The base change morphism \eqref{eq:central_iso} is also an isomorphism if $Δ$ is smooth.
     In particular this implies that the \enquote{naive expectation} holds for $\stack X = \B G$ for any algebraic group $G$, i.e.~we have
     \[
-        \HCoh(\catDMod{\B G}) = \opalg{\ΓdR\bigl(\B G,\, p_{2,!} p₁^! k_{\B G}\bigr)}.
+        \HCoh(\catDMod{\B G}) = \opalg{\GammadR\bigl(\B G,\, p_{2,!} p₁^! k_{\B G}\bigr)}.
     \]
     An argument similar to \cite{BenZvi:mathoverflow:CohomologyOfGmodG} shows that there is a further isomorphism
     \[
-        \ΓdR\bigl(\B G,\, p_{2,!} p₁^! k_{\stack X}\bigr) \cong
-        \ΓdR(G, k_G)^\dual \otimes \ΓdR(\B G, k_{\B G}).
+        \GammadR\bigl(\B G,\, p_{2,!} p₁^! k_{\stack X}\bigr) \cong
+        \GammadR(G, k_G)^\dual \otimes \GammadR(\B G, k_{\B G}).
     \]
     Alternatively, we can use the identification
     \[
-        \catDMod{\B G} \cong \catModules{\ΓdR(G, k_{G})^\dual},
+        \catDMod{\B G} \cong \catModules{\GammadR(G, k_{G})^\dual},
     \]
-    where the algebra structure on $\ΓdR(G, k_G)^\dual$ is induced by the group multiplication \cite[Section~7.2]{DrinfeldGaitsgory:2013:FinitenessQuestions}.
-    If $G$ is reductive, then $\ΓdR(G, k_G)^\dual$ is an exterior algebra and thus its Hochschild cohomology can be computed directly.
+    where the algebra structure on $\GammadR(G, k_G)^\dual$ is induced by the group multiplication \cite[Section~7.2]{DrinfeldGaitsgory:2013:FinitenessQuestions}.
+    If $G$ is reductive, then $\GammadR(G, k_G)^\dual$ is an exterior algebra and thus its Hochschild cohomology can be computed directly.
 \end{Ex}
 
 \section{Base change}
@@ -801,10 +801,10 @@ The composition $f ∘ j$ is equal to $(\proj2, a)$.
 
 Instead of viewing $Γ$ as the graph of $(\proj2, a)$ we can drop the third factor and regard $Γ$ as the graph of the action map, i.e.
 \[
-    \Γsub{a} = \bigl\{(g, x, gx) ∈ G × X × X\bigr\}.
+    \Gammasub{a} = \bigl\{(g, x, gx) ∈ G × X × X\bigr\}.
 \]
-The closure $\barΓsub{a}$ of $\Γsub a$ in $\bar G × X × X$ identifies with $\bar Γ$.
-Thus for ease of notation we will from now on always set $Γ = \Γsub a$ and $\bar Γ = \barΓsub{a}$.
+The closure $\barGammasub{a}$ of $\Gammasub a$ in $\bar G × X × X$ identifies with $\bar Γ$.
+Thus for ease of notation we will from now on always set $Γ = \Gammasub a$ and $\bar Γ = \barGammasub{a}$.
 
 \begin{Def}
     Let $\stack X = X/G$.
@@ -823,10 +823,10 @@ Thus for ease of notation we will from now on always set $Γ = \Γsub a$ and $\b
 \end{Rem}
 
 It is useful to consider only partial compactifications.
-For this let $V$ be a $G$-stable subvariety of $\bar G$ and let $\barΓsub{V}$ be the closure of $Γ$ in $G × V$.
+For this let $V$ be a $G$-stable subvariety of $\bar G$ and let $\barGammasub{V}$ be the closure of $Γ$ in $G × V$.
 We set
 \[
-    \bar{\stack X}_V = \rquot{\barΓsub{V}}{G×G}.
+    \bar{\stack X}_V = \rquot{\barGammasub{V}}{G×G}.
 \]
 Clearly, if $\left\{V_i\right\}$ is an open cover of $\bar G$ by $G$-stable subvarieties, then $\left\{\bar{\stack X}_{V_i}\right\}$ is an open cover of $\bar{\stack X}$.
 
@@ -865,7 +865,7 @@ The reason for this definition is the following theorem which lets us compute th
     \[
         \HCoh\bigl(\catDMod{\stack X}\bigr)
         \cong
-        \opalg{\ΓdR\bigl(\stack X,\, p_{2,!} p₁^! k_{\stack X}\bigr)}.
+        \opalg{\GammadR\bigl(\stack X,\, p_{2,!} p₁^! k_{\stack X}\bigr)}.
     \]
 \end{Thm}
 
