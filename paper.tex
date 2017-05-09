@@ -72,11 +72,15 @@
 
 \maketitle
 
+
 \begin{abstract}
     We discuss how to compute the Hochschild cohomology of the category of D-modules on a quotient stack via a relative compactification of the diagonal morphism.
     We then apply this construction to the case of torus-equivariant D-modules and describe the Hochschild cohomology as the cohomology of a D-module on the loop space of the quotient stack.
     This work is motivated by a desire to understand the support theory (in the sense of \cite{BensonIyengarKrause:2008:LocalCohomologyAndSupportForTriangulatedCategories}) of D-modules on stacks.
 \end{abstract}
+
+\setcounter{tocdepth}{1}
+\tableofcontents
 
 \section{Introduction}
 
@@ -104,15 +108,14 @@ More concretely, the authors used this notion of singular support for the catego
 By Langlands duality, one should then have a matching support theory for the category $\catDMod{\Bun_G}$ and the question arises whether it is possible to formulate this theory in a way that is intrinsic to D-modules.
 
 A first step to this -- and also a problem of independent interest -- is to understand the Hochschild cohomology of the category $\catDMod{\stack X}$ of D-modules on a stack $\stack X$.
-We will review the general setup and basic properties of D-modules on (QCA) stacks in Section~\ref{sec:pre}.
-The upshot is that we have an isomorphism of dg algebras
+Representing the identity functor by its kernel, we obtain an isomorphism of dg algebras
 \begin{equation}
     \label{eq:intro:d-mod-hcoh}
     \HCoh(\catDMod{\stack X}) \cong \Hom_{\catDMod{X×X}}(Δ_*ω_{\stack X}, Δ_*ω_{\stack X}),
 \end{equation}
 where $Δ\colon \stack X × \stack X → \stack X$ is the diagonal morphism and $ω_{\stack X}$ is the dualizing module.
-In particular if $\stack X$ is a (separated) scheme, then $Δ$ is a closed embedding and $(Δ^*,Δ_*)$ adjunction combined with Kashiwara's Lemma show that $\HCoh(\catDMod{\stack X})$ is isomorphic to the de Rham cohomology of $\stack X$.
-However, if $\stack X$ is not an algebraic space (and hence $Δ$ is not proper) then the situation becomes more complicated.
+In particular if $\stack X$ is a (separated) scheme, then $Δ$ is a closed embedding and $(Δ^*,Δ_*)$ adjunction combined with Kashiwara's Equivalence show that $\HCoh(\catDMod{\stack X})$ is isomorphic to the de Rham cohomology of $\stack X$.
+However, if $\stack X$ is a general stack, then $Δ$ is not proper and the situation becomes more complicated.
 
 By Verdier duality and adjunction we can always rewrite \eqref{eq:intro:d-mod-hcoh} as
 \[
@@ -131,7 +134,7 @@ where
 \[
     \ls \stack X = \stack X \mathop{×}\limits_{\stack X × \stack X} \stack X
 \]
-is the (derived) loop space of $\stack X$ and try to express the Hochschild cohomology as the cohomology of some sheaf on $\ls \stack X$.
+is the derived loop space (or inertia stack) of $\stack X$ and try to express the Hochschild cohomology as the cohomology of some sheaf on $\ls \stack X$.
 We could expect the existence of an isomorphism
 \begin{equation}
     \label{eq:intro:naive}
@@ -141,12 +144,12 @@ We could expect the existence of an isomorphism
 We refer to this as the \enquote{naive expectation}.
 Unfortunately, the two sides are in general not isomorphic (the stack $\stack X = \ps1/\Ga$ is an easy counter-example).
 
-In Section~\ref{sec:base-change} we will investigate how to quantify the cone of the morphism
-\[
+In this paper we investigate how to quantify the cone of the morphism
+\begin{equation}\label{eq:intro:central_cone}
     p_{2,!}p₁^! k_{\stack X} → Δ^!Δ_! k_{\stack X}
-\]
+\end{equation}
 and thus the failure of the naive isomorphism \eqref{eq:intro:naive} to hold.
-As an application, we will prove the following theorem, giving a class of stacks where \eqref{eq:intro:naive} is indeed an isomorphism.
+As an application, we prove the following theorem, giving a class of stacks where \eqref{eq:intro:naive} is indeed an isomorphism.
 
 \begin{Thm}\label{thm:main}
     Let $G \cong \Gm^n$ be a torus acting locally linearly on a scheme $X$ of finite type over $k$.
@@ -159,15 +162,32 @@ As an application, we will prove the following theorem, giving a class of stacks
     where the algebra structure on $\GammadR\bigl(X/G,\,p_{2,!} p₁^! k_{X/G}\bigr)$ is induced by the groupoid structure on $\ls(X/G)$.
 \end{Thm}
 
+Since, to the author's knowledge, there is currently no comprehensive account of the theory of D-modules on stacks available in the literature, we review the basic formalism in Section~\ref{sec:d-mods}.
+In essence, most of the familiar six functor formalism of holonomic D-modules works in a general context.
+It is convenient to rephrase Theorem~\ref{thm:main} as an equivalence of monads.
+Thus in Section~\ref{sec:monads} we review some constructions of monads in our setting.
+In Section~\ref{sec:HH} we explain how morphism~\eqref{eq:intro:central_cone} arises as a morphism of monads and make precise its relationship with Hochschild cohomology of $\catDMod{\stack X}$.
+
+In Section~\ref{sec:base-change} we describe the cone of morphism~\eqref{eq:intro:central_cone} as sections of a sheaf on a \enquote{compactified} loop space of $\stack X$ and consider some of its properties.
+Finally, in Section~\ref{sec:torus} we deduce Theorem~\ref{thm:main} from this description, using geometric considerations and the contraction principle of Drinfeld--Gaitsgory \cite{DrinfeldGaitsgory:2014:OnATheoremOfBraden}.
+
+The present paper represents only the first step in the study of Hochschild cohomology and associated support theories for D-modules.
+In future work we intend to expand upon the foundations laid out in this paper.
+Of particular interest are quotients stacks $X/G$ with $G$ an affine algebraic group and the stack $\Bun_G(C)$ of $G$-bundles on a curve $C$.
+Following the constructions laid out in Section~\ref{sec:base-change:compactification}, for the former we need a good $G×G$-equivariant compactification of $G$.
+Thus groups with a wonderful compactification are of particular interest for study with our methods.
+For the latter, relative compactifications of the diagonal of $\Bun_G(C)$ have been proposed by Lafforgue and Drinfeld.
+These spaces are under active study and we expect that any computations of Hochschild cohomology to have deep connections with the \enquote{pseudo-identity} that is needed in the formulation of the geometric (categorical) Langlands conjecture. [reference?]
+
 \subsection*{Acknowledgments}
 I would like to thank my advisor, David Nadler, for the original motivation for this project and many discussions concerning it.
 
-\section{Prerequisites}%
-\label{sec:pre}
+
+\section{D-modules on stacks}
+\label{sec:d-mods}
 
 We fix an algebraically closed base field $k$ of characteristic $0$.
-All stacks will be assumed to be algebraic QCA stacks over $k$.
-As we will summarize below, the QCA condition ensures that the category of D-modules on stacks is well-behaved.
+All stacks will be assumed to be algebraic over $k$ and quasi-compact with affine automorphism group (QCA).
 Thus by definition for any stack $\stack X$ we have:
 \begin{itemize}
     \item The diagonal morphism $Δ\colon \stack X → \stack X × \stack X$ is schematic.
@@ -176,31 +196,23 @@ Thus by definition for any stack $\stack X$ we have:
     \item The automorphism groups of the geometric points of $\stack X$ are affine.
     \item The loop space (or inertia stack) $\ls \stack X = \stack X ×_{\stack X × \stack X} \stack X$ is of finite presentation over $\stack X$.
 \end{itemize}
-The first two conditions ensure that the stack is algebraic, the other three that it is quasi-compact with affine automorphism group (QCA).
+The QCA condition guarantees a reasonable theory of D-modules on $\stack X$.
 For details on QCA stacks we refer to~\cite{DrinfeldGaitsgory:2013:FinitenessQuestions}.
 Every quotient of a scheme of finite type over $k$ by an affine algebraic group is a QCA stack, and we will be mainly interested in these.
 
 In order to correctly define categories of D-modules on stacks it is necessary to work with dg-categories.
 We refer to \cite{Keller:2006:OnDGCategories} for an introduction to dg categories.
-It is often convenient to regard (pretriangulated) dg categories as $k$-linear stable $(∞,1)$-categories \cite{Lurie:2009:HigherToposTheory,Lurie:2014-draft:HigherAlgebra}, which can be done via the nerve construction \cite{Cohn:arXiv:DGCategoriesAreStableInfinityCategories,Faonte:arXiv:SimplicialNerveOfAnAinfinityCategory}. %\cite[Section~1.3.1]{Lurie:2014-draft:HigherAlgebra}
+It is often convenient to regard (pretriangulated) dg categories as $k$-linear stable $(∞,1)$-categories \cite{Lurie:2009:HigherToposTheory,Lurie:2014-draft:HigherAlgebra}, which can be done via the nerve construction.% \cite{Cohn:arXiv:DGCategoriesAreStableInfinityCategories,Faonte:arXiv:SimplicialNerveOfAnAinfinityCategory}. %\cite[Section~1.3.1]{Lurie:2014-draft:HigherAlgebra}
 We will switch between those two languages without explicitly mentioning the intervening constructions and apply results from \cite{Lurie:2014-draft:HigherAlgebra} to dg categories.
 Fortunately, a superficial knowledge of dg/$∞$-categories should be sufficient for reading this article.
-
-\subsection{D-modules on stacks}
-\label{sec:pre:d-mods}
-
-We will be primarily concerned with D-modules on (quotient) stacks.
-Unfortunately there is currently no comprehensive text available that covers all the basic constructions and properties of D-modules on stacks (or even the \emph{dg category} of D-modules on schemes).
-Thus we collect all the relevant properties (without proof) in this section.
-The upshot is that the familiar \enquote{six functors formalism} essentially works for holonomic D-modules and schematic morphisms of stacks.
 
 The category of D-modules on a stack $\stack X$ can be either constructed via descent \cite{BeilinsonDrifeld:unpublished:Hitchin,DrinfeldGaitsgory:2013:FinitenessQuestions} or equivalently as ind-coherent sheaves on the de Rham space of $\stack X$ \cite{GaitsgoryRozenblyum:2014:CrystalsAndDModules}.
 While the first construction is more \enquote{hands on}, the second construction is often more useful from a theoretical point of view.
 It is explained in detail in the upcoming book \cite{GaitsgoryRozenblyum:prelim:StudyInDAG} (see also \cite{FrancisGaitsgory:2012:ChiralKoszulDuality} for an overview).
-Many basic properties of the category $\catDMod{\stack X}$ are explored in \cite{DrinfeldGaitsgory:2013:FinitenessQuestions} and most of the following assertions are taken from there.
+Many basic properties of the category $\catDMod{\stack X}$ are explored in \cite{DrinfeldGaitsgory:2013:FinitenessQuestions} and unless stated otherwise proofs for the assertions in this section can be found there.
 
-For any morphism $f\colon \stack X → \stack Y$ the constructions yield a continuous functor $f^!\colon \catDMod{\stack Y} → \catDMod{\stack X}$ and (after some work) a not necessarily continuous functor $f_*\colon \catDMod{\stack X} → \catDMod{\stack Y}$.
-If $p\colon \stack X → \pt$ is the structure map then we set
+For any morphism $f\colon \stack X → \stack Y$ we obtain a continuous functor $f^!\colon \catDMod{\stack Y} → \catDMod{\stack X}$ and a (not necessarily continuous) functor $f_*\colon \catDMod{\stack X} → \catDMod{\stack Y}$.
+If $p\colon \stack X → \pt$ is the structure map, we set
 \[
     \GammadR(\stack X,\, {-}) = p_*({-}) \colon \catDMod{\stack X} → \catVect.
 \]
@@ -208,14 +220,10 @@ The functor $\GammadR$ is representable by a D-module $k_{\stack X}$, i.e.
 \[
     \GammadR(\stack X,\, {-}) = \Hom_{\catDMod{\stack X}}(k_{\stack X},\, {-}).
 \]
-Again we note that $\GammadR(\stack X,\, {-})$ is usually not continuous and hence the object $k_{\stack X}$ not compact.
+As $\GammadR(\stack X,\, {-})$ is usually not continuous and the object $k_{\stack X}$ is usually not a compact object of $\catDMod{\stack X}$.
 
 Let $Δ\colon \stack X → \stack X × \stack X$ be the diagonal.
-The category $\catDMod{\stack X}$ has a monoidal structure given by the tensor product
-\[
-    \sheaf F \otimes \sheaf G = Δ^!\bigl( \sheaf F \boxtimes \sheaf G \bigr).
-\]
-The unit for this monoidal structure is $ω_{\stack X} = p^! k$.
+The category $\catDMod{\stack X}$ has a monoidal structure given by the tensor product $\sheaf F \otimes \sheaf G \coloneq Δ^!\bigl( \sheaf F \boxtimes \sheaf G \bigr)$ with unit $ω_{\stack X} = p^! k$.
 
 We will be mainly concerned with the subcategory of holonomic D-modules since they enjoy extended functoriality.
 \begin{Def}
@@ -236,7 +244,7 @@ We refer to \cite{Braverman:LecturesOnAlgebraicDmodules} for proofs in the case 
     \]
 \end{Prop}
 
-The Verdier duality functor on schemes induces an involutive anti auto-equivalence
+The Verdier duality functor on schemes induces an involutive anti-auto-equivalence
 \[
     \dualize_{\stack X}\colon \catDModHol{\stack X}^\mathrm{op} → \catDModHol{\stack X}
 \]
@@ -355,8 +363,8 @@ For reference, we state the following theorem which will be a crucial ingredient
 \end{Thm}
 
 
-\subsection{Monads}
-\label{sec:pre:monads}
+\section{Monads}
+\label{sec:monads}
 
 We will deduce Theorem~\ref{thm:main} from a isomorphism of monads on $\catDMod{\stack X}$.
 In this section we give a short introduction to the theory of monads and the specific constructions that we will use.
@@ -524,6 +532,7 @@ The following lemma is now an immediate corollary of \cite[Lemma~\RomanNum{II}.1
 \end{Lem}
 
 \section{Hochschild cohomology}
+\label{sec:HH}
 
 We recall that the Hochschild cohomology of a dg category $\cat C$ is the algebra of derived endomorphisms of the identity functor,
 \[
@@ -607,7 +616,7 @@ Consider the Cartesian square
     \end{tikzcd}
 \]
 Let us assume for the moment that $Δ$ (and hence $p_i$) was proper.
-Then $Δ_* = Δ_!$ and $p_{2,*} = p_{2,!}$ and by Section~\ref{sec:pre:monads} we have an isomorphism of monads
+Then $Δ_* = Δ_!$ and $p_{2,*} = p_{2,!}$ and by Section~\ref{sec:monads} we have an isomorphism of monads
 \begin{equation}
     \label{eq:central_iso}
     p_{2,!} p₁^! → Δ^!Δ_!,
