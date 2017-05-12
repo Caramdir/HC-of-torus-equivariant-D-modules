@@ -529,6 +529,13 @@ The following lemma is now an immediate corollary of \cite[Lemma~\RomanNum{II}.1
         p_s^! p_{F,!}
     \]
     given by the adjunction morphisms is an isomorphism of functors from $\catDModHol{\stack G_n}$ to $\catDModHol{\stack G_{m+1}}$.
+    Further assume that the same is true along 
+    \[
+        \begin{tikzcd}
+            \stack G₁ \arrow[r, "p_s"] \arrow[d, "p_t"] & \stack G₀ \arrow[d, "f"] \\
+            \stack G₀ \arrow[r, "f"] & \stack Y
+        \end{tikzcd}
+    \]
     Then the endofunctor $p_{t,!} p_s^!$ of $\catDModHol{\stack X}$ has a canonical structure of a monad and as such is isomorphic to the adjunction monad $f^!f_!$.
 \end{Lem}
 
@@ -865,7 +872,7 @@ Thus we have the following diagram which is central to remainder of this paper.
 \]
 Motivated by Lemma~\ref{lem:base-change-criterion} we make the following definition.
 
-\begin{Def}
+\begin{Def}\label{def:good}
     A quotient stack $\stack X = X/G$ is called \emph{\goodstack} if for every quotient stack $\stack Y = Y/G$ and schematic morphism $\stack Y → \stack X$ the functor $i_{\stack Y}^* \bar q_{\stack Y}^! j_!$ vanishes on $\catDModHol{\stack X}$.
 \end{Def}
 
@@ -883,18 +890,28 @@ Theorem~\ref{thm:main} then immediately follows from the following theorem which
 \end{Thm}
 
 \begin{proof}
-    We apply Lemma~\ref{lem:pre:groupoid_monad_hol} to the groupoid $\ls\stack X \rightrightarrows \stack X$.
+    We apply Lemma~\ref{lem:pre:groupoid_monad_hol} to the groupoid induced by $Δ\colon \stack X → \stack X × \stack X$.
     Thus we let $\stack G_\cx$ be the simplicial stack with
     \[
-        \stack G_i = \underbrace{\ls\stack X ×_{\stack X} \dotsb ×_{\stack X} \ls\stack X}_{\text{$i$ factors}}.
+        \stack G_i = \underbrace{\stack X \mathop{×}\limits_{\stack X × \stack X} \dotsb \mathop{×}\limits_{\stack X × \stack X} \stack X}_{\text{$i+1$ factors}}.
     \]
-    Any morphism $F\colon [n] → [m]$ in $\cat{Δ}^{\mathrm{op}}$ induces a diagram
+    Setting $\stack Y = \stack X$ in Definition~\ref{def:good} it follows from Lemma~\ref{lem:base-change-criterion} that base change holds along the square
+    \[
+        \begin{tikzcd}
+            \stack G₁ \arrow[r, "p_s"] \arrow[d, "p_t"] & \stack G₀ \arrow[d, "f"] \\
+            \stack G₀ \arrow[r, "f"] & \stack X × \stack X
+        \end{tikzcd}
+    \]
+    Let $F\colon [n] → [m]$ be a morphism in $\cat{Δ}^{\mathrm{op}}$ and consider the induced diagram
     \[
         \begin{tikzcd}
             \stack G_{n+1} \arrow[d] \arrow[r] & \stack G_{m+1} \arrow[d] \arrow[r] & \stack X \arrow[d, "Δ"] \\
             \stack G_{n} \arrow[r] & \stack G_m \arrow[r] & \stack X × \stack X
         \end{tikzcd}
     \]
+    We note that $\stack G_{m+1} = \stack G_m ×_{\stack X × \stack X} \stack X$ and similarly for $\stack G_n$.
+    Thus a relative compactification of $\stack G_{m+1} → \stack G_m$ is given by $\stack G_m ×_{\stack X × \stack X} \bar{\stack X} → \stack G_m$.
+    The map $j$ then identifies as the inclusion of $\stack G_m ×_{\stack X × \stack X} \stack X$.
     We have to show that base change holds along the left-hand square.
     But by the assumption and Lemma~\ref{lem:base-change-criterion}, base change holds along the outer rectangle and the right-hand square.
     Thus it also holds along the left-hand square.
