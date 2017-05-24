@@ -31,12 +31,26 @@
 \newcommand\Gammasub[1]{\Gamma_{\mkern-3mu#1}}
 \newcommand\barGammasub[1]{\bar{\Gamma}_{\mkern-3mu#1}}
 
+\newcommand\XXtimes{%
+    \mathchoice%
+        {\mathop{×}\limits_{\stack X × \stack X}}
+        {×_{\stack X × \stack X}}
+        {×_{\stack X × \stack X}}
+        {×_{\stack X × \stack X}}
+    }
 \renewcommand\ls[1]{\mathbfcal{L} #1}
-\newcommand\lsY[1]{\mathbfcal{L}_{\stack Y} #1}
+\newcommand\lsY[2][\stack Y]{\mathbfcal{L}_{#1} #2}
 \newcommand\cls[1]{\overline{\mathbfcal{L}} #1}
-\newcommand\clsY[1]{\overline{\mathbfcal{L}}_{\stack Y} #1}
+\newcommand\clsY[2][\stack Y]{\overline{\mathbfcal{L}}_{#1} #2}
 \newcommand\lsc[1]{\mathbfcal{L}^c #1}
-\newcommand\lscY[1]{\mathbfcal{L}_{\stack Y}^c #1}
+\newcommand\lscY[2][\stack Y]{\mathbfcal{L}_{#1}^c #2}
+
+\newcommand\sls[1]{L#1}
+\newcommand\slsY[2][\stack Y]{L_{#1}#2}
+\newcommand\scls[1]{\overline{L}#1}
+\newcommand\sclsY[2][\stack Y]{\overline{L}_{#1}#2}
+\newcommand\slsc[1]{L^c #1}
+\newcommand\slscY[2][\stack Y]{L^c_{#1}#2}
 
 \newcommand\schemels[2][]{L^{#1}#2}
 \newcommand\schemelsY[2][]{\schemels[#1]{_{\stack Y}#2}}
@@ -59,9 +73,20 @@
 
 \newcommand\Stab{\operatorname{Stab}}
 
-\newcommand\goodstack{good}
-\newcommand\Goodstack{Good}
-\newcommand\goodness{goodness}
+\newcommand\goodstack{XXXgoodXXX}
+\newcommand\Goodstack{XXXGoodXXX}
+\newcommand\goodness{property \textbf{(!)}}
+\newcommand\goodnessshort{\textbf{(!)}}
+\newcommand\isgood{has property \textbf{(!)}}
+\newcommand\aregood{have property \textbf{(!)}}
+\newcommand\isnotgood{does not have property \textbf{(!)}}
+\newcommand\arenotgood{do not have property \textbf{(!)}}
+\newcommand\goodX[1]{#1 with property \textbf{(!)}}
+\newcommand\goodnessb{property \textbf{(!')}}
+\newcommand\goodnessbshort{\textbf{(!')}}
+\newcommand\isgoodb{has property \textbf{(!')}}
+\newcommand\aregoodb{have property \textbf{(!')}}
+\newcommand\goodbX[1]{#1 with property \textbf{(!')}}
 
 \newcommand\dualize{\mathbb D}
 
@@ -71,7 +96,6 @@
 \begin{document}
 
 \maketitle
-
 
 \begin{abstract}
     We discuss how to compute the Hochschild cohomology of the category of D-modules on a quotient stack via a relative compactification of the diagonal morphism.
@@ -851,43 +875,48 @@ Clearly, if $\left\{V_i\right\}$ is an open cover of $\bar G$ by $G$-stable subv
 
 \subsection{\Goodstack\ stacks}
 
-Let $\stack X = X/G$ be a quotient stack as before.
-For any morphism of stacks $h\colon \stack Y → \stack X$ we set $\lsY{\stack X} = \stack X ×_{\stack X × \stack X} \stack Y$.
-Thus we have the Cartesian diagram
+Let $\stack Y$ be a stack over $\stack X$.
+To simplify notation, we set
 \[
-    \begin{tikzcd}
-        \lsY \stack X \arrow[r, "q_{\stack Y}"] \arrow[d] & \stack X \arrow[d, "Δ"] \\
-        \stack Y \arrow[r, "Δ∘h"] & \stack X × \stack X
-    \end{tikzcd}
+    \lsY = \stack Y \XXtimes \stack X,
 \]
-Let us fix a relative compactification $\shortbar Δ \colon \bar{\stack X} → \stack X × \stack X$ as in Section~\ref{sec:base-change:compactification}.
-Using the notation of Section~\ref{sec:base-change:cone} we set $\clsY{\stack X} = \bar{\stack X} ×_{\stack X × \stack X} \stack Y$ and $\lscY{\stack X} = {\stack X}^c ×_{\stack X × \stack X} \stack Y$.
-We let $\bar q_{\stack Y}\colon \clsY\stack X → \bar{\stack X}$ be the projection morphism and $i_{\stack Y}\colon \lscY\stack X \hookrightarrow \clsY\stack X$ the inclusion.
-Thus we have the following diagram which is central to remainder of this paper.
-\[
-    \begin{tikzcd}
-        \lsY\stack X \arrow[r, hook] \arrow[d, "q_{\stack Y}"] & \clsY\stack X \arrow[d, "\bar q_{\stack Y}"] & \lscY\stack X \arrow[l, hook', "i_{\stack Y}"'] \arrow[d] \\
-        \stack X \arrow[r, hook, "j"] & \bar{\stack X} & \stack X^c \arrow[l, hook']
-    \end{tikzcd}
-\]
-Motivated by Lemma~\ref{lem:base-change-criterion} we make the following definition.
+where the fiber product is taken over the maps $\stack Y → \stack X \xrightarrow{Δ} \stack X × \stack X$ and $Δ$.
+Further if $f\colon \stack Y₁ → \stack Y₂$ is a morphism of stacks over $\stack X$ we write $\ls f$ for the induced morphism $\lsY[\stack Y₁]{\stack X} → \lsY[\stack Y₂]{\stack X}$.
 
 \begin{Def}\label{def:good}
-    A quotient stack $\stack X = X/G$ is called \emph{\goodstack} if for every quotient stack $\stack Y = Y/G$ and schematic morphism $\stack Y → \stack X$ the functor $i_{\stack Y}^* \bar q_{\stack Y}^! j_!$ vanishes on $\catDModHol{\stack X}$.
+    We say that a quotient stack $\stack X = X/G$ \emph{\isgood} if the following two conditions hold.
+    \begin{enumerate}
+        \item $!$-base-change holds along the Cartesian square
+            \[
+                \begin{tikzcd}
+                    \ls \stack X \arrow[r, "p₂"] \arrow[d, "p₁"] & \stack X \arrow[d, "Δ"] \\
+                    \stack X \arrow[r, "Δ"] & \stack X × \stack X
+                \end{tikzcd}
+            \]
+            i.e.~the canonical morphism $p_{1,!}p₂^! → Δ^!Δ_!$ is an isomorphism on holonomic D-modules.
+        \item For any schematic morphism $f\colon \stack Y₁ = Y₁/G → \stack Y₂ = Y₂/G$ of $G$-quotient stacks over $\stack X$, $!$-base-change holds along the Cartesian diagram
+            \[
+                \begin{tikzcd}
+                    \lsY[\stack Y₂]{\stack X} \arrow[r, "\ls f"] \arrow[d, "π₂"] & \lsY[\stack Y₁]{\stack X} \arrow[d, "π₁"]\\
+                    \stack Y₂ \arrow[r, "f"] & \stack Y₁
+                \end{tikzcd}
+            \]
+            i.e.~the canonical morphism $π_{2,!}(\ls f)^! → f^! π_{1,!}$ is an isomorphism on holonomic D-modules.
+    \end{enumerate}
 \end{Def}
 
-We will show in Section~\ref{sec:torus} that any stack of the form $\rquot{X}{\Gm^n}$ is \goodstack.
-Theorem~\ref{thm:main} then immediately follows from the following theorem which lets us compute the Hochschild cohomology of $\catDMod{\stack X}$ for \goodstack\ quotient stacks.
+We will show in Section~\ref{sec:torus} that any stack of the form $\rquot{X}{\Gm^n}$ \isgood.
+Theorem~\ref{thm:main} then immediately follows from the following observation which lets us compute the Hochschild cohomology of $\catDMod{\stack X}$ for \goodX{quotient stacks}.
 
-\begin{Thm}\label{thm:good-is-good}
-    If $\stack X = X/G$ is \goodstack, then there exists a canonical structure of monad on $p_{2,!}p₁^!$ and the morphism $p_{2,!}p₁^! → Δ^!Δ_!$ is an isomorphism of monads.
+\begin{Prop}\label{prop:good-is-good}
+    If $\stack X = X/G$ \isgood, then there exists a canonical structure of monad on $p_{1,!}p₂^!$ and the morphism $p_{2,!}p₁^! → Δ^!Δ_!$ is an isomorphism of monads.
     In particular there is an isomorphism of algebras
     \[
         \HCoh\bigl(\catDMod{\stack X}\bigr)
         \cong
-        \opalg{\GammadR\bigl(\stack X,\, p_{2,!} p₁^! k_{\stack X}\bigr)}.
+        \opalg{\GammadR\bigl(\stack X,\, p_{1,!} p₂^! k_{\stack X}\bigr)}.
     \]
-\end{Thm}
+\end{Prop}
 
 \begin{proof}
     We apply Lemma~\ref{lem:pre:groupoid_monad_hol} to the groupoid induced by $Δ\colon \stack X → \stack X × \stack X$.
@@ -895,13 +924,7 @@ Theorem~\ref{thm:main} then immediately follows from the following theorem which
     \[
         \stack G_i = \underbrace{\stack X \mathop{×}\limits_{\stack X × \stack X} \dotsb \mathop{×}\limits_{\stack X × \stack X} \stack X}_{\text{$i+1$ factors}}.
     \]
-    Setting $\stack Y = \stack X$ in Definition~\ref{def:good} it follows from Lemma~\ref{lem:base-change-criterion} that base change holds along the square
-    \[
-        \begin{tikzcd}
-            \stack G₁ \arrow[r, "p_s"] \arrow[d, "p_t"] & \stack G₀ \arrow[d, "f"] \\
-            \stack G₀ \arrow[r, "f"] & \stack X × \stack X
-        \end{tikzcd}
-    \]
+    The second base change condition of Lemma~\ref{lem:pre:groupoid_monad_hol} holds by definition.
     Let $F\colon [n] → [m]$ be a morphism in $\cat{Δ}^{\mathrm{op}}$ and consider the induced diagram
     \[
         \begin{tikzcd}
@@ -910,104 +933,169 @@ Theorem~\ref{thm:main} then immediately follows from the following theorem which
         \end{tikzcd}
     \]
     We note that $\stack G_{m+1} = \stack G_m ×_{\stack X × \stack X} \stack X$ and similarly for $\stack G_n$.
-    Thus a relative compactification of $\stack G_{m+1} → \stack G_m$ is given by $\stack G_m ×_{\stack X × \stack X} \bar{\stack X} → \stack G_m$.
-    The map $j$ then identifies as the inclusion of $\stack G_m ×_{\stack X × \stack X} \stack X$.
-    We have to show that base change holds along the left-hand square.
-    But by the assumption and Lemma~\ref{lem:base-change-criterion}, base change holds along the outer rectangle and the right-hand square.
-    Thus it also holds along the left-hand square.
+    Thus setting $\stack Y₁ = \stack G_n$ and $\stack Y₂ = \stack G_m$ in the definition of \goodness, we see that all the required base changes holds.
 \end{proof}
 
 \begin{Rem}
-    We expect that most quotient stacks are not \goodstack.
-    For example, a direct computation shows that Theorem~\ref{thm:main} does not hold for the stack $\ps1/\Ga$, and hence it is not \goodstack.
-    For non-\goodstack\ stacks, the sheaf $i_{\stack X}^* \bar q_{\stack X}^! j_! k_{\stack X}$ instead gives a measurement for the failure of the naive expectation for $\HCoh\bigl(\catDMod{\stack X}\bigr)$.
+    We expect that most quotient stacks \arenotgood.
+    For example, a direct computation shows that Theorem~\ref{thm:main} does not hold for the stack $\ps1/\Ga$, and hence it \isnotgood.
 \end{Rem}
 
-We finish this section with some useful observations for proving that a stack is \goodstack.
+We will use Lemma~\ref{lem:base-change-criterion} in order to check the base change criteria in Definition~\ref{def:good}.
+In order to do so we unfortunately have to introduce some additional notation.
+Let us fix a compactification $\bar G$ of $G$ and a relative compactification $\stack X \xrightarrow{j} \bar{\stack X} \xrightarrow{\bar Δ} \stack X × \stack X$ as in Section~\ref{sec:base-change:compactification}.
+For any $\stack Y → \stack X$ this induces a relative compactification $\clsY{\stack X} = \stack Y \XXtimes \bar{\stack X}$.
+Let us write $j_{\stack Y}\colon \lsY{\stack X} \hookrightarrow \clsY{\stack X}$ for the open inclusion and $i_{\stack Y}\colon \lscY{\stack X} = \stack Y \XXtimes \stack X^c → \clsY{\stack X}$ for the complement.
+Thus we have the following two diagrams with Cartesian squares which are central to the remainder of this paper.
+The first describes the situation for a loop stack:
+\begin{equation}\label{eq:diag:central1}
+    \begin{tikzcd}
+        \ls\stack X \arrow[r, "j_{\stack X}", hook] \arrow[d, "p₂"] & \cls\stack X \arrow[d, "\bar p₂"] & \lsc\stack X \arrow[l, hook', "i_{\stack X}"']  \arrow[d] \\
+        \stack X \arrow[r, hook, "j"] & \bar{\stack X} & \stack X^c \arrow[l, hook']
+    \end{tikzcd}
+\end{equation}
+For the second let $\stack Y₁ → \stack Y₂$ be a morphism of stacks over $\stack X$:
+\begin{equation}\label{eq:diag:central2}
+    \begin{tikzcd}
+        \lsY[\stack Y₁]{\stack X} \arrow[r, "j_{\stack Y₁}", hook] \arrow[d, "\ls f"] & \clsY[\stack Y₁]{\stack X} \arrow[d, "{\cls f}"] & \lscY[\stack Y₁]{\stack X} \arrow[l, hook', "i_{\stack Y₁}"']  \arrow[d] \\
+        \lsY[\stack Y₂]{\stack X} \arrow[r, hook, "j_{\stack Y₂}"] & \clsY[\stack Y₂]{\stack X} & \lscY[\stack Y₂]{\stack X} \arrow[l, hook']
+    \end{tikzcd}
+\end{equation}
+With this setup we make the following definition.
+\begin{Def}\label{def:good'}
+    We say that a quotient stack $\stack X = X/G$ \emph{\isgoodb} if the following two conditions hold.
+    \begin{enumerate}
+        \item $i_{\stack X}^* \bar p₂^! j_!$ vanishes on $\catDModHol{\stack X}$.
+        \item For any schematic morphism $f\colon \stack Y₁ → \stack Y₂$ of $G$-quotient stacks over $\stack X$ the composition $i_{\stack Y₁}^* (\bar{\ls f})^! j_{\stack Y₂,!}$ vanishes on $\catDModHol{\lsY[\stack Y₂]{\stack X}}$.
+    \end{enumerate}
+\end{Def}
 
-\begin{Lem}
-    If $\stack X₁ = X₁/G₁$ and $\stack X₂ = X₂/G₂$ are \goodstack, then $\stack X₁ × \stack X₂$ is \goodstack.
-\end{Lem}
+Lemma~\ref{lem:base-change-criterion} says that $\goodnessbshort$\ implies $\goodnessshort$.
+In the remainder of this section we will discuss several reduction steps for showing that a given stack \isgoodb.
 
-\begin{proof}
-    This follows from compatibility of $i_{\stack Y}^*\bar{q}_{\stack Y}^!j_!$ with $\boxtimes$ and coproducts.
-    (Note that $\lscY{(\stack X₁ × \stack X₂)} = \lscY \stack{X₁} × \clsY \stack{X₂} ∪ \clsY{\stack X₁} × \lscY{\stack X₂}$.)
-\end{proof}
+%\begin{Lem}
+%    If $\stack X₁ = X₁/G₁$ and $\stack X₂ = X₂/G₂$ are \goodstack, then $\stack X₁ × \stack X₂$ is \goodstack.
+%\end{Lem}
+%
+%\begin{proof}
+%    This follows from compatibility of $i_{\stack Y}^*\bar{q}_{\stack Y}^!j_!$ with $\boxtimes$ and coproducts.
+%    (Note that $\lscY{(\stack X₁ × \stack X₂)} = \lscY \stack{X₁} × \clsY \stack{X₂} ∪ \clsY{\stack X₁} × \lscY{\stack X₂}$.)
+%\end{proof}
 
 \begin{Lem}
     Let $U$ be a $G$-equivariant open subset of $X$.
-    If $X/G$ is \goodstack\ then $U/G$ is \goodstack.
+    If $X/G$ \isgoodb\ then $U/G$ \isgoodb.
 \end{Lem}
 
 \begin{proof}
-    Let $\stack U = U/G$ and let $\stack Y$ be a quotient stack mapping into $\stack U$ (and hence also into $\stack X$).
+    Set $\stack U = U/G$.
+    We will only show the second condition of Definition~\ref{def:good'}, the first one is similar.
+    Thus let $f\colon \stack Y₁ → \stack Y₂$ be a map of quotient stacks over $\stack U$ (and hence also over $U$).
+    We note that since $\stack U$ is an open subset we have isomorphisms $\lsY[\stack Y_i]{\stack U} \cong \stack Y_i \XXtimes \stack U$.
     Consider the diagram
     \begin{equation}
         \label{eq:lem:cover:diagram}
         \begin{tikzcd}
-            \lscY \stack U \arrow[r, hook, "i_{\stack U, \stack Y}"] \arrow[d, hook, "α"] & \clsY{\stack U} \arrow[r, "\bar q_{\stack U,\stack Y}"] \arrow[d, hook, "β"] & \bar{\stack U} \arrow[d, hook, "γ"] & \stack U \arrow[l, hook', "j_{\stack U}"'] \arrow[d, hook, "δ"] \\
-            \lscY \stack X \arrow[r, hook, "i_{\stack X, \stack Y}"]                      & \clsY{\stack X} \arrow[r, "\bar q_{\stack X,\stack Y}"]                      & \bar{\stack X}                      & \stack X \arrow[l, hook', "j_{\stack X}"']
+            \lsY[\stack Y₂]{\stack U} \arrow[r, hook, "j_{\stack Y₂}^{\stack U}"] \arrow[d, hook, "α"] &
+            \clsY[\stack Y₂]{\stack U} \arrow[d, hook, "β"] &
+            \clsY[\stack Y₁]{\stack U} \arrow[l, "{\cls f}^{\stack U}"'] \arrow[d, hook, "γ"] &
+            \lscY[\stack Y₁]{\stack U} \arrow[l, hook', "i^{\stack U}_{\stack Y₁}"'] \arrow[d, hook, "δ"] \\
+            %
+            \lsY[\stack Y₂]{\stack X} \arrow[r, hook, "j_{\stack Y₂}^{\stack X}"] &
+            \clsY[\stack Y₂]{\stack X} &
+            \clsY[\stack Y₁]{\stack X} \arrow[l, "{\cls f}^{\stack X}"'] &
+            \lscY[\stack Y₁]{\stack X} \arrow[l, hook', "i^{\stack X}_{\stack Y₁}"']
         \end{tikzcd}
     \end{equation}
     The vertical arrows are open embeddings and all squares are Cartesian (where we use the same compactification of $G$ for $\bar{\stack X}$ and $\bar{\stack U}$).
     Thus
     \begin{equation*}
-        i_{\stack U, \stack Y}^* \bar q_{\stack U,\stack Y}^! j_{\stack U,!} =
-        i_{\stack U, \stack Y}^* \bar q_{\stack U,\stack Y}^! j_{\stack U,!} δ^* δ_*=
-        α^* i_{\stack X, \stack Y}^* \bar q_{\stack X, \stack Y}^! j_{\stack X,!} δ_* =
+        i^{\stack U,*}_{\stack Y₁} {\cls f}^{\stack U,!} j_{\stack Y₂,!}^{\stack U} =
+        i^{\stack U,*}_{\stack Y₁} {\cls f}^{\stack U,!} j_{\stack Y₂,!}^{\stack U} α^* α_*=
+        δ^* i^{\stack X,*}_{\stack Y₁} {\cls f}^{\stack U,!} j_{\stack Y₂,!}^{\stack X} α_*=
         0.
         \qedhere
     \end{equation*}
 \end{proof}
 
-The same argument can be used to reduce the computation to a smooth cover.
-We will now introduce notation for the special case of the cover $\bar Γ → \bar{\stack X}$.
-The corresponding covers of the other relevant stacks are introduced in the following diagram with Cartesian squares.
+A similar can be used to reduce the computation to a smooth cover.
+In particular we will want to reduce to computations on a schematic cover.
+On such a cover we will use primes to indicate maps on schemes and will use $\schemels{}$ instead of $\ls{}$ for the covers of the loop spaces.
+If we start with the cover $\bar Γ → \bar{\stack X}$, the pullbacks to the part of diagram \eqref{eq:diag:central1} of interest are
 \begin{equation}
-    \label{eq:base-change:scheme-cover}
+    \label{eq:diag:scheme-cover1}
     \begin{tikzcd}
-        \schemelscY \stack X \arrow[r, hook, "\schemei_{\stack Y}"] \arrow[d] & \schemeclsY \stack X \arrow[r, "\schemebarq_{\stack Y}"] \arrow[d] & \bar Γ \arrow[d] & Γ \arrow[l, hook', "\schemej"'] \arrow[d] \\
-        \lscY \stack X \arrow[r, hook, "i_{\stack Y}"]                        & \clsY \stack X \arrow[r, "\bar q_{\stack Y}"]                       & \bar{\stack X}   & \stack X \arrow[l, hook', "j"']
+        Γ \arrow[r, hook, "j'"] \arrow[d] &
+        \bar Γ \arrow[d] &
+        \scls \stack X \arrow[l, "\bar p₂'"'] \arrow[d] &
+        \slsc \stack X \arrow[l, hook', "i_{\stack X}'"'] \arrow[d]\\
+        %
+        \stack X \arrow[r, hook, "j"] &
+        \bar{\stack X} &
+        \cls \stack X \arrow[l, "\bar p₂"'] &
+        \lsc \stack X \arrow[l, hook', "i_{\stack X}"']
     \end{tikzcd}
 \end{equation}
-We note that all vertical morphisms are smooth and the spaces in the top row are schemes.
-Let $\schemeh\colon X → Y$ be the $G$-equivariant morphism of schemes inducing $h$ on quotient stacks.
-Then the scheme $\schemeclsY \stack X$ is given by
+Similarly, the interesting parts of diagram \eqref{eq:diag:central2} become
+\begin{equation}
+    \label{eq:diag:scheme-cover2}
+    \begin{tikzcd}
+        \slsY[\stack Y₂]{\stack X} \arrow[r, hook, "j_{\stack Y₂}'"] \arrow[d] &
+        \sclsY[\stack Y₂]{\stack X} \arrow[d] &
+        \sclsY[\stack Y₁]{\stack X} \arrow[l, "\schemecls f"'] \arrow[d] &
+        \slscY[\stack Y₁]{\stack X} \arrow[l, hook', "i_{\stack Y₁}'"'] \arrow[d]\\
+        %
+        \lsY[\stack Y₂]{\stack X} \arrow[r, hook, "j_{\stack Y₂}"] &
+        \clsY[\stack Y₂]{\stack X} &
+        \clsY[\stack Y₁]{\stack X} \arrow[l, "\cls f"'] &
+        \lscY[\stack Y₁]{\stack X} \arrow[l, hook', "i_{\stack Y₁}"']
+    \end{tikzcd}
+\end{equation}
+In both diagrams all vertical morphisms are smooth and the spaces in the top row are schemes.
+Explicitly, if $h'\colon Y → X$ is a $G$-equivariant morphism of schemes inducing the structure map $\stack Y → \stack X$, then
 \[
-    \schemeclsY \stack X =
+    \sclsY \stack X =
     \biggl\{
         \bigl(g₁,\, y,\, g₂\bigr) ∈ G × Y × \bar G : \bigl(g₂,\, \schemeh(y),\, g₁\schemeh(y)\bigr) ∈ \bar Γ
     \biggr\}.
 \]
 
 \begin{Lem}\label{lem:base-change:scheme-cover}
-    A stack $X/G$ is \goodstack\ if and only if for each morphism $Y/G → X/G$ the composition $(\schemei_{\stack Y})^* (\schemebarq_{\stack Y})^! \schemej_!$ vanishes on $\catDModHolMon{Γ}{G×G}$.
+    A stack $X/G$ \isgoodb\ if and only if the following two conditions hold:
+    \begin{enumerate}
+        \item The composition $(i_{\stack X}')^*(\bar p₂')^! j'_!$ vanishes on $\catDModHolMon{Γ}{G×G}$.
+        \item For each equivariant morphism $f'\colon Y₁ → Y₂$ of $G$-schemes the composition $(i_{\stack Y₁}')^*(\scls f)^! j'_{\stack Y₂,!}$ vanishes on $\catDModHolMon{\slsY[\stack Y₂]{\stack X}}{G×G}$.
+    \end{enumerate}
 \end{Lem}
 
 \begin{proof}
-    This follows from the fact that pullback along the smooth vertical morphisms in \eqref{eq:base-change:scheme-cover} is conservative \cite[Lemma~5.1.6]{DrinfeldGaitsgory:2013:FinitenessQuestions} and commutes with the other morphisms up to a shift.
+    This follows from the fact that pullback along the smooth vertical morphisms in \eqref{eq:diag:scheme-cover1} and \eqref{eq:diag:scheme-cover2} is conservative \cite[Lemma~5.1.6]{DrinfeldGaitsgory:2013:FinitenessQuestions} and commutes with the other morphisms up to a shift.
 \end{proof}
 
 \begin{Lem}
     \label{lem:base-change:cover}%
-    If there exists a $G$-stable open cover $U_i$ of $X$ such that all stacks $U_i/G$ are \goodstack, then $X/G$ is \goodstack.
+    If there exists a $G$-stable open cover $U_i$ of $X$ such that all stacks $U_i/G$ \aregoodb, then $X/G$ \isgoodb.
 \end{Lem}
 
 \begin{proof}
     Let $\stack U_i = U_i/G$ be the corresponding quotient stacks.
-    We first show that the stacks $\lscY{\stack U_i}$ form an open cover of $\lscY{\stack X}$\footnote{
+    We will again only show the second condition, the first being simpler.
+
+    Let us first show that for any $\stack Y → \stack X$ the stacks $\lscY{\stack U_i}$ form an open cover of $\lscY{\stack X}$\footnote{
         This is not completely obvious, since the $\bar{\stack U}_i$ do not necessarily form a cover of $\bar{\stack X}$.
         For example, consider $\ps1$ with the usual linear $\Gm$-action and the usual affine cover.
     }.
-    For this it suffices to show that the open subschemes $\schemeclsY \stack U_i$ cover $\schemeclsY \stack X$.
-    Let $(g₁, y, g₂)$ be a point of $\schemeclsY \stack X$.
+    For this it suffices to show that the open subschemes $\sclsY \stack U_i$ cover $\sclsY \stack X$.
+    Let $(g₁, y, g₂)$ be a point of $\sclsY \stack X$.
     Then there exists some $U_i$ with $h'(y) ∈ U_i$.
     But then $g₁h'(y)$ is also in $U_i$ and hence $(h'(y), g₂, g₁h'(y)) ∈ \bar{\stack U}_i$.
-    Thus $(g₁, y, g₂)$ is in $\schemeclsY \stack U_i$.
+    Thus $(g₁, y, g₂)$ is in $\sclsY \stack U_i$.
 
-    It now suffices to show that the restrictions of $i_{\stack Y}^*\bar{q}_{\stack Y}^!j_! \sheaf F$ to $\lscY{\stack U_i}$ vanish for every $\sheaf F ∈ \catDMod{\stack X}$.
-    But this follows from the diagram~\eqref{eq:lem:cover:diagram} (for $\stack U_i$ instead of $\stack U$) and the \goodness\ of $\stack U_i$.
+    It now suffices to show that the restrictions of $i_{\stack Y₁}^*\cls{f}^!j_{\stack Y₂,!} \sheaf F$ to $\lscY[\stack Y₁]{\stack U_i}$ vanish for every $\sheaf F ∈ \catDModHol{\lsY[\stack Y₂]{\stack X}}$.
+    But this follows from the diagram~\eqref{eq:lem:cover:diagram} (for $\stack U_i$ instead of $\stack U$) and the assumption on $\stack U_i$.
 \end{proof}
+
+-------------
 
 Let $\left\{V_i\right\}$ be a $G$-stable open cover of $\bar G$ and consider the corresponding open cover $\left\{\bar{\stack X}_{V_i}\right\}$ of $\stack X$.
 We obtain open covers $\left\{\cls_{V_i,\stack Y} \stack X\right\}$ and $\left\{\lsc_{V_i,\stack Y} \stack X\right\}$ of $\clsY{\stack X}$ and $\lscY{\stack X}$ respectively.
