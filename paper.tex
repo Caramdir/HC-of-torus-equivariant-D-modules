@@ -865,14 +865,6 @@ Thus for ease of notation we will from now on always set $Γ = \Gammasub a$ and 
     The resulting constructions are useful for doing explicit computations.
 \end{Rem}
 
-It is useful to consider only partial compactifications.
-For this let $V$ be a $G$-stable subvariety of $\bar G$ containing $G$, and let $\barGammasub{V}$ be the closure of $Γ$ in $V × X × X$.
-We set
-\[
-    \bar{\stack X}_V = \rquot{\barGammasub{V}}{G×G}.
-\]
-Clearly, if $\left\{V_i\right\}$ is an open cover of $\bar G$ by $G$-stable subvarieties, then $\left\{\bar{\stack X}_{V_i}\right\}$ is an open cover of $\bar{\stack X}$.
-
 \subsection{\Goodstack\ stacks}
 
 Let $\stack Y$ be a stack over $\stack X$.
@@ -1095,22 +1087,43 @@ Explicitly, if $h'\colon Y → X$ is a $G$-equivariant morphism of schemes induc
     But this follows from the diagram~\eqref{eq:lem:cover:diagram} (for $\stack U_i$ instead of $\stack U$) and the assumption on $\stack U_i$.
 \end{proof}
 
--------------
+Finally, it will be useful to consider only partial compactifications.
+That is, in the constructions of Section~\ref{sec:base-change:compactification}, instead of going all the way to $\bar G$ we only some subvariety of it.
+Thus let $H$ be a $G×G$-stable subvariety of $\bar G$ containing $G$, and let $^H\bar{Γ}$ be the closure of $Γ$ in $H × X × X$.
+We set
+\[
+    ^H\bar{\stack X} = \rquot{^H\bar{Γ}}{G×G}.
+\]
+Clearly, if $\left\{H_i\right\}$ is an open cover of $\bar G$ by $G×G$-stable subvarieties (each containing $G$), then $\left\{{}^{H_i}\bar{\stack X}\right\}$ is an open cover of $\bar{\stack X}$.
 
-Let $\left\{V_i\right\}$ be a $G$-stable open cover of $\bar G$ and consider the corresponding open cover $\left\{\bar{\stack X}_{V_i}\right\}$ of $\stack X$.
-We obtain open covers $\left\{\cls_{V_i,\stack Y} \stack X\right\}$ and $\left\{\lsc_{V_i,\stack Y} \stack X\right\}$ of $\clsY{\stack X}$ and $\lscY{\stack X}$ respectively.
-We let $i_{V_i,\stack X}$, $\bar q_{V_i,\stack X}$ and $j_{V_i}$ be the corresponding maps, i.e.
+Let us fix such an open cover.
+For any $\stack Y$ over $\stack X$ we obtain corresponding open covers $\left\{ {}^{H_i}\cls_{\stack Y} \stack X\right\}$ and $\left\{{}^{H_i}\lsc_{\stack Y} \stack X\right\}$ of $\clsY{\stack X}$ and $\lscY{\stack X}$ respectively.
+We get our usual diagrams for these partial compactifications:
 \[
     \begin{tikzcd}
-        \cls_{V_i,\stack Y} \stack X \arrow[r, hook, "i_{V_i,\stack X}"] &
-        \lsc_{V_i,\stack Y} \stack X \arrow[r, "\bar q_{V_i,\stack X}"] &
-        \bar{\stack X}_{V_i} &
-        \stack X \arrow[l, hook', "j_{V_i}"'].
+        \stack X \arrow[r, hook, "{}^{H_i}j"] &
+        {}^{H_i}\bar{\stack X} &
+        {}^{H_i}\clsY[\stack X]{\stack X} \arrow[l, "{}^{H_i}p_{2}"'] &
+        {}^{H_i}\lscY[\stack X]{\stack X} \arrow[l, hook', "{}^{H_i}i_{\stack X}"']
     \end{tikzcd}
+\]
+and
+\[
+    \begin{tikzcd}
+        \lsY[\stack Y₂]{\stack X} \arrow[r, hook, "{}^{H_i}j_{\stack Y₂}"] &
+        {}^{H_i}\clsY[\stack Y₂]{\stack X} &
+        {}^{H_i}\clsY[\stack Y₁]{\stack X} \arrow[l, "{}^{H_i}\cls f"'] &
+        {}^{H_i}\lscY[\stack Y₁]{\stack X}. \arrow[l, hook', "{}^{H_i}i_{\stack Y₁}"']
+    \end{tikzcd}.
 \]
 
 \begin{Lem}\label{lem:base-change:cover-by-relative-compactifications}
-    With the above notation, the $\stack X$ is \goodstack\ if and only $i_{V_i,\stack Y}^* \bar q_{V_i,\stack Y}^! j_{V_i,!}$ vanishes on $\catDModHol{\stack X}$ for all $V_i$ and all $\stack Y → \stack X$.
+    Let $H_i$ be an open cover of $\bar G$ by $G×G$-stable subvarieties, each containing $G$.
+    Then $\stack X = X/G$ \isgoodb\ if and only if the following two conditions hold for each $i$:
+    \begin{enumerate}
+        \item The composition $({}^{H_i}i_{\stack X})^*({}^{H_i}\bar p₂)^! ({}^{H_i}j)_!$ vanishes on $\catDModHol{\stack X}$.
+        \item For each schematic morphism of $G$-quotient stacks $f\colon \stack Y₁ → \stack Y₂$ the composition $({}^{H_i}i_{\stack Y₁})^*({}^{H_i}\cls f)^! ({}^{H_i}j_{\stack Y₂})_!$ vanishes on $\catDModHol{\lsY[\stack Y₂]{\stack X}}$.
+    \end{enumerate}
 \end{Lem}
 
 \begin{proof}
