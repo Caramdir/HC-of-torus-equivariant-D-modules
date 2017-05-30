@@ -59,29 +59,8 @@
 \newcommand\stabclsY[3][\stack Y]{\overline{L}_{#1}^{#2}#3}
 \newcommand\stablscY[3][\stack Y]{L_{#1}^{#2,c}#3}
 
-\newcommand\schemels[2][]{L^{#1}#2}
-\newcommand\schemelsY[2][]{\schemels[#1]{_{\stack Y}#2}}
-\newcommand\schemecls[2][]{\overline{L}^{#1}#2}
-\newcommand\schemeclsY[2][]{\schemecls[#1]{_{\stack Y}#2}}
-\newcommand\schemelsc[2][]{L^{\if\relax\detokenize{#1}\relax\else#1,\fi c} #2}
-\newcommand\schemelscY[2][]{\schemelsc[#1]{_{\stack Y}#2}}
-
-\newcommand\schemei{i'}
-\newcommand\schemej{j'}
-\newcommand\schemeq{q'}
-\newcommand\schemebarq{\bar{q}'}
-\newcommand\dropprimes{%
-    \renewcommand\schemei{i}%
-    \renewcommand\schemej{j}%
-    \renewcommand\schemeq{q}%
-    \renewcommand\schemebarq{\bar{q}}%
-}
-\newcommand\schemeh{h'}
-
 \newcommand\Stab{\operatorname{Stab}}
 
-\newcommand\goodstack{XXXgoodXXX}
-\newcommand\Goodstack{XXXGoodXXX}
 \newcommand\goodness{property \textbf{(!)}}
 \newcommand\goodnessshort{\textbf{(!)}}
 \newcommand\isgood{has property \textbf{(!)}}
@@ -107,7 +86,6 @@
 [$p₂$ <-> $p₁$]
 [subvariety <-> subscheme]
 [$Y₁$ <-> $Y₂$]
-\dropprimes%
 [macros]
 [-advisor]
 [map in contraction principle]
@@ -880,7 +858,7 @@ Thus for ease of notation we will from now on always set $Γ = \Gammasub a$ and 
     The resulting constructions are useful for doing explicit computations.
 \end{Rem}
 
-\subsection{\Goodstack\ stacks}
+\subsection{The !-base-change property}
 
 Let $\stack Y$ be a stack over $\stack X$.
 To simplify notation, we set
@@ -1027,7 +1005,7 @@ In the remainder of this section we will discuss several reduction steps for sho
 
 A similar can be used to reduce the computation to a smooth cover.
 In particular we will want to reduce to computations on a schematic cover.
-On such a cover we will use primes to indicate maps on schemes and will use $\schemels{}$ instead of $\ls{}$ for the covers of the loop spaces.
+On such a cover we will use primes to indicate maps on schemes and will use $\sls{}$ instead of $\ls{}$ for the covers of the loop spaces.
 If we start with the cover $\bar Γ → \bar{\stack X}$, the pullbacks to the part of diagram \eqref{eq:diag:central1} of interest are
 \begin{equation}
     \label{eq:diag:scheme-cover1}
@@ -1049,7 +1027,7 @@ Similarly, the interesting parts of diagram \eqref{eq:diag:central2} become
     \begin{tikzcd}
         \slsY[\stack Y₂]{\stack X} \arrow[r, hook, "j_{\stack Y₂}'"] \arrow[d] &
         \sclsY[\stack Y₂]{\stack X} \arrow[d] &
-        \sclsY[\stack Y₁]{\stack X} \arrow[l, "\schemecls f"'] \arrow[d] &
+        \sclsY[\stack Y₁]{\stack X} \arrow[l, "\scls f"'] \arrow[d] &
         \slscY[\stack Y₁]{\stack X} \arrow[l, hook', "i_{\stack Y₁}'"'] \arrow[d]\\
         %
         \lsY[\stack Y₂]{\stack X} \arrow[r, hook, "j_{\stack Y₂}"] &
@@ -1063,7 +1041,7 @@ Explicitly, if $h'\colon Y → X$ is a $G$-equivariant morphism of schemes induc
 \[
     \sclsY \stack X =
     \biggl\{
-        \bigl(g₁,\, y,\, g₂\bigr) ∈ G × Y × \bar G : \bigl(g₂,\, \schemeh(y),\, g₁\schemeh(y)\bigr) ∈ \bar Γ
+        \bigl(g₁,\, y,\, g₂\bigr) ∈ G × Y × \bar G : \bigl(g₂,\, h'(y),\, g₁h'(y)\bigr) ∈ \bar Γ
     \biggr\}.
 \]
 
@@ -1257,7 +1235,7 @@ For this let $S₁ \subseteq S₂$ be two subgroups of $G$ contained in $\Stab\s
 \[
     \stabclsY[\stack Y_i]{S₁,S₂} \stack X =
     \biggl\{
-        \bigl(g₁,\, y,\, g₂\bigr) ∈ G × Y_i × \bar G : h_i(y) ∈ X^{S₂},\, \bigl(g₂,\, h_i(y),\, g₁\schemeh(y)\bigr) ∈ \bar Γ \text{ and } g₂ ∈ g₁\bar S₁
+        \bigl(g₁,\, y,\, g₂\bigr) ∈ G × Y_i × \bar G : h_i(y) ∈ X^{S₂},\, \bigl(g₂,\, h_i(y),\, g₁h_i(y)\bigr) ∈ \bar Γ \text{ and } g₂ ∈ g₁\bar S₁
     \biggr\}.
 \]
 Clearly we have $\stabclsY[\stack Y_i]{S₁,S₂}{\stack X} \subseteq \stabclsY[\stack Y_i]{S₁}{\stack X}$ and $\stabclsY[\stack Y_i]{S}{\stack X} = \stabclsY[\stack Y_i]{S,S}{\stack X}$.
@@ -1361,7 +1339,7 @@ Before proving the lemma, let us first finish the proof of Theorem~\ref{thm:toru
     Set $H' = H ∩ \bar S₁$ and $Z_i' = Z_i ∩ \stabclsY[\stack Y_i]{S₁,S₂}{\stack X}$ (resp.~$Z_{-1}' = Z_{-1} ∩ \bar Γ^{S₁,S₂}$).
     These schemes can be described as
     \[
-        Z_i'
+        Z_i' =
         \biggl\{
             \bigl(g₁,\, y,\, g₂\bigr) ∈ G × Y_i × \bar G : h_i(y) ∈ X^{S₂},\, \bigl(g₂,\, h_i(y),\, g₁h_i(y)\bigr) ∈ \bar Γ \text{ and } g₂ ∈ g₁H'
         \biggr\}.
