@@ -85,7 +85,6 @@
 
 [$p₂$ <-> $p₁$]
 [subvariety <-> subscheme]
-[$Y₁$ <-> $Y₂$]
 [macros]
 [-advisor]
 [map in contraction principle]
@@ -866,7 +865,7 @@ To simplify notation, we set
     \lsY = \stack Y \XXtimes \stack X,
 \]
 where the fiber product is taken over the maps $\stack Y → \stack X \xrightarrow{Δ} \stack X × \stack X$ and $Δ$.
-Further if $f\colon \stack Y₁ → \stack Y₂$ is a morphism of stacks over $\stack X$ we write $\ls f$ for the induced morphism $\lsY[\stack Y₁]{\stack X} → \lsY[\stack Y₂]{\stack X}$.
+Further if $f\colon \stack Y₂ → \stack Y₁$ is a morphism of stacks over $\stack X$ we write $\ls f$ for the induced morphism $\lsY[\stack Y₂]{\stack X} → \lsY[\stack Y₁]{\stack X}$.
 
 \begin{Def}\label{def:good}
     We say that a quotient stack $\stack X = X/G$ \emph{\isgood} if the following two conditions hold.
@@ -879,7 +878,7 @@ Further if $f\colon \stack Y₁ → \stack Y₂$ is a morphism of stacks over $\
                 \end{tikzcd}
             \]
             i.e.~the canonical morphism $p_{1,!}p₂^! → Δ^!Δ_!$ is an isomorphism on holonomic D-modules.
-        \item For any schematic morphism $f\colon \stack Y₁ = Y₁/G → \stack Y₂ = Y₂/G$ of $G$-quotient stacks over $\stack X$, $!$-base-change holds along the Cartesian diagram
+        \item For any schematic morphism $f\colon \stack Y₂ = Y₂/G → \stack Y₁ = Y₁/G$ of $G$-quotient stacks over $\stack X$, $!$-base-change holds along the Cartesian diagram
             \[
                 \begin{tikzcd}
                     \lsY[\stack Y₂]{\stack X} \arrow[r, "\ls f"] \arrow[d, "π₂"] & \lsY[\stack Y₁]{\stack X} \arrow[d, "π₁"]\\
@@ -918,7 +917,7 @@ Theorem~\ref{thm:main} then immediately follows from the following observation w
         \end{tikzcd}
     \]
     We note that $\stack G_{m+1} = \stack G_m ×_{\stack X × \stack X} \stack X$ and similarly for $\stack G_n$.
-    Thus setting $\stack Y₁ = \stack G_n$ and $\stack Y₂ = \stack G_m$ in the definition of \goodness, we see that all the required base changes holds.
+    Thus setting $\stack Y₂ = \stack G_n$ and $\stack Y₁ = \stack G_m$ in the definition of \goodness, we see that all the required base changes holds.
 \end{proof}
 
 \begin{Rem}
@@ -939,11 +938,11 @@ The first describes the situation for a loop stack:
         \stack X \arrow[r, hook, "j"] & \bar{\stack X} & \stack X^c \arrow[l, hook']
     \end{tikzcd}
 \end{equation}
-For the second let $\stack Y₁ → \stack Y₂$ be a morphism of stacks over $\stack X$:
+For the second let $\stack Y₂ → \stack Y₁$ be a morphism of stacks over $\stack X$:
 \begin{equation}\label{eq:diag:central2}
     \begin{tikzcd}
-        \lsY[\stack Y₁]{\stack X} \arrow[r, "j_{\stack Y₁}", hook] \arrow[d, "\ls f"] & \clsY[\stack Y₁]{\stack X} \arrow[d, "{\cls f}"] & \lscY[\stack Y₁]{\stack X} \arrow[l, hook', "i_{\stack Y₁}"']  \arrow[d] \\
-        \lsY[\stack Y₂]{\stack X} \arrow[r, hook, "j_{\stack Y₂}"] & \clsY[\stack Y₂]{\stack X} & \lscY[\stack Y₂]{\stack X} \arrow[l, hook']
+        \lsY[\stack Y₂]{\stack X} \arrow[r, hook, "j_{\stack Y₂}"] \arrow[d, "\ls f"] & \clsY[\stack Y₂]{\stack X} \arrow[d, "{\cls f}"] & \lscY[\stack Y₂]{\stack X} \arrow[l, hook', "i_{\stack Y₁}"']  \arrow[d] \\
+        \lsY[\stack Y₁]{\stack X} \arrow[r, hook, "j_{\stack Y₁}"] & \clsY[\stack Y₁]{\stack X} & \lscY[\stack Y₁]{\stack X} \arrow[l, hook']
     \end{tikzcd}
 \end{equation}
 With this setup we make the following definition.
@@ -951,7 +950,7 @@ With this setup we make the following definition.
     We say that a quotient stack $\stack X = X/G$ \emph{\isgoodb} if the following two conditions hold.
     \begin{enumerate}
         \item $i_{\stack X}^* \bar p₂^! j_!$ vanishes on $\catDModHol{\stack X}$.
-        \item For any schematic morphism $f\colon \stack Y₁ → \stack Y₂$ of $G$-quotient stacks over $\stack X$ the composition $i_{\stack Y₁}^* (\bar{\ls f})^! j_{\stack Y₂,!}$ vanishes on $\catDModHol{\lsY[\stack Y₂]{\stack X}}$.
+        \item For any schematic morphism $f\colon \stack Y₂ → \stack Y₁$ of $G$-quotient stacks over $\stack X$ the composition $i_{\stack Y₂}^* (\bar{\ls f})^! j_{\stack Y₁,!}$ vanishes on $\catDModHol{\lsY[\stack Y₁]{\stack X}}$.
     \end{enumerate}
 \end{Def}
 
@@ -975,29 +974,29 @@ In the remainder of this section we will discuss several reduction steps for sho
 \begin{proof}
     Set $\stack U = U/G$.
     We will only show the second condition of Definition~\ref{def:good'}, the first one is similar.
-    Thus let $f\colon \stack Y₁ → \stack Y₂$ be a map of quotient stacks over $\stack U$ (and hence also over $U$).
+    Thus let $f\colon \stack Y₂ → \stack Y₁$ be a map of quotient stacks over $\stack U$ (and hence also over $U$).
     We note that since $\stack U$ is an open subset we have isomorphisms $\lsY[\stack Y_i]{\stack U} \cong \stack Y_i \XXtimes \stack U$.
     Consider the diagram
     \begin{equation}
         \label{eq:lem:cover:diagram}
         \begin{tikzcd}
-            \lsY[\stack Y₂]{\stack U} \arrow[r, hook, "j_{\stack Y₂}^{\stack U}"] \arrow[d, hook, "α"] &
-            \clsY[\stack Y₂]{\stack U} \arrow[d, hook, "β"] &
-            \clsY[\stack Y₁]{\stack U} \arrow[l, "{\cls f}^{\stack U}"'] \arrow[d, hook, "γ"] &
-            \lscY[\stack Y₁]{\stack U} \arrow[l, hook', "i^{\stack U}_{\stack Y₁}"'] \arrow[d, hook, "δ"] \\
+            \lsY[\stack Y₁]{\stack U} \arrow[r, hook, "j_{\stack Y₁}^{\stack U}"] \arrow[d, hook, "α"] &
+            \clsY[\stack Y₁]{\stack U} \arrow[d, hook, "β"] &
+            \clsY[\stack Y₂]{\stack U} \arrow[l, "{\cls f}^{\stack U}"'] \arrow[d, hook, "γ"] &
+            \lscY[\stack Y₂]{\stack U} \arrow[l, hook', "i^{\stack U}_{\stack Y₂}"'] \arrow[d, hook, "δ"] \\
             %
-            \lsY[\stack Y₂]{\stack X} \arrow[r, hook, "j_{\stack Y₂}^{\stack X}"] &
-            \clsY[\stack Y₂]{\stack X} &
-            \clsY[\stack Y₁]{\stack X} \arrow[l, "{\cls f}^{\stack X}"'] &
-            \lscY[\stack Y₁]{\stack X} \arrow[l, hook', "i^{\stack X}_{\stack Y₁}"']
+            \lsY[\stack Y₁]{\stack X} \arrow[r, hook, "j_{\stack Y₁}^{\stack X}"] &
+            \clsY[\stack Y₁]{\stack X} &
+            \clsY[\stack Y₂]{\stack X} \arrow[l, "{\cls f}^{\stack X}"'] &
+            \lscY[\stack Y₂]{\stack X} \arrow[l, hook', "i^{\stack X}_{\stack Y₂}"']
         \end{tikzcd}
     \end{equation}
     The vertical arrows are open embeddings and all squares are Cartesian (where we use the same compactification of $G$ for $\bar{\stack X}$ and $\bar{\stack U}$).
     Thus
     \begin{equation*}
-        i^{\stack U,*}_{\stack Y₁} {\cls f}^{\stack U,!} j_{\stack Y₂,!}^{\stack U} =
-        i^{\stack U,*}_{\stack Y₁} {\cls f}^{\stack U,!} j_{\stack Y₂,!}^{\stack U} α^* α_*=
-        δ^* i^{\stack X,*}_{\stack Y₁} {\cls f}^{\stack U,!} j_{\stack Y₂,!}^{\stack X} α_*=
+        i^{\stack U,*}_{\stack Y₂} {\cls f}^{\stack U,!} j_{\stack Y₁,!}^{\stack U} =
+        i^{\stack U,*}_{\stack Y₂} {\cls f}^{\stack U,!} j_{\stack Y₁,!}^{\stack U} α^* α_*=
+        δ^* i^{\stack X,*}_{\stack Y₂} {\cls f}^{\stack U,!} j_{\stack Y₁,!}^{\stack X} α_*=
         0.
         \qedhere
     \end{equation*}
@@ -1025,15 +1024,15 @@ Similarly, the interesting parts of diagram \eqref{eq:diag:central2} become
 \begin{equation}
     \label{eq:diag:scheme-cover2}
     \begin{tikzcd}
-        \slsY[\stack Y₂]{\stack X} \arrow[r, hook, "j_{\stack Y₂}'"] \arrow[d] &
-        \sclsY[\stack Y₂]{\stack X} \arrow[d] &
-        \sclsY[\stack Y₁]{\stack X} \arrow[l, "\scls f"'] \arrow[d] &
-        \slscY[\stack Y₁]{\stack X} \arrow[l, hook', "i_{\stack Y₁}'"'] \arrow[d]\\
+        \slsY[\stack Y₁]{\stack X} \arrow[r, hook, "j_{\stack Y₁}'"] \arrow[d] &
+        \sclsY[\stack Y₁]{\stack X} \arrow[d] &
+        \sclsY[\stack Y₂]{\stack X} \arrow[l, "\scls f"'] \arrow[d] &
+        \slscY[\stack Y₂]{\stack X} \arrow[l, hook', "i_{\stack Y₂}'"'] \arrow[d]\\
         %
-        \lsY[\stack Y₂]{\stack X} \arrow[r, hook, "j_{\stack Y₂}"] &
-        \clsY[\stack Y₂]{\stack X} &
-        \clsY[\stack Y₁]{\stack X} \arrow[l, "\cls f"'] &
-        \lscY[\stack Y₁]{\stack X} \arrow[l, hook', "i_{\stack Y₁}"']
+        \lsY[\stack Y₁]{\stack X} \arrow[r, hook, "j_{\stack Y₁}"] &
+        \clsY[\stack Y₁]{\stack X} &
+        \clsY[\stack Y₂]{\stack X} \arrow[l, "\cls f"'] &
+        \lscY[\stack Y₂]{\stack X} \arrow[l, hook', "i_{\stack Y₂}"']
     \end{tikzcd}
 \end{equation}
 In both diagrams all vertical morphisms are smooth and the spaces in the top row are schemes.
@@ -1049,7 +1048,7 @@ Explicitly, if $h'\colon Y → X$ is a $G$-equivariant morphism of schemes induc
     A stack $X/G$ \isgoodb\ if and only if the following two conditions hold:
     \begin{enumerate}
         \item The composition $(i_{\stack X}')^*(\bar p₂')^! j'_!$ vanishes on $\catDModHolMon{Γ}{G×G}$.
-        \item For each equivariant morphism $f'\colon Y₁ → Y₂$ of $G$-schemes the composition $(i_{\stack Y₁}')^*(\scls f)^! j'_{\stack Y₂,!}$ vanishes on $\catDModHolMon{\slsY[\stack Y₂]{\stack X}}{G×G}$.
+        \item For each equivariant morphism $f'\colon Y₂ → Y₁$ of $G$-schemes the composition $(i_{\stack Y₂}')^*(\scls f)^! j'_{\stack Y₁,!}$ vanishes on $\catDModHolMon{\slsY[\stack Y₁]{\stack X}}{G×G}$.
     \end{enumerate}
 \end{Lem}
 
@@ -1076,7 +1075,7 @@ Explicitly, if $h'\colon Y → X$ is a $G$-equivariant morphism of schemes induc
     But then $g₁h'(y)$ is also in $U_i$ and hence $(h'(y), g₂, g₁h'(y)) ∈ \bar{\stack U}_i$.
     Thus $(g₁, y, g₂)$ is in $\sclsY \stack U_i$.
 
-    It now suffices to show that the restrictions of $i_{\stack Y₁}^*\cls{f}^!j_{\stack Y₂,!} \sheaf F$ to $\lscY[\stack Y₁]{\stack U_i}$ vanish for every $\sheaf F ∈ \catDModHol{\lsY[\stack Y₂]{\stack X}}$.
+    It now suffices to show that the restrictions of $i_{\stack Y₂}^*\cls{f}^!j_{\stack Y₁,!} \sheaf F$ to $\lscY[\stack Y₂]{\stack U_i}$ vanish for every $\sheaf F ∈ \catDModHol{\lsY[\stack Y₁]{\stack X}}$.
     But this follows from the diagram~\eqref{eq:lem:cover:diagram} (for $\stack U_i$ instead of $\stack U$) and the assumption on $\stack U_i$.
 \end{proof}
 
@@ -1103,10 +1102,10 @@ We get our usual diagrams for these partial compactifications:
 and
 \[
     \begin{tikzcd}
-        \lsY[\stack Y₂]{\stack X} \arrow[r, hook, "{}^{H_i}j_{\stack Y₂}"] &
-        {}^{H_i}\clsY[\stack Y₂]{\stack X} &
-        {}^{H_i}\clsY[\stack Y₁]{\stack X} \arrow[l, "{}^{H_i}\cls f"'] &
-        {}^{H_i}\lscY[\stack Y₁]{\stack X}. \arrow[l, hook', "{}^{H_i}i_{\stack Y₁}"']
+        \lsY[\stack Y₁]{\stack X} \arrow[r, hook, "{}^{H_i}j_{\stack Y₁}"] &
+        {}^{H_i}\clsY[\stack Y₁]{\stack X} &
+        {}^{H_i}\clsY[\stack Y₂]{\stack X} \arrow[l, "{}^{H_i}\cls f"'] &
+        {}^{H_i}\lscY[\stack Y₂]{\stack X}. \arrow[l, hook', "{}^{H_i}i_{\stack Y₂}"']
     \end{tikzcd}.
 \]
 
@@ -1115,7 +1114,7 @@ and
     Then $\stack X = X/G$ \isgoodb\ if and only if the following two conditions hold for each $i$:
     \begin{enumerate}
         \item The composition $({}^{H_i}i_{\stack X})^*({}^{H_i}\bar p₂)^! ({}^{H_i}j)_!$ vanishes on $\catDModHol{\stack X}$.
-        \item For each schematic morphism of $G$-quotient stacks $f\colon \stack Y₁ → \stack Y₂$ the composition $({}^{H_i}i_{\stack Y₁})^*({}^{H_i}\cls f)^! ({}^{H_i}j_{\stack Y₂})_!$ vanishes on $\catDModHol{\lsY[\stack Y₂]{\stack X}}$.
+        \item For each schematic morphism of $G$-quotient stacks $f\colon \stack Y₂ → \stack Y₁$ the composition $({}^{H_i}i_{\stack Y₂})^*({}^{H_i}\cls f)^! ({}^{H_i}j_{\stack Y₁})_!$ vanishes on $\catDModHol{\lsY[\stack Y₁]{\stack X}}$.
     \end{enumerate}
 \end{Lem}
 
