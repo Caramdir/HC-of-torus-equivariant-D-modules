@@ -3,30 +3,67 @@
 \title{Hochschild cohomology of torus-equivariant D-modules}
 \author{Clemens Koppensteiner}
 
-\usepackage{math-gl}
+%\usepackage{math-gl}
 
 \addbibresource{math.bib}
 
-
-\let\stack\mathbf
+% overrides
 \let\shortbar\bar
 \let\bar\overline
 
-%\newcommand\catDModHol[1]{\catDMod[\mathup{hol}]{#1}}
+% spaces
+\newcommand\as[2][]{\mathbb A^{#2}_{#1}}    % affine space
+\newcommand\ps[2][]{\mathbb P^{#2}_{#1}}    % projective space
+\newcommand\pt{\mathrm{pt}}                 % a point
+\newcommand\Ga{\mathbb{G}_{\mathrm{a}}}     % G_a
+\newcommand\Gm{\mathbb{G}_{\mathrm{m}}}     % G_m
+\DeclareMathOperator\Spec{Spec}
+
+% stacks
+\let\stack\mathbf                           % basic formatting for stacks
+\renewcommand\B{\stack{B}}                  % classifying stack
+\newcommand\LocSys{\operatorname{LocSys}}   % local systems
+\newcommand\Bun{\operatorname{Bun}}         % bundles
+%\newcommand\mappingstack{\mathbfup{Maps}}   % mapping stack
+
+% category theory and homological algebra
+\newcommand\cat{\mathbf}                    % formatting for categories
+\DeclareMathOperator\Hom{Hom}
+\newcommand\id[1][]{{\mathrm{Id}_{#1}}}     % identity map
+\newcommand\catVect[1][]{\cat{Vect}_{#1}}   % vector spaces
+\newcommand\catModules[1]{\cat{Mod}(#1)}    % modules over a ring, etc.
+\newcommand\cx\bullet                       % dot for complexes
+\newcommand\dual{∨}
+\newcommand\cocolon{%                       % mirrored \colon (for an adjunction)
+    \nobreak \mskip 6muplus1mu \mathpunct {}\nonscript \mkern -\thinmuskip{:}\mskip 2mu\relax%
+}
+\newcommand\rquot[2]{%                      % quotient on the right
+    \mathchoice%
+        {\left.#1\kern-0.2ex\middle/\kern-0.3ex\lower0.7ex\hbox{$\displaystyle #2$}\right.}%
+        {\left.#1\middle/#2\right.}%
+        {\left.#1\middle/#2\right.}%
+        {\left.#1\middle/#2\right.}%
+}
+\newcommand\isoto\similarrightarrow         % isomorphisms
+\newcommand\proj[1]{\operatorname{pr}_{#1}} % projection on a factor
+\newcommand{\HCoh}{\operatorname{HH}^\cx}   % Hochschild cohomology
+
+% Sheaves and D-modules
+\newcommand\sheaf\mathscr
+\DeclareMathOperator\supp{supp}     % support
+\newcommand\catDMod[2][]{\cat{DMod}_{#1}(#2)}   % category of D-modules
+\newcommand\catDModHol[1]{\catDMod[\mathup{hol}]{#1}}   % holonomic D-modules
 \newcommand\catDModMon[2]{\catDMod{#1}^{#2-\mathup{mon}}}
 \newcommand\catDModHolMon[2]{\catDModHol{#1}^{#2-\mathup{mon}}}
-
 \newcommand\dR{\mathrm{dR}}
-\newcommand{\renstar}{\blacktriangle}
-
-\newcommand{\HCoh}{\operatorname{HH}^\cx}
 \newcommand\GammadR{Γ_{\mkern-4mu\dR}}
+\newcommand{\renstar}{\blacktriangle}
+\newcommand\dualize{\mathbb D}
+\newcommand\catIndCoh[2][]{\cat{IndCoh}_{#1}(#2)} % category of ind-coherent sheaves
+
+
 
 \newcommand\opalg[1]{#1^{\mathrm{op}}}
-
-\renewcommand\B{\stack{B}}
-\newcommand\mappingstack{\mathbfup{Maps}}
-\newcommand\X{\mathbb{X}}
 
 \newcommand\Gammasub[1]{\Gamma_{\mkern-3mu#1}}
 \newcommand\barGammasub[1]{\bar{\Gamma}_{\mkern-3mu#1}}
@@ -38,7 +75,7 @@
         {×_{\stack X × \stack X}}
         {×_{\stack X × \stack X}}
     }
-\renewcommand\ls[1]{\mathbfcal{L} #1}
+\newcommand\ls[1]{\mathbfcal{L} #1}
 \newcommand\lsY[2][\stack Y]{\mathbfcal{L}_{#1} #2}
 \newcommand\cls[1]{\overline{\mathbfcal{L}} #1}
 \newcommand\clsY[2][\stack Y]{\overline{\mathbfcal{L}}_{#1} #2}
@@ -74,7 +111,6 @@
 \newcommand\aregoodb{have property \textbf{(!')}}
 \newcommand\goodbX[1]{#1 with property \textbf{(!')}}
 
-\newcommand\dualize{\mathbb D}
 
 % Formatting of upper case roman numerals (in references).
 \newcommand{\RomanNum}[1]{\textsc{\MakeLowercase{#1}}}
@@ -82,8 +118,6 @@
 \begin{document}
 
 \maketitle
-
-[macros]
 
 \begin{abstract}
     We discuss how to compute the Hochschild cohomology of the category of D-modules on a quotient stack via a relative compactification of the diagonal morphism.
