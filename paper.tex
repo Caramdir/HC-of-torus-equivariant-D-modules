@@ -83,10 +83,7 @@
 
 \maketitle
 
-[subvariety <-> subscheme]
 [macros]
-[-advisor]
-[map in contraction principle]
 
 \begin{abstract}
     We discuss how to compute the Hochschild cohomology of the category of D-modules on a quotient stack via a relative compactification of the diagonal morphism.
@@ -195,7 +192,7 @@ For the latter, relative compactifications of the diagonal of $\Bun_G(C)$ have b
 These spaces are under active study and we expect that any computations of Hochschild cohomology to have deep connections with the \enquote{pseudo-identity} that is needed in the formulation of the geometric (categorical) Langlands conjecture.% \cite{Gaitsgory:preprint:StrangeFunctionalEquationForEisensteinSeries}
 
 \subsection*{Acknowledgments}
-I would like to thank my advisor, David Nadler, for the original motivation for this project and many discussions concerning it.
+I would like to thank David Nadler for the original motivation for this project and many discussions concerning it.
 
 
 \section{D-modules on stacks}
@@ -373,9 +370,13 @@ It will be a crucial ingredient for our proof of Theorem~\ref{thm:main}.
     \label{thm:pre:contraction_principle}%
     Let $X$ be a scheme with an action by $\Gm$ that extends to an action of the monoid $\as 1$.
     Let $i\colon X^0 \hookrightarrow X$ be the closed subscheme of $\Gm$-fixed points and let $π\colon X → X^0$ be the contraction morphism induced by the $\Gm$-equivariant morphism $\as 1 → \{0\}$.
-    Then there is an isomorphism of functors
+    Then there is a canonical isomorphism of functors
     \[
-        i^* \cong π_* \colon \catDModMon{X}{\Gm} → \catDMod{X^0}.
+        π_* \cong i^* \colon \catDModMon{X}{\Gm} → \catDMod{X^0}
+    \]
+    given by adjunction
+    \[
+        π_* → π_* i_* i^* = (π ∘ i)_* i^* = i^*.
     \]
 \end{Thm}
 
@@ -1079,7 +1080,7 @@ Explicitly, if $h'\colon Y → X$ is a $G$-equivariant morphism of schemes induc
 \end{proof}
 
 Finally, it will be useful to consider only partial compactifications.
-That is, in the constructions of Section~\ref{sec:base-change:compactification}, instead of going all the way to $\bar G$ we only some subvariety of it.
+That is, in the constructions of Section~\ref{sec:base-change:compactification}, instead of going all the way to $\bar G$ we only use some subvariety of it.
 Thus let $H$ be a $G×G$-stable subvariety of $\bar G$ containing $G$, and let $^H\bar{Γ}$ be the closure of $Γ$ in $H × X × X$.
 We set
 \[
@@ -1360,7 +1361,7 @@ Before proving the lemma, let us first finish the proof of Theorem~\ref{thm:toru
     \]
     are isomorphisms.
 
-    We will do so by using the Contraction Principle of Theorem~\ref{thm:pre:contraction_principle}.
+    We will do so by using the contraction principle of Theorem~\ref{thm:pre:contraction_principle}.
     For this we will introducing a contractive $\Gm$-action on $\bar Γ$ and all $\stabclsY[\stack Y_i]{S₁,S₂}{\stack X}$ such that the morphisms
     \begin{equation}
         \label{eq:torus:middle_row}
