@@ -83,7 +83,6 @@
 
 \maketitle
 
-[$p₂$ <-> $p₁$]
 [subvariety <-> subscheme]
 [macros]
 [-advisor]
@@ -142,7 +141,7 @@ By Verdier duality and adjunction we can always rewrite \eqref{eq:intro:d-mod-hc
 It is now tempting to look at the Cartesian square
 \[
     \begin{tikzcd}
-        \ls \stack X \arrow[r, "p₁"] \arrow[d, "p₂"] & \stack X \arrow[d, "Δ"] \\
+        \ls \stack X \arrow[r, "p₂"] \arrow[d, "p₁"] & \stack X \arrow[d, "Δ"] \\
         \stack X \arrow[r, "Δ"] & \stack X × \stack X
     \end{tikzcd}
 \]
@@ -155,14 +154,14 @@ We could expect the existence of an isomorphism
 \begin{equation}
     \label{eq:intro:naive}
     \GammadR(\stack X, Δ^!Δ_!k_{\stack X}) \cong
-    \GammadR(\stack X, p_{2,!}p₁^! k_{\stack X}).
+    \GammadR(\stack X, p_{1,!}p₂^! k_{\stack X}).
 \end{equation}
 We refer to this as the \enquote{naive expectation}.
 Unfortunately, the two sides are in general not isomorphic (the stack $\stack X = \ps1/\Ga$ is an easy counter-example).
 
 In this paper we investigate how to quantify the cone of the morphism
 \begin{equation}\label{eq:intro:central_cone}
-    p_{2,!}p₁^! k_{\stack X} → Δ^!Δ_! k_{\stack X}
+    p_{1,!}p₂^! k_{\stack X} → Δ^!Δ_! k_{\stack X}
 \end{equation}
 and thus the failure of the naive isomorphism \eqref{eq:intro:naive} to hold.
 As an application, we prove the following theorem, giving a class of stacks where \eqref{eq:intro:naive} is indeed an isomorphism.
@@ -173,9 +172,9 @@ As an application, we prove the following theorem, giving a class of stacks wher
     \[
         \HCoh\bigl(\catDMod{X/G}\bigr)
         \cong
-        \opalg{\GammadR\bigl(X/G,\,p_{2,!} p₁^! k_{X/G}\bigr)},
+        \opalg{\GammadR\bigl(X/G,\,p_{1,!} p₂^! k_{X/G}\bigr)},
     \]
-    where the algebra structure on $\GammadR\bigl(X/G,\,p_{2,!} p₁^! k_{X/G}\bigr)$ is induced by the groupoid structure on $\ls(X/G)$.
+    where the algebra structure on $\GammadR\bigl(X/G,\,p_{1,!} p₂^! k_{X/G}\bigr)$ is induced by the groupoid structure on $\ls(X/G)$.
 \end{Thm}
 
 Since, to the author's knowledge, there is currently no comprehensive account of the theory of D-modules on stacks available in the literature, we review the basic formalism in Section~\ref{sec:d-mods}.
@@ -635,24 +634,24 @@ where the algebra structure on $\GammadR\bigl(\stack X,\, Δ^! Δ_! k_{\stack X}
 Consider the Cartesian square
 \[
     \begin{tikzcd}
-        \ls{\stack X} \arrow[r, "p₁"] \arrow[d, "p₂"] & \stack X \arrow[d, "Δ"] \\
+        \ls{\stack X} \arrow[r, "p₂"] \arrow[d, "p₁"] & \stack X \arrow[d, "Δ"] \\
         \stack X \arrow[r, "Δ"] & \stack X × \stack X
     \end{tikzcd}
 \]
 Let us assume for the moment that $Δ$ (and hence $p_i$) is proper.
-Then $Δ_* = Δ_!$ and $p_{2,*} = p_{2,!}$ and by Section~\ref{sec:monads} we have an isomorphism of monads
+Then $Δ_* = Δ_!$ and $p_{1,*} = p_{1,!}$ and by Section~\ref{sec:monads} we have an isomorphism of monads
 \begin{equation}
     \label{eq:central_iso}
-    p_{2,!} p₁^! → Δ^!Δ_!,
+    p_{1,!} p₂^! → Δ^!Δ_!,
 \end{equation}
 which induces an isomorphism of algebras
 \[
-    \GammadR\bigl(\stack X,\, p_{2,!} p₁^! k_{\stack X}\bigr)
+    \GammadR\bigl(\stack X,\, p_{1,!} p₂^! k_{\stack X}\bigr)
     →
     \GammadR\bigl(\stack X,\, Δ^! Δ_! k_{\stack X}\bigr).
 \]
 Of course, if $X$ is not an algebraic space, then $Δ$ is not proper (nor is it in general smooth).
-Thus in general \eqref{eq:central_iso} is not an isomorphism and there is no canonical structure of monad on $p_{2,!} p₁^!$.
+Thus in general \eqref{eq:central_iso} is not an isomorphism and there is no canonical structure of monad on $p_{1,!} p₂^!$.
 We would like to apply Lemma~\ref{lem:pre:groupoid_monad_hol} to construct a monad in special cases.
 Thus the goal of the next section is to give a criterion for the assumptions of Lemma~\ref{lem:pre:groupoid_monad_hol}, i.e.~for base change to hold.
 
@@ -660,11 +659,11 @@ Thus the goal of the next section is to give a criterion for the assumptions of 
     The base change morphism \eqref{eq:central_iso} is also an isomorphism if $Δ$ is smooth.
     In particular this implies that the \enquote{naive expectation} holds for $\stack X = \B G$ for any algebraic group $G$, i.e.~we have
     \[
-        \HCoh(\catDMod{\B G}) = \opalg{\GammadR\bigl(\B G,\, p_{2,!} p₁^! k_{\B G}\bigr)}.
+        \HCoh(\catDMod{\B G}) = \opalg{\GammadR\bigl(\B G,\, p_{1,!} p₂^! k_{\B G}\bigr)}.
     \]
     An argument similar to \cite{BenZvi:mathoverflow:CohomologyOfGmodG} shows that there is a further isomorphism
     \[
-        \GammadR\bigl(\B G,\, p_{2,!} p₁^! k_{\stack X}\bigr) \cong
+        \GammadR\bigl(\B G,\, p_{1,!} p₂^! k_{\stack X}\bigr) \cong
         \GammadR(G, k_G)^\dual \otimes \GammadR(\B G, k_{\B G}).
     \]
     Alternatively, we can use the identification
