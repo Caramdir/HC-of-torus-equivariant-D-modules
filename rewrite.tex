@@ -38,11 +38,12 @@
 
 \subsection{Some reduction steps}
 
+Let $i\colon\stack Y \to \stack X$ be an open (or closed) immersion.
+We have $\ls Y \cong \stack Y \times_{\stack X \times \stack X} \stack Y$ and it follows that there is a canonical open (resp.~closed) immersion of loop stacks $\ls i\colon \ls \stack Y \to \ls \stack X$.
+
 \begin{Lem}\label{lem:bc_lc_immersion}
     If $i\colon\stack Y \hookrightarrow \stack X$ is a locally closed immersion and $\stack X$ has property \bc, then $\stack Y$ has property \bc.
 \end{Lem}
-
-[Fix the following proof notationally.]
 
 \begin{proof}
     Let us first assume that $i$ is open.
@@ -50,7 +51,7 @@
     Now, using the assumption on $\stack X$ and the fact that $i^! = i^*$ we get
     \[
         p_{\stack Y,1,!} p_{\stack Y,2}^!i^! =
-        p_{\stack Y,1,!} i^! p_{\stack X,2}^! \cong
+        p_{\stack Y,1,!} (\ls i)^! p_{\stack X,2}^! \cong
         i^! p_{\stack X,1,!} p_{\stack X,2}^! \isoto
         i^! \Delta_{\stack X}^! \Delta_{\stack X,!} =
         \Delta_{\stack Y}^! (i\times i)^! \Delta_{\stack X,!} \cong
@@ -61,7 +62,7 @@
     Now, using the assumption on $\stack X$ and the fact that $i_! = i_*$ we get
     \[
         i_! p_{\stack Y,1,!} p_{\stack Y,2}^!i^! =
-        p_{\stack X,1,!} i_! p_{\stack Y,2}^!i^! \cong
+        p_{\stack X,1,!} (\ls i)_! p_{\stack Y,2}^!i^! \cong
         p_{\stack X,1,!} p_{\stack X,2}^! i_!i^! \isoto
         \Delta_{\stack X}^! \Delta_{\stack X,!} i_!i^! \cong
         \Delta_{\stack Y}^! (i\times i)_! \Delta_{\stack X,!}i^! =
