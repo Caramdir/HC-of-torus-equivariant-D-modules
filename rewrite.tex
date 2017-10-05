@@ -10,6 +10,7 @@
 \newcommand\hbc{\textbf{($\mathbf{**}$)}}
 
 \newcommand\cs{\stack{B}}
+\newcommand\catCoSimplicial{\cat{\Delta}^{\mathrm{op}}}
 
 \begin{document}
 \maketitle
@@ -32,21 +33,69 @@
     of endofunctors of $\catDModHol{\stack X}$ is an equivalence.
 \end{Def}
 
-\begin{Lem}\label{lem:bc_smooth_or_proper}
-    Property \bc\ holds for $\stack X$ whenever the diagonal $\Delta\colon \stack X \to \stack X \times \stack X$ is either proper or smooth.
-    In particular it holds for (separated) schemes and classifying stacks $\cs{G}$.
+Let us write $\stack G_\bullet = \stack G_\bullet(\stack X)$ for the nerve of the groupoid associated to $\ls\stack X \rightrightarrows \stack X$.
+Thus
+\[
+    \stack G_m(\stack X) = \underbrace{\stack X \times_{\stack X \times \stack X} \dotsb \times_{\stack X \times \stack X} \stack X}_{m+1\text{ times}}.
+\]
+
+\begin{Def}
+    Let $\stack X$ be a QCA stack and consider the cartesian square
+    \[
+        \begin{tikzcd}
+            \stack G_{n+1} \arrow[r, "p_{s}"] \arrow[d, "p_{F+1}"] & \stack G_n \arrow[d, "p_F"] \\
+            \stack G_{m+1} \arrow[r, "p_s"] & \stack G_m
+        \end{tikzcd}
+    \]
+    where the horizontal maps are induced by a map $F\colon [n] \to [m]$ in $\catCoSimplicial$.
+    We say that $\stack X$ has property \hbc\ if for each such $F$ the canonical morphism
+    \[
+        p_{F+1,!}p_s^! \to p_s^!p_{F,!}
+    \]
+    of functors $\catDModHol{\stack G_n} \to \catDModHol{\stack G_{m+1}}$ is an equivalence.
+\end{Def}
+
+\begin{Lem}\label{lem:smooth_or_proper}
+    Let $\stack X$ be a QCA stack with diagonal moprhism $\Delta\colon \stack X \to \stack X \times \stack X$. Then,
+    \begin{enumerate}
+        \item\label{lem:smooth_or_proper:bc} If $\Delta$ is either proper of smooth, then $\stack X$ has property \bc.
+        \item\label{lem:smooth_or_proper:hbc} If $\Delta$ is proper, then $\stack X$ has property \hbc.
+        \item\label{lem:smooth_or_proper:scheme} If $\stack X$ is a (separated) scheme, then $\stack X$ has both properties \bc\ and \hbc.
+        \item\label{lem:smooth_or_proper:bg} Let $G$ be an affine algebraic group. Then the classifying stack $\cs{G}$ has both properties \bc\ and \hbc.
+    \end{enumerate}
 \end{Lem}
+
+\begin{proof}
+    Statement \ref{lem:smooth_or_proper:bc} is a direct consquence of the base change theorem [reference].
+
+    We only need to show \ref{lem:smooth_or_proper:hbc} under the additional assumption that $F$ is a face or degeneracy map.
+    In either case it follows immediately that $p_{F}$ is proper and we can again apply base change.
+
+    Statement \ref{lem:smooth_or_proper:scheme} is just a special case of \ref{lem:smooth_or_proper:bc} and \ref{lem:smooth_or_proper:hbc}.
+    
+    The diagonal morphism of $\cs{G}$ is smooth, so that property \hbc\ follows from \ref{lem:smooth_or_proper:bc}.
+    Note that $\stack G_m(\cs{G}) \cong G^m \times \cs{G}$.
+    Thus one sees that the maps $\stack G_m(\cs{G}) \to \stack G_{m-1}(\cs{G})$ are smooth, while the maps $\stack G_m(\cs{G}) \to \stack G_{m+1}(\cs{G})$ are closed immersions (and hence proper).
+    Thus property \hbc\ follows from smooth and proper base change.
+\end{proof}
 
 \subsection{Some reduction steps}
 
 Let $i\colon\stack Y \to \stack X$ be an open (or closed) immersion.
 We have $\ls Y \cong \stack Y \times_{\stack X \times \stack X} \stack Y$ and it follows that there is a canonical open (resp.~closed) immersion of loop stacks $\ls i\colon \ls \stack Y \to \ls \stack X$.
 
-\begin{Lem}\label{lem:bc_lc_immersion}
-    If $i\colon\stack Y \hookrightarrow \stack X$ is a locally closed immersion and $\stack X$ has property \bc, then $\stack Y$ has property \bc.
+More generally, $\stack G_m(\stack Y)$ is an open (resp.~closed) substack of $\stack G_m(\stack X)$.
+Absuing notation, we will sometimes continue to denote this inclusion by $i$.
+%In the special case $m=1$, we will also write $\ls i\colon \ls \stack Y \to \ls \stack X$.
+
+\begin{Lem}\label{lem:lc_immersion}
+    Let $i\colon\stack Y \hookrightarrow \stack X$ is a locally closed immersion of QCA stacks.
+    If $\stack X$ has property \bc\ (resp.~property \hbc), then so does $\stack Y$.
 \end{Lem}
 
 \begin{proof}
+    We will show the statement for property \bc.
+    The proof for \hbc\ is essentally the same.
     Let us first assume that $i$ is open.
     It suffices to show that $p_{\stack Y,1,!}p_{\stack Y,2}^!i^! \to \Delta_{\stack Y}^!\Delta_{\stack Y,!}i^!$ is an equivalence.
     Now, using the assumption on $\stack X$ and the fact that $i^! = i^*$ we get
@@ -72,32 +121,37 @@ We have $\ls Y \cong \stack Y \times_{\stack X \times \stack X} \stack Y$ and it
     \]
 \end{proof}
 
-\begin{Lem}\label{lem:bc_open_cover}
-    If $\stack X$ has an open cover by substacks $\stack U_i$ with property \bc, then $\stack X$ has property \bc.
+Since all operations are local we can check the properties on open covers.
+
+\begin{Lem}\label{lem:open_cover}
+    If $\stack X$ has an open cover by substacks $\stack U_i$ with property \bc\ (resp.~with property \hbc), then $\stack X$ has property \bc\ (resp.~property \hbc).
 \end{Lem}
 
-\begin{Lem}\label{lem:bc_product}
-    If $\stack{X_1}$ and $\stack{X_2}$ both have property \bc, then so does $\stack{X_1} \times \stack{X_2}$.
+\begin{Lem}\label{lem:product}
+    If $\stack{X_1}$ and $\stack{X_2}$ both have property \bc\ (resp.~property \hbc), then so does $\stack{X_1} \times \stack{X_2}$.
 \end{Lem}
 
 \begin{proof}
     The category $\catDMod{\stack X_1 \times \stack X_2}$ is generated by elements of the form $\sheaf F_1 \boxtimes \sheaf F_2$ with $\sheaf F_i \in \catDModHol{\stack X_i}$.
     For any schematic morphism $f\colon \stack Y \to \stack Z$ of QCA stacks the functor $f^!$ is continuous on $\catDMod{\stack Z}$ and $f_!$ is preservers colimits in $\catDModHol{\stack Y}$, since it has a right adjoint.
     Thus it is sufficient to check that property \bc\ holds on elements of the form $\sheaf F_1 \boxtimes \sheaf F_2 \in \catDModHol{\stack X_1 \times \stack X_2}$.
-    This is now clear because all functors respect $\boxtimes$.
+    
+    Note that $\ls(\stack X_1 \times \stack X_2) \cong \ls \stack X_1 \times \ls \stack X_2$ and more generally $\stack G_m(\stack X_1 \times \stack X_2) \cong \stack G_m(\stack X_1) \times \stack G_m(\stack X_2)$.
+    The statement now follows because all functors respect $\boxtimes$.
 \end{proof}
 
 % Is there a strengthening to fiber products?
 
 \subsection{Contractible stacks}
 
-\begin{Lem}\label{lem:bc_contractive}
-    Assume that $\stack X$ has a trivial contractive $\Gm$-action and that both $\stack X_0$ and $\stack X\setminus \stack X_0$ have property \bc.
+\begin{Lem}\label{lem:contractive}
+    Assume that $\stack X$ has a trivial contractive $\Gm$-action and that both $\stack X_0$ and $\stack U = \stack X\setminus \stack X_0$ have property \bc (respectively poperty \hbc).
     Then so does $\stack X$.
 \end{Lem}
 
 \begin{proof}
-    Let $i\colon \stack X_0 \hookrightarrow \stack X$ and let $j\colon \stack U =\stack X\setminus \stack X_0 \hookrightarrow \stack X$ be its complement.
+    Let us first prove the statement for property \bc.
+    Let $i\colon \stack X_0 \hookrightarrow \stack X$ and let $j\colon \stack U \hookrightarrow \stack X$ be its complement.
     Consider the distinguished triangle
     \[
         i_!i^! \Delta^!\Delta_! \to \Delta^!\Delta_! \to j_*j^*\Delta^!\Delta_!
@@ -132,93 +186,30 @@ We have $\ls Y \cong \stack Y \times_{\stack X \times \stack X} \stack Y$ and it
         i_!p_{\stack X_0,1,!} (\ls i)^! p_{2}^! \cong
         i_!p_{\stack X_0,1,!} (\ls \pi)_! p_{2}^! =
         i_! \pi_! p_{1,!} p_{2}^! =
-        i_! i^! p_{1,!} p_{2}^!. \qedhere
+        i_! i^! p_{1,!} p_{2}^!.
     \]
-\end{proof}
-
-\section{Compatibility base changes}
-
-Let us write $\stack G_\bullet = \stack G_\bullet(\stack X)$ for the nerve of the groupoid associated to $\ls\stack X \rightrightarrows \stack X$.
-Thus
-\[
-    \stack G_m(\stack X) = \underbrace{\stack X \times_{\stack X \times \stack X} \dotsb \times_{\stack X \times \stack X} \stack X}_{m+1\text{ times}}.
-\]
-If $i\colon \stack Y \hookrightarrow \stack X$ is a closed (or open) substack, then $\stack G_m(\stack Y)$ is a closed (resp.~open) substack of $\stack G_m(\stack X)$.
-Sbsuing notation, we will continue to denote this inclusion by $i$.
-
-\begin{Def}
-    Consider the cartesian square
-    \[
-        \begin{tikzcd}
-            \stack G_{n+1} \arrow[r] \arrow[d] & \stack G_n \arrow[d] \\
-            \stack G_{m+1} \arrow[r] & \stack G_m
-        \end{tikzcd}
-    \]
-    [describe maps].
-    We say that $\stack X$ has property \hbc\ if the canonical morphism
-    \[
-        ...
-    \]
-    of functors $\catDModHol{\stack G_n} \to \catDModHol{\stack G_m+1}$ is an equivalence.
-\end{Def}
-
-\begin{Lem}
-    If the diagonal  morphism $\Delta\colon \stack X \to \stack X \times \stack X$ is proper, then property \hbc\ holds for $\stack X$.
-    In particular it holds for (separated) schemes.
-\end{Lem}
-
-\begin{proof}
-    It suffices to show the base change for face and degeneracy maps, where the vertical arrows turn out to be proper.
-    [Fill in the details.]
-\end{proof}
-
-\begin{Lem}
-    Let $G$ be an affine algebraic group. 
-    Then property \hbc\ holds  for the classifying stack $\cs{G}$
-\end{Lem}
-
-\begin{Lem}\label{lem:hbc_lc_immersion}
-    If $i\colon\stack Y \hookrightarrow \stack X$ is a locally closed immersion and $\stack X$ has property \bc, then $\stack Y$ has property \bc.
-\end{Lem}
-
-\begin{proof}
-    As for Lemma~\ref{lem:bc_lc_immersion}.
-\end{proof}
-
-\begin{Lem}\label{lem:hbc_open_cover}
-    If $\stack X$ has an open cover by substacks $\stack U_i$ with property \hbc, then $\stack X$ has property \hbc.
-\end{Lem}
-
-\begin{Lem}\label{lem:hbc_product}
-    If $\stack{X_1}$ and $\stack{X_2}$ both have property \hbc, then so does $\stack{X_1} \times \stack{X_2}$.
-\end{Lem}
-
-\begin{proof}
-    Denote by $\stack G_\bullet(\stack X_i)$ the groupoid associated to $\stack X_i \to \stack X_i \times \stack X_i$.
-    Then we have a natural decomposition $\stack G_m(\stack X_1 \times \stack X_2) \cong \stack G_m(\stack X_1) \times \stack G_m(\stack X_2)$.
-    Thus the method of the proof of Lemma~\ref{lem:bc_product} can also be applied to show the corresponding statement for property \hbc.
+    Finally, we note that the $\Gm$-action on $\stack X$ induces contractive $\Gm$-actions on each $\stack G_m(\stack X)$ with $(\stack G_m(\stack X))_0 = \stack G_m(\stack X_0)$.
+    Thus the statement for property \hbc\ follows in the same way as above.
 \end{proof}
 
 \section{Torus quotients}
 
 \begin{Thm}
     Let $X$ be a normal variety with an action of a torus $T$.
-    Then $\stack X = X/T$ has property \bc.
+    Then $\stack X = X/T$ has properties \bc\ and \hbc.
 \end{Thm}
 
-\begin{proof}[Proof idea]
-    By Sumihiro's theorem \cite{Sumihiro:1974:EquivariantCompletions} and Lemma~\ref{lem:bc_open_cover} we can assume that $\stack X$ is affine with a linear action of $T$.
-    By Lemma~\ref{lem:bc_lc_immersion} it further suffices to consider the case that $\stack X = \as{m}/T$ for some $n$.
-    By Lemma~\ref{lem:bc_product}, we can further decompose $\as{m}$ into $T$-eigenspaces.
+\begin{proof}
+    By Sumihiro's theorem \cite{Sumihiro:1974:EquivariantCompletions} and Lemma~\ref{lem:open_cover} we can assume that $\stack X$ is affine with a linear action of $T$.
+    By Lemma~\ref{lem:lc_immersion} it further suffices to consider the case that $\stack X = \as{m}/T$ for some $n$.
+    By Lemma~\ref{lem:product}, we can further decompose $\as{m}$ into $T$-eigenspaces.
     Each of those splits into copies of $\as{1}/T \cong \as{1}/\Gm \times BT'$.
     
-    By Lemma~\ref{lem:bc_smooth_or_proper} it remains to consider the stack $\as{1}/\Gm$, where $\Gm$ acts nontrivially.
-    If the $\Gm$ action is contractive this case follows immediatley from Lemma~\ref{lem:bc_contractive} and Lemma~\ref{lem:bc_smooth_or_proper}.
-    [Say something about the anti-contractive case.]
+    By Lemma~\ref{lem:smooth_or_proper} it remains to consider the stack $\as{1}/\Gm$, where $\Gm$ acts nontrivially.
+    If the $\Gm$ action is contractive this case follows immediatley from Lemma~\ref{lem:contractive} and Lemma~\ref{lem:smooth_or_proper}.
+    Otherwise the inverse of the $\Gm$-action on $\as1$ is contractive and we can use the contraction principle (and hence Lemma~\ref{lem:contractive}) with the monoid $\as1 = \Gm \cup \{\infty\}$ instead of $\Gm \cup \{0\}$.
 \end{proof}
 
-For property \hbc\ one can do a similar reduction to a computation for $\as{1}/\Gm$.
-For the special case the contraction principle is again a useful tool.
 
 \printbibliography
 
