@@ -7,6 +7,7 @@
 \addbibresource{math.bib}
 
 \newcommand\bc{\textbf{($\mathbf{*}$)}}
+\newcommand\hbc{\textbf{($\mathbf{**}$)}}
 
 \newcommand\cs{\stack{B}}
 
@@ -31,9 +32,9 @@
     of endofunctors of $\catDModHol{\stack X}$ is an equivalence.
 \end{Def}
 
-\begin{Lem}
-    Property \bc\ holds whenever the diagonal $\Delta\colon \stack X \to \stack X \times \stack X$ is either proper or smooth.
-    In particular it holds for schemes and classifying stacks $\cs{G}$.
+\begin{Lem}\label{lem:bc_smooth_or_proper}
+    Property \bc\ holds for $\stack X$ whenever the diagonal $\Delta\colon \stack X \to \stack X \times \stack X$ is either proper or smooth.
+    In particular it holds for (separated) schemes and classifying stacks $\cs{G}$.
 \end{Lem}
 
 \subsection{Some reduction steps}
@@ -69,11 +70,10 @@ We have $\ls Y \cong \stack Y \times_{\stack X \times \stack X} \stack Y$ and it
         i_! \Delta_{\stack Y}^! \Delta_{\stack X,!} i^!.
         \qedhere
     \]
-
 \end{proof}
 
 \begin{Lem}\label{lem:bc_open_cover}
-    If $\stack X$ has an open cover by substacks $\stack U_i$ with property $\bc$, then $\stack X$ has property $\bc$.
+    If $\stack X$ has an open cover by substacks $\stack U_i$ with property \bc, then $\stack X$ has property \bc.
 \end{Lem}
 
 \begin{Lem}\label{lem:bc_product}
@@ -91,10 +91,113 @@ We have $\ls Y \cong \stack Y \times_{\stack X \times \stack X} \stack Y$ and it
 
 \subsection{Contractible stacks}
 
-\begin{Lem}
-    Assume that $\stack X$ is contractible and both $\stack X_0$ and $\stack X\setminus \stack X_0$ have property \bc.
+\begin{Lem}\label{lem:bc_contractive}
+    Assume that $\stack X$ has a trivial contractive $\Gm$-action and that both $\stack X_0$ and $\stack X\setminus \stack X_0$ have property \bc.
     Then so does $\stack X$.
 \end{Lem}
+
+\begin{proof}
+    Let $i\colon \stack X_0 \hookrightarrow \stack X$ and let $j\colon \stack U =\stack X\setminus \stack X_0 \hookrightarrow \stack X$ be its complement.
+    Consider the distinguished triangle
+    \[
+        i_!i^! \Delta^!\Delta_! \to \Delta^!\Delta_! \to j_*j^*\Delta^!\Delta_!
+    \]
+    on $\catDModHol{\stack X}$.
+    It suffices to show that the canonical maps on the outside terms to $i_!i^! p_{1,!}p_2^!$ and $j_*j^* p_{1,!}p_2^!$ are isomorphisms.
+    
+    Using the fact that $j^* = j^!$, base change and the assumption we see that
+    \[
+        j_*j^*\Delta^!\Delta_! \cong
+        j_*\Delta^!\Delta_!j^* \isoto
+        j_*p_{\stack U,1,!}p_{\stack U,2}^! j^* \cong
+        j_*j^* p_{1,!}p_2^!
+    \]
+    is an equivalence.
+
+    Write $\pi\colon \stack X \to \stack X_0$ for the contraction map opposite to $i$.
+    Then by the contraction principle,
+    \begin{equation}\label{eq:lem:bc_contractive}
+        i_!i^! \Delta^!\Delta_! =
+        i_!\Delta_{\stack X_0}^!(i\times i)^! \Delta_! \cong
+        i_!\Delta_{\stack X_0}^!(\pi\times \pi)_! \Delta_! =
+        i_!\Delta_{\stack X_0}^!\Delta_{\stack X_0,!} \pi_! \cong
+        i_!\Delta_{\stack X_0}^!\Delta_{\stack X_0,!} i^!.
+    \end{equation}
+    Write $\ls i \colon \ls\stack X_0 \hookrightarrow \ls\stack X$ for the corresponfing closed inclusion of loop stacks.
+    We note that $\ls\stack X$ inherits a contractive $\Gm$ action form $\stack X$.
+    Let $\ls \pi\colon \ls\stack X \to \ls\stack X_0$ be the corresponding contraction map.
+    Then by assumption and the contraction principle, \eqref{eq:lem:bc_contractive} is equivalent to
+    \[
+        i_!p_{\stack X_0,1,!}p_{\stack X_0,2}^! i^! =
+        i_!p_{\stack X_0,1,!} (\ls i)^! p_{2}^! \cong
+        i_!p_{\stack X_0,1,!} (\ls \pi)_! p_{2}^! =
+        i_! \pi_! p_{1,!} p_{2}^! =
+        i_! i^! p_{1,!} p_{2}^!. \qedhere
+    \]
+\end{proof}
+
+\section{Compatibility base changes}
+
+Let us write $\stack G_\bullet = \stack G_\bullet(\stack X)$ for the nerve of the groupoid associated to $\ls\stack X \rightrightarrows \stack X$.
+Thus
+\[
+    \stack G_m(\stack X) = \underbrace{\stack X \times_{\stack X \times \stack X} \dotsb \times_{\stack X \times \stack X} \stack X}_{m+1\text{ times}}.
+\]
+If $i\colon \stack Y \hookrightarrow \stack X$ is a closed (or open) substack, then $\stack G_m(\stack Y)$ is a closed (resp.~open) substack of $\stack G_m(\stack X)$.
+Sbsuing notation, we will continue to denote this inclusion by $i$.
+
+\begin{Def}
+    Consider the cartesian square
+    \[
+        \begin{tikzcd}
+            \stack G_{n+1} \arrow[r] \arrow[d] & \stack G_n \arrow[d] \\
+            \stack G_{m+1} \arrow[r] & \stack G_m
+        \end{tikzcd}
+    \]
+    [describe maps].
+    We say that $\stack X$ has property \hbc\ if the canonical morphism
+    \[
+        ...
+    \]
+    of functors $\catDModHol{\stack G_n} \to \catDModHol{\stack G_m+1}$ is an equivalence.
+\end{Def}
+
+\begin{Lem}
+    If the diagonal  morphism $\Delta\colon \stack X \to \stack X \times \stack X$ is proper, then property \hbc\ holds for $\stack X$.
+    In particular it holds for (separated) schemes.
+\end{Lem}
+
+\begin{proof}
+    It suffices to show the base change for face and degeneracy maps, where the vertical arrows turn out to be proper.
+    [Fill in the details.]
+\end{proof}
+
+\begin{Lem}
+    Let $G$ be an affine algebraic group. 
+    Then property \hbc\ holds  for the classifying stack $\cs{G}$
+\end{Lem}
+
+\begin{Lem}\label{lem:hbc_lc_immersion}
+    If $i\colon\stack Y \hookrightarrow \stack X$ is a locally closed immersion and $\stack X$ has property \bc, then $\stack Y$ has property \bc.
+\end{Lem}
+
+\begin{proof}
+    As for Lemma~\ref{lem:bc_lc_immersion}.
+\end{proof}
+
+\begin{Lem}\label{lem:hbc_open_cover}
+    If $\stack X$ has an open cover by substacks $\stack U_i$ with property \hbc, then $\stack X$ has property \hbc.
+\end{Lem}
+
+\begin{Lem}\label{lem:hbc_product}
+    If $\stack{X_1}$ and $\stack{X_2}$ both have property \hbc, then so does $\stack{X_1} \times \stack{X_2}$.
+\end{Lem}
+
+\begin{proof}
+    Denote by $\stack G_\bullet(\stack X_i)$ the groupoid associated to $\stack X_i \to \stack X_i \times \stack X_i$.
+    Then we have a natural decomposition $\stack G_m(\stack X_1 \times \stack X_2) \cong \stack G_m(\stack X_1) \times \stack G_m(\stack X_2)$.
+    Thus the method of the proof of Lemma~\ref{lem:bc_product} can also be applied to show the corresponding statement for property \hbc.
+\end{proof}
 
 \section{Torus quotients}
 
@@ -108,8 +211,14 @@ We have $\ls Y \cong \stack Y \times_{\stack X \times \stack X} \stack Y$ and it
     By Lemma~\ref{lem:bc_lc_immersion} it further suffices to consider the case that $\stack X = \as{m}/T$ for some $n$.
     By Lemma~\ref{lem:bc_product}, we can further decompose $\as{m}$ into $T$-eigenspaces.
     Each of those splits into copies of $\as{1}/T \cong \as{1}/\Gm \times BT'$.
-    This can now be done by a direct calculation using the contraction principle.
+    
+    By Lemma~\ref{lem:bc_smooth_or_proper} it remains to consider the stack $\as{1}/\Gm$, where $\Gm$ acts nontrivially.
+    If the $\Gm$ action is contractive this case follows immediatley from Lemma~\ref{lem:bc_contractive} and Lemma~\ref{lem:bc_smooth_or_proper}.
+    [Say something about the anti-contractive case.]
 \end{proof}
+
+For property \hbc\ one can do a similar reduction to a computation for $\as{1}/\Gm$.
+For the special case the contraction principle is again a useful tool.
 
 \printbibliography
 
