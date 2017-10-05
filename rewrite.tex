@@ -163,16 +163,36 @@ Since all operations are local we can check the properties on open covers.
     The statement now follows because all functors respect $\boxtimes$.
 \end{proof}
 
-\subsection{Contractible stacks}
+\subsection{Contractive \texorpdfstring{$\Gm$}{Gm}-actions}
 
-\begin{Lem}\label{lem:contractive}
-    Assume that $\stack X$ has a trivial contractive $\Gm$-action and that both $\stack X_0$ and $\stack U = \stack X\setminus \stack X_0$ have property \bc\ (respectively property \hbc).
+Let $\stack X$ be a QCA stack with an action of $\Gm$.
+We call the action \emph{contractive} if it can be extended to an action of the monoid $\as 1$.
+Following the convention of \cite[Appendix~C]{DrinfeldGaitsgory:arXiv:CompactGenerationOfDModOnBunG} we denote by $\stack X^0$ the stack of $\{0,1\}$-equivariant maps $\{0\} \to \stack X$.
+The map $\{0\} \to \{0,1\}$ induces a \emph{contraction morphism} $\pi\colon \stack X \to \stack X^0$.
+
+We then have the following \emph{contraction principle} (cf.~also \cite[Proposition~3.2.2]{DrinfeldGaitsgory:2014:OnATheoremOfBraden}).
+
+\begin{Thm}[{\cite[Corollary~C.5.4]{DrinfeldGaitsgory:arXiv:CompactGenerationOfDModOnBunG}}]
+    \label{thm:contraction_principle}%
+    Let $X$ be a scheme with a trivial contractive $\Gm$-action.
+    Then there is a canonical isomorphism of functors
+    \[
+        π_! \cong i^! \colon \catDModHol{\stack X} → \catDModHol{\stack X^0}
+    \]
+    given by adjunction
+    \[
+        π_! → i^! i_! π_!  = i^! (π ∘ i)_! = i^!.
+    \]
+\end{Thm}
+
+\begin{Prop}\label{prop:contractive}
+    Assume that $\stack X$ has a trivial contractive $\Gm$-action such that $i\colon \stack X^0 \to \stack X$ is a closed immersion and both $\stack X^0$ and $\stack U = \stack X\setminus \stack X^0$ have property \bc\ (respectively property \hbc).
     Then so does $\stack X$.
-\end{Lem}
+\end{Prop}
 
 \begin{proof}
     Let us first prove the statement for property \bc.
-    Let $i\colon \stack X_0 \hookrightarrow \stack X$ and let $j\colon \stack U \hookrightarrow \stack X$ be its complement.
+    Let $j\colon \stack U \hookrightarrow \stack X$ be the (open) complement of $i$.
     Consider the distinguished triangle
     \[
         i_!i^! \Delta^!\Delta_! \to \Delta^!\Delta_! \to j_*j^*\Delta^!\Delta_!
@@ -189,7 +209,7 @@ Since all operations are local we can check the properties on open covers.
     \]
     is an equivalence.
 
-    Write $\pi\colon \stack X \to \stack X_0$ for the contraction map opposite to $i$.
+    Write $\pi\colon \stack X \to \stack X^0$ for the contraction map opposite to $i$.
     Then by the contraction principle,
     \begin{equation}\label{eq:lem:bc_contractive}
         i_!i^! \Delta^!\Delta_! =
@@ -198,10 +218,10 @@ Since all operations are local we can check the properties on open covers.
         i_!\Delta_{\stack X_0}^!\Delta_{\stack X_0,!} \pi_! \cong
         i_!\Delta_{\stack X_0}^!\Delta_{\stack X_0,!} i^!.
     \end{equation}
-    Write $\ls i \colon \ls\stack X_0 \hookrightarrow \ls\stack X$ for the corresponfing closed inclusion of loop stacks.
+    Write $\ls i \colon \ls\stack X^0 \hookrightarrow \ls\stack X$ for the corresponding closed inclusion of loop stacks.
     We note that $\ls\stack X$ inherits a contractive $\Gm$ action form $\stack X$.
-    Let $\ls \pi\colon \ls\stack X \to \ls\stack X_0$ be the corresponding contraction map.
-    Then by assumption and the contraction principle, \eqref{eq:lem:bc_contractive} is equivalent to
+    Let $\ls \pi\colon \ls\stack X \to \ls\stack X^0$ be the corresponding contraction map.
+    Then by assumption and the contraction principle (Theorem~\ref{thm:contraction_principle}), \eqref{eq:lem:bc_contractive} is equivalent to
     \[
         i_!p_{\stack X_0,1,!}p_{\stack X_0,2}^! i^! =
         i_!p_{\stack X_0,1,!} (\ls i)^! p_{2}^! \cong
@@ -209,7 +229,7 @@ Since all operations are local we can check the properties on open covers.
         i_! \pi_! p_{1,!} p_{2}^! =
         i_! i^! p_{1,!} p_{2}^!.
     \]
-    Finally, we note that the $\Gm$-action on $\stack X$ induces contractive $\Gm$-actions on each $\stack G_m(\stack X)$ with $(\stack G_m(\stack X))_0 = \stack G_m(\stack X_0)$.
+    Finally, we note that the $\Gm$-action on $\stack X$ induces contractive $\Gm$-actions on each $\stack G_m(\stack X)$ with $(\stack G_m(\stack X))^0 = \stack G_m(\stack X^0)$.
     Thus the statement for property \hbc\ follows in the same way as above.
 \end{proof}
 
@@ -227,8 +247,8 @@ Since all operations are local we can check the properties on open covers.
     Each of those splits into copies of $\as{1}/T \cong \as{1}/\Gm \times BT'$.
     
     By Lemma~\ref{lem:smooth_or_proper} it remains to consider the stack $\as{1}/\Gm$, where $\Gm$ acts nontrivially.
-    If the $\Gm$ action is contractive this case follows immediatley from Lemma~\ref{lem:contractive} and Lemma~\ref{lem:smooth_or_proper}.
-    Otherwise the inverse of the $\Gm$-action on $\as1$ is contractive and we can use the contraction principle (and hence Lemma~\ref{lem:contractive}) with the monoid $\as1 = \Gm \cup \{\infty\}$ instead of $\Gm \cup \{0\}$.
+    If the $\Gm$ action is contractive this case follows immediately from Proposition~\ref{prop:contractive} and Lemma~\ref{lem:smooth_or_proper}.
+    Otherwise the inverse of the $\Gm$-action on $\as1$ is contractive and we can use the contraction principle (and hence Proposition~\ref{prop:contractive}) with the monoid $\as1 = \Gm \cup \{\infty\}$ instead of $\Gm \cup \{0\}$.
 \end{proof}
 
 
