@@ -1,6 +1,6 @@
 \NeedsTeXFormat{LaTeX2e}[1999/12/01]
-\ProvidesClass{thesis}
-   [2015/06/24 v1
+\ProvidesClass{ck-article-nounicode}
+   [2017/10/10 v2
       A class for my articles and notes (unicodeless version)
    ]
 \LoadClassWithOptions{scrartcl}
@@ -116,6 +116,16 @@
     {0pt}
     {}
     []
+\titleformat
+    {\subsubsection}
+    [hang]
+    {\normalfont\normalsize\ifbw\bfseries\fi\itshape\color{sectioningcolor}}
+    {\thesubsubsection.\ }
+    {0pt}
+    {}
+    []
+
+\setkomafont{disposition}{\normalfont}
 
 
 %\dottedcontents{section}[3.8em]{}{2.3em}{1pc}

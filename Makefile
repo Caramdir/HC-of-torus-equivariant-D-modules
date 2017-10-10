@@ -1,6 +1,6 @@
 default: paper-nounicode.pdf
 
-paper-nounicode.tex: paper.tex Makefile
+paper-nounicode.tex: paper.tex Makefile ck-article-nounicode.cls
 	cp paper{,-nounicode}.tex
 	sed -i -e 's/ck-article/ck-article-nounicode/g' $@
 	sed -i -e 's/α/\\alpha /g' $@
@@ -13,8 +13,6 @@ paper-nounicode.tex: paper.tex Makefile
 	sed -i -e 's/ϕ/\\phi /g' $@
 	sed -i -e 's/φ/\\phi /g' $@
 	sed -i -e 's/ι/\\iota /g' $@
-	sed -i -e 's/Γsub/Gsub/g' $@
-	sed -i -e 's/ΓdR/GdR/g' $@
 	sed -i -e 's/Γ/\\Gamma /g' $@
 	sed -i -e 's/τ/\\tau /g' $@
 	sed -i -e 's/π/\\pi /g' $@
@@ -42,6 +40,7 @@ paper-nounicode.tex: paper.tex Makefile
 	sed -i -e 's/→/\\to /g' $@
 	sed -i -e 's/∘/\\circ /g' $@
 	sed -i -e 's/×/\\times /g' $@
+	sed -i -e 's/∨/\\vee /g' $@
 	sed -i -e 's/ / /g' $@
 	sed -i -e 's/ / /g' $@
 	echo "Do not forget to update the date!"
@@ -50,7 +49,7 @@ paper-nounicode.pdf: paper-nounicode.tex
 	latexmk --pdf $<
 
 dist: paper-nounicode.pdf
-	cp -r /usr/local/texlive/2014/texmf-dist/tex/latex/biblatex/* .
+	cp -r /usr/ias/texlive/2014/texmf-dist/tex/latex/biblatex/* .
 	tar czvf arXiv.tar.gz *-nounicode.tex *-nounicode.bbl *.sty *.cls b* cbx lbx
 
 clean:
