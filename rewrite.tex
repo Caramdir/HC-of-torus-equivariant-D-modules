@@ -62,9 +62,10 @@
 \maketitle
 
 \begin{abstract}
-    We discuss how to compute the Hochschild cohomology of the category of D-modules on a quotient stack via a relative compactification of the diagonal morphism.
-    We then apply this construction to the case of torus-equivariant D-modules and describe the Hochschild cohomology as the cohomology of a D-module on the loop space of the quotient stack.
-    This work is motivated by a desire to understand the support theory (in the sense of \cite{BensonIyengarKrause:2008:LocalCohomologyAndSupportForTriangulatedCategories}) of D-modules on stacks.
+  We discuss the Hochschild cohomology of the category of D-modules associated to an algebraic.
+  In particular we describe the Hochschild cohomology of the category of torus-equivariant D-modules as the cohomology of a D-module on the loop space of the quotient stack.
+  Finally, we give an approach for understanding the Hochschild cohomology of D-modules on general stacks via a relative compactification of the diagonal.
+  This work is motivated by a desire to understand the support theory (in the sense of \cite{BensonIyengarKrause:2008:LocalCohomologyAndSupportForTriangulatedCategories}) of D-modules on stacks.
 \end{abstract}
 
 \setcounter{tocdepth}{1}
@@ -77,9 +78,9 @@ For example, for constructible sheaves this leads to the notion of microsupport 
 More generally, given a category of sheaves on a space $X$, we can ask whether it is possible to localize them on some space that is strictly larger than $X$ itself.
 
 Even more generally one can ask the following question: Given a $k$-linear category $\cat C$, can one find a space over which $\cat C$ localizes?
-For co-complete compactly generated triangulated categories one answer is provided by \cite{BensonIyengarKrause:2008:LocalCohomologyAndSupportForTriangulatedCategories}:
+For co-complete compactly generated triangulated categories one answer is provided by Benson, Iyengar and Krause \cite{BensonIyengarKrause:2008:LocalCohomologyAndSupportForTriangulatedCategories}:
 To each map from a graded-commutative ring $R$ to the center of $\cat C$ the authors associate the \emph{triangulated support} functor $\supp_R$, assigning to each object $A ∈ \cat C$ a subset $\supp_R A \subseteq \Spec R$.
-This construction can be used to unify various theories of support in different areas of mathematics (though it does not yield the microlocal support of constructible sheaves).
+This construction can be used to unify various theories of support in different areas of mathematics (though it does not yield the microlocal support of constructible sheaves mentioned above).
 
 We are led to consider the universal algebra acting on $\cat C$ by this construction, i.e.~the \emph{Hochschild cohomology} of $\cat C$.
 For a complete (pre-triangulated) dg category $\cat C$ the Hochschild cohomology is the dg algebra of derived endomorphisms of the identity functor of $\cat C$:
@@ -91,7 +92,7 @@ For a complete (pre-triangulated) dg category $\cat C$ the Hochschild cohomology
 The ring $R = \bigoplus \operatorname{HH}^{2n}(\cat C)$ is commutative and hence one can define for each $A ∈ \cat C$ the support $\supp_R A$ as a subset of $\Spec R$.
 Thus understanding the Hochschild cohomology of a dg category can be an important step to understanding the category itself.
 
-This construction, applied to the category of (ind-)coherent sheaves on a (quasismooth, dg-) scheme, yields the singular support of coherent sheaves introduced in \cite{ArinkinGaitsgory:2015:SingularSupport}.
+This construction, applied to the category of (ind-)coherent sheaves on a (quasismooth, dg-) scheme, yields the singular support of coherent sheaves introduced by Arinkin and Gaitsgory \cite{ArinkinGaitsgory:2015:SingularSupport}.
 More concretely, the authors used this notion of singular support for the category $\catIndCoh{\LocSys_G}$ in their formulation of the geometric Langlands conjecture.
 By Langlands duality, one should then have a matching support theory for the category $\catDMod{\Bun_G}$ and the question arises whether it is possible to formulate this theory in a way that is intrinsic to D-modules.
 
@@ -102,7 +103,7 @@ Representing the identity functor by its kernel, we obtain an isomorphism of dg 
     \HCoh(\catDMod{\stack X}) \cong \Hom_{\catDMod{X×X}}(Δ_*ω_{\stack X}, Δ_*ω_{\stack X}),
 \end{equation}
 where $Δ\colon \stack X × \stack X → \stack X$ is the diagonal morphism and $ω_{\stack X}$ is the dualizing module.
-In particular if $\stack X$ is a (separated) scheme, then $Δ$ is a closed embedding and $(Δ^*,Δ_*)$ adjunction combined with Kashiwara's Equivalence show that $\HCoh(\catDMod{\stack X})$ is isomorphic to the de Rham cohomology of $\stack X$.
+In particular if $\stack X$ is a (separated) scheme, then $Δ$ is a closed embedding and $(Δ^*,Δ_*)$ adjunction combined with Kashiwara's Equivalence show that $\HCoh(\catDMod{\stack X})$ is isomorphic to the de~Rham cohomology of $\stack X$.
 However, if $\stack X$ is a general stack, then $Δ$ is not proper and the situation becomes more complicated.
 
 By Verdier duality and adjunction we can always rewrite \eqref{eq:intro:d-mod-hcoh} as
@@ -132,11 +133,11 @@ We could expect the existence of an isomorphism
 We refer to this as the \enquote{naive expectation}.
 Unfortunately, the two sides are in general not isomorphic (the stack $\stack X = \ps1/\Ga$ is an easy counter-example).
 
-In this paper we investigate how to quantify the cone of the morphism
+In this paper we investigate how the morphism
 \begin{equation}\label{eq:intro:central_cone}
     p_{1,!}p₂^! k_{\stack X} → Δ^!Δ_! k_{\stack X}
 \end{equation}
-and thus the failure of the naive isomorphism \eqref{eq:intro:naive} to hold.
+and thus when the naive isomorphism \eqref{eq:intro:naive} holds.
 As an application, we prove the following theorem, giving a class of stacks where \eqref{eq:intro:naive} is indeed an isomorphism.
 
 \begin{Thm}\label{thm:main}
@@ -150,19 +151,27 @@ As an application, we prove the following theorem, giving a class of stacks wher
     where the algebra structure on $\GammadR\bigl(X/G,\,p_{1,!} p₂^! k_{X/G}\bigr)$ is induced by the groupoid structure on $\ls(X/G)$.
 \end{Thm}
 
+\subsection*{Contents}
+
 Since, to the author's knowledge, there is currently no comprehensive account of the theory of D-modules on stacks available in the literature, we review the basic formalism in Section~\ref{sec:d-mods}.
 In essence, most of the familiar six functor formalism of holonomic D-modules works in a general context.
 It is convenient to rephrase Theorem~\ref{thm:main} as an equivalence of monads.
 Thus in Section~\ref{sec:monads} we review some constructions of monads in our setting.
 In Section~\ref{sec:HH} we explain how morphism~\eqref{eq:intro:central_cone} arises as a morphism of monads and make precise its relationship with Hochschild cohomology of $\catDMod{\stack X}$.
+As a simple application of this formalism, we also show that $\HCoh{\catDMod{\stack X}}$ always has a subalgebra isomorphic to $\opalg{\GammadR(\stack X,\ k_{\stack X})}$.
 
-In Section~\ref{sec:base-change} we describe the cone of morphism~\eqref{eq:intro:central_cone} as sections of a sheaf on a \enquote{compactified} loop space of $\stack X$ and consider some of its properties.
-Finally, in Section~\ref{sec:torus} we deduce Theorem~\ref{thm:main} from this description, using geometric considerations and the contraction principle of Drinfeld--Gaitsgory \cite{DrinfeldGaitsgory:2014:OnATheoremOfBraden}.
+In Section~\ref{sec:base-change} we give criteria for morphism~\eqref{eq:intro:central_cone} to be an isomorphism.
+In particular, we will use the contraction principle of Drinfeld--Gaitsgory \cite{DrinfeldGaitsgory:2014:OnATheoremOfBraden}\remark{Better reference?}\ to understand the case of so-called contractive stacks.
+Using the theory developed in Section~\ref{sec:base-change}, the proof of Theorem~\ref{thm:main} is given in Section~\ref{sec:torus}.
+
+Finally, in Section~\ref{sec:compactification} we describe the cone of morphism~\eqref{eq:intro:central_cone} as sections of a sheaf on a \enquote{compactified} loop space of $\stack X$ and consider some of its properties.
+
+\subsection*{Future directions}
 
 The present paper represents only the first step in the study of Hochschild cohomology and associated support theories for D-modules.
 In future work we intend to expand upon the foundations laid out in this paper.
 Of particular interest are quotients stacks $X/G$ with $G$ an affine algebraic group and the stack $\Bun_G(C)$ of $G$-bundles on a curve $C$.
-Following the constructions laid out in Section~\ref{sec:base-change:compactification}, for the former we need a good $G×G$-equivariant compactification of $G$.
+Following the constructions laid out in Section~\ref{sec:compactification:quotient}, for the former we need a good $G×G$-equivariant compactification of $G$.
 Thus groups with a wonderful compactification are of particular interest for study with our methods.
 For the latter, relative compactifications of the diagonal of $\Bun_G(C)$ have been proposed by Lafforgue and Drinfeld.
 These spaces are under active study and we expect that any computations of Hochschild cohomology to have deep connections with the \enquote{pseudo-identity} that is needed in the formulation of the geometric (categorical) Langlands conjecture.% \cite{Gaitsgory:preprint:StrangeFunctionalEquationForEisensteinSeries}
@@ -171,8 +180,7 @@ These spaces are under active study and we expect that any computations of Hochs
 I would like to thank David Nadler for the original motivation for this project and many discussions concerning it.
 
 
-\section{D-modules on stacks}
-\label{sec:d-mods}
+\section{D-modules on stacks}\label{sec:d-mods}
 
 We fix an algebraically closed base field $k$ of characteristic $0$.
 All stacks will be assumed to be algebraic over $k$ and quasi-compact with affine automorphism group (QCA).
@@ -190,13 +198,13 @@ Every quotient of a scheme of finite type over $k$ by an affine algebraic group 
 
 In order to correctly define categories of D-modules on stacks it is necessary to work with dg-categories.
 We refer to \cite{Keller:2006:OnDGCategories} for an introduction to dg categories.
-It is often convenient to regard (pretriangulated) dg categories as $k$-linear stable $(∞,1)$-categories \cite{Lurie:2009:HigherToposTheory,Lurie:2014-draft:HigherAlgebra}, which can be done via the nerve construction.% \cite{Cohn:arXiv:DGCategoriesAreStableInfinityCategories,Faonte:arXiv:SimplicialNerveOfAnAinfinityCategory}. %\cite[Section~1.3.1]{Lurie:2014-draft:HigherAlgebra}
-We will switch between those two languages without explicitly mentioning the intervening constructions and apply results from \cite{Lurie:2014-draft:HigherAlgebra} to dg categories.
+It is often convenient to regard (pretriangulated) dg categories as $k$-linear stable $(∞,1)$-categories \cite{Lurie:2009:HigherToposTheory,Lurie:2017-draft:HigherAlgebra}, which can be done via the nerve construction. % \cite{Cohn:arXiv:DGCategoriesAreStableInfinityCategories,Faonte:arXiv:SimplicialNerveOfAnAinfinityCategory}. %\cite[Section~1.3.1]{Lurie:2014-draft:HigherAlgebra}
+We will switch between those two languages without explicitly mentioning the intervening constructions and apply results from \cite{Lurie:2017-draft:HigherAlgebra} to dg categories.
 Fortunately, a superficial knowledge of dg/$∞$-categories should be sufficient for reading this article.
 
 The category of D-modules on a stack $\stack X$ can be either constructed via descent \cite{BeilinsonDrifeld:unpublished:Hitchin,DrinfeldGaitsgory:2013:FinitenessQuestions} or equivalently as ind-coherent sheaves on the de Rham space of $\stack X$ \cite{GaitsgoryRozenblyum:2014:CrystalsAndDModules}.
 While the first construction is more \enquote{hands on}, the second construction is often more useful from a theoretical point of view.
-It is explained in detail in the upcoming book \cite{GaitsgoryRozenblyum:prelim:StudyInDAG} (see also \cite{FrancisGaitsgory:2012:ChiralKoszulDuality} for an overview).
+It is explained in detail in the book \cite{GaitsgoryRozenblyum:2017:StudyInDAG:2} (see also \cite{FrancisGaitsgory:2012:ChiralKoszulDuality} for an overview).
 Many basic properties of the category $\catDMod{\stack X}$ are explored in \cite{DrinfeldGaitsgory:2013:FinitenessQuestions} and unless stated otherwise proofs for the assertions in this section can be found there.
 
 For any morphism $f\colon \stack X → \stack Y$ we obtain a continuous functor $f^!\colon \catDMod{\stack Y} → \catDMod{\stack X}$ and a (not necessarily continuous) functor $f_*\colon \catDMod{\stack X} → \catDMod{\stack Y}$.
@@ -271,7 +279,7 @@ We will make use of the following lemma which follows from \cite[Lemma~5.1.6]{Dr
             \stack X₂ \arrow[r, "g"] & \stack Y
         \end{tikzcd}
     \]
-    with schematic morphism $f$ (and hence $p$).
+    with schematic morphism $f$ (and hence also schematic $p$).
     Then there is a base change isomorphism
     \[
         p_* q^! \isoto g^! f_*
@@ -330,8 +338,7 @@ By applying duality to Proposition~\ref{prop:recollement-std} we obtain the dist
 and the identity $i^*j_! = 0$ on holonomic D-modules.
 Further, the functor $j_!$ is a full embedding $\catDModHol{\stack U} \hookrightarrow \catDModHol{\stack X}$.
 
-\section{Monads}
-\label{sec:monads}
+\section{Monads}\label{sec:monads}
 
 We will deduce Theorem~\ref{thm:main} from a isomorphism of monads on $\catDMod{\stack X}$.
 In this section we give a short introduction to the theory of monads and the specific constructions that we will use.
@@ -353,7 +360,7 @@ Thus we think of a \emph{monad} on a category $\cat C$ as consisting of a triple
 \end{equation}
 commute.
 Alternatively, we can think of $T$ being a monoid in the category of endofunctors of $\cat C$ with the monoidal structure given by composition of endofunctors.
-This definition also gives the correct generalization to $∞$-categories \cite[Definition~4.7.0.1]{Lurie:2014-draft:HigherAlgebra}.
+This definition also gives the correct generalization to $∞$-categories \cite[Definition~4.7.0.1]{Lurie:2017-draft:HigherAlgebra}.
 
 Let $X$ be an object of the category $\cat C$.
 Then $T$ gives the dg vector space $\Hom_{\cat C}(X, TX)$ the structure of a dg algebra with multiplication map
@@ -374,7 +381,7 @@ One simply sets $T = G ∘ F$ and $η$ and $μ$ are given by the adjunction mo
     \qquad\text{and}\qquad
     T² = G ∘ (F ∘ G) ∘ F → G ∘ F = T.
 \]
-We note that the correct construction in more complicated in the $∞$-categorical case and refer to \cite[Section~4.7]{Lurie:2014-draft:HigherAlgebra}.
+We note that the correct construction in more complicated in the $∞$-categorical case and refer to \cite[Section~4.7]{Lurie:2017-draft:HigherAlgebra}.
 For any $X ∈ \cat C$ the algebra construction above gives an isomorphism of algebras
 \[
     \Hom_{\cat C}(X, (GF)(X)) \cong
@@ -473,7 +480,7 @@ Intuitively, this is the simplicial stack, usually also denoted $\stack{G}_\cx$,
     \stack G_i = \underbrace{\stack G₁ ×_{\stack G₀} \dotsb ×_{\stack G₀} \stack G₁}_{\text{$i$ factors}}.
 \]
 We refer to \cite[Section~6.1.2]{Lurie:2009:HigherToposTheory} for the correct $∞$-categorical setup.
-The following lemma is now an immediate corollary of \cite[Lemma~4.7.1.4]{GaitsgoryRozenblyum:2017:StudyInDAG:2} or \cite[Theorem~4.7.6.2]{Lurie:2014-draft:HigherAlgebra}.
+The following lemma is now an immediate corollary of \cite[Lemma~4.7.1.4]{GaitsgoryRozenblyum:2017:StudyInDAG:2} or \cite[Theorem~4.7.5.2]{Lurie:2017-draft:HigherAlgebra}.
 
 \begin{Lem}
     \label{lem:pre:groupoid_monad_hol}%
@@ -504,8 +511,7 @@ The following lemma is now an immediate corollary of \cite[Lemma~4.7.1.4]{Gaitsg
     Then the endofunctor $p_{t,!} p_s^!$ of $\catDModHol{\stack X}$ has a canonical structure of a monad and as such is isomorphic to the adjunction monad $f^!f_!$.
 \end{Lem}
 
-\section{Hochschild cohomology}
-\label{sec:HH}
+\section{Hochschild cohomology and kernels}\label{sec:HH}
 
 We recall that the Hochschild cohomology of a dg category $\cat C$ is the algebra of derived endomorphisms of the identity functor,
 \[
@@ -666,7 +672,7 @@ Indeed this is a general phenomenon.
 \end{proof}
 
 
-\section{Base change along the diagonal}
+\section{Base change along the diagonal}\label{sec:base-change}
 
 Consider a Cartesian diagram of stacks
 \begin{equation}
@@ -743,7 +749,7 @@ Thus
 \end{Cor}
 
 \begin{proof}
-    This is just a restatement of Lemma~\ref{lem:pre:groupoid_monad_hol} together with ?.
+  This is just a restatement of Lemma~\ref{lem:pre:groupoid_monad_hol} applied to the construction in Section~\ref{sec:HH}.
 \end{proof}
 
 \begin{Rem}
@@ -779,15 +785,15 @@ Thus
 \subsection{Some reduction steps}
 
 Let $i\colon\stack Y \to \stack X$ be an open (or closed) immersion.
-We have $\ls Y \cong \stack Y \times_{\stack X \times \stack X} \stack Y$ and it follows that there is a canonical open (resp.~closed) immersion of loop stacks $\ls i\colon \ls \stack Y \to \ls \stack X$.
+We have $\ls \stack Y \cong \stack Y \times_{\stack X \times \stack X} \stack Y$ and it follows that there is a canonical open (resp.~closed) immersion of loop stacks $\ls i\colon \ls \stack Y \to \ls \stack X$.
 
-More generally, $\stack G_m(\stack Y)$ is an open (resp.~closed) substack of $\stack G_m(\stack X)$.
-Absuing notation, we will sometimes continue to denote this inclusion by $i$.
+More generally, each $\stack G_m(\stack Y)$ is an open (resp.~closed) substack of $\stack G_m(\stack X)$.
+Abusing notation, we will sometimes continue to denote this inclusion by $i$.
 %In the special case $m=1$, we will also write $\ls i\colon \ls \stack Y \to \ls \stack X$.
 
 \begin{Lem}\label{lem:lc_immersion}
     Let $i\colon\stack Y \hookrightarrow \stack X$ is a locally closed immersion of QCA stacks.
-    If $\stack X$ has property \bc\ (resp.~property \hbc), then so does $\stack Y$.
+    If $\stack X$ has property \bc\ or property \hbc, then so does $\stack Y$.
 \end{Lem}
 
 \begin{proof}
@@ -796,32 +802,32 @@ Absuing notation, we will sometimes continue to denote this inclusion by $i$.
     Let us first assume that $i$ is open.
     It suffices to show that $p_{\stack Y,1,!}p_{\stack Y,2}^!i^! \to \Delta_{\stack Y}^!\Delta_{\stack Y,!}i^!$ is an equivalence.
     Now, using the assumption on $\stack X$ and the fact that $i^! = i^*$ we get
-    \[
+    \begin{multline*}
         p_{\stack Y,1,!} p_{\stack Y,2}^!i^! =
         p_{\stack Y,1,!} (\ls i)^! p_{\stack X,2}^! \cong
-        i^! p_{\stack X,1,!} p_{\stack X,2}^! \isoto
+        i^! p_{\stack X,1,!} p_{\stack X,2}^! \isoto \\
         i^! \Delta_{\stack X}^! \Delta_{\stack X,!} =
         \Delta_{\stack Y}^! (i\times i)^! \Delta_{\stack X,!} \cong
         \Delta_{\stack Y}^! \Delta_{\stack X,!} i^!.
-    \]
+    \end{multline*}
     Now let $i$ be a closed immersion.
     As above, it suffices to show that $i_!p_{\stack Y,1,!}p_{\stack Y,2}^!i^! \to i_!\Delta_{\stack Y}^!\Delta_{\stack Y,!}i^!$ is an equivalence.
     Now, using the assumption on $\stack X$ and the fact that $i_! = i_*$ we get
-    \[
+    \begin{multline*}
         i_! p_{\stack Y,1,!} p_{\stack Y,2}^!i^! =
         p_{\stack X,1,!} (\ls i)_! p_{\stack Y,2}^!i^! \cong
-        p_{\stack X,1,!} p_{\stack X,2}^! i_!i^! \isoto
+        p_{\stack X,1,!} p_{\stack X,2}^! i_!i^! \isoto \\
         \Delta_{\stack X}^! \Delta_{\stack X,!} i_!i^! \cong
         \Delta_{\stack Y}^! (i\times i)_! \Delta_{\stack X,!}i^! =
         i_! \Delta_{\stack Y}^! \Delta_{\stack X,!} i^!.
         \qedhere
-    \]
+    \end{multline*}
 \end{proof}
 
 Since all operations are local we can check the properties on open covers.
 
 \begin{Lem}\label{lem:open_cover}
-    If $\stack X$ has an open cover by substacks $\stack U_i$ with property \bc\ (resp.~with property \hbc), then $\stack X$ has property \bc\ (resp.~property \hbc).
+    If $\stack X$ has an cover by open substacks $\stack U_i$ with property \bc\ (resp.~with property \hbc), then $\stack X$ has property \bc\ (resp.~property \hbc).
 \end{Lem}
 
 \begin{Lem}\label{lem:product}
@@ -840,15 +846,15 @@ Since all operations are local we can check the properties on open covers.
 \subsection{Contractive \texorpdfstring{$\Gm$}{Gm}-actions}
 
 Let $\stack X$ be a QCA stack with an action of $\Gm$.
-We call the action \emph{contractive} if it can be extended to an action of the monoid $\as 1$.
-Following the convention of \cite[Appendix~C]{DrinfeldGaitsgory:arXiv:CompactGenerationOfDModOnBunG} we denote by $\stack X^0$ the stack of $\{0,1\}$-equivariant maps $\{0\} \to \stack X$.
+We call the action \emph{(globally) contractive} if it can be extended to an action of the monoid $\as 1$.
+Following the convention of \cite[Appendix~C]{DrinfeldGaitsgory:2015:CompactGenerationOfDModOnBunG} we denote by $\stack X^0$ the stack of $\{0,1\}$-equivariant maps $\{0\} \to \stack X$.
 The map $\{0\} \to \{0,1\}$ induces a \emph{contraction morphism} $\pi\colon \stack X \to \stack X^0$.
 
 We then have the following \emph{contraction principle} (cf.~also \cite[Proposition~3.2.2]{DrinfeldGaitsgory:2014:OnATheoremOfBraden}).
 
-\begin{Thm}[{\cite[Corollary~C.5.4]{DrinfeldGaitsgory:arXiv:CompactGenerationOfDModOnBunG}}]
+\begin{Thm}[{\cite[Corollary~C.5.4]{DrinfeldGaitsgory:2015:CompactGenerationOfDModOnBunG}}]
     \label{thm:contraction_principle}%
-    Let $X$ be a scheme with a trivial contractive $\Gm$-action.
+    Let $\stack X$ be a contractive stack with a trivial $\Gm$-action.
     Then there is a canonical isomorphism of functors
     \[
         π_! \cong i^! \colon \catDModHol{\stack X} → \catDModHol{\stack X^0}
@@ -858,6 +864,11 @@ We then have the following \emph{contraction principle} (cf.~also \cite[Proposit
         π_! → i^! i_! π_!  = i^! (π ∘ i)_! = i^!.
     \]
 \end{Thm}
+
+\begin{Rem}
+  For our intended application in the proof of Theorem~\ref{thm:torus_quotient}, the special case of this statement for $\Gm$-quotient stacks is sufficient.
+  In this case the statement can be proved directly without having to show the full \enquote{stacky} version, cf.~\cite[Proposition~5.3.2]{DrinfeldGaitsgory:2015:CompactGenerationOfDModOnBunG}.
+\end{Rem}
 
 \begin{Prop}\label{prop:contractive}
     Assume that $\stack X$ has a trivial contractive $\Gm$-action such that $i\colon \stack X^0 \to \stack X$ is a closed immersion and both $\stack X^0$ and $\stack U = \stack X\setminus \stack X^0$ have property \bc\ (respectively property \hbc).
@@ -907,7 +918,7 @@ We then have the following \emph{contraction principle} (cf.~also \cite[Proposit
     Thus the statement for property \hbc\ follows in the same way as above.
 \end{proof}
 
-\section{Torus quotients}
+\section{Torus quotients}\label{sec:torus}
 
 \begin{Thm}\label{thm:torus_quotient}
     Let $X$ be a normal variety with an action of a torus $T$.
@@ -929,9 +940,7 @@ Theorem~\ref{thm:main} is now an immediate consequence of Theorem~\ref{thm:torus
 
 [Put an example here.]
 
-\appendix
-
-\section{Base change and compactification}
+\section{Base change and compactification}\label{sec:compactification}
 
 Consider a Cartesian diagram of stacks
 \begin{equation}
@@ -1065,8 +1074,7 @@ We can now quantify the failure of the base change morphism to be an isomorphism
     \]
 \end{proof}
 
-\subsection{Relative compactifications for quotient stacks}
-\label{sec:base-change:compactification}%
+\subsection{Relative compactifications for quotient stacks}\label{sec:compactification:quotient}%
 
 In the preceding section we simply assumed that a relative compactification of the given map exists.
 We will now construct such a compactification for the diagonal map of a quotient stack.
