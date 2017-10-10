@@ -752,18 +752,19 @@ Thus
 \end{Def}
 
 \begin{Cor}\label{cor:properties_imply_monads}
-  \remark{This needs to be fixed as we don't have endofunctors anymore.}
-    If $\stack X$ has properties \bc\ and \hbc, then there exists a canonical structure of monad on $p_{1,!}p₂^!$ and the morphism $p_{2,!}p₁^! → Δ^!Δ_!$ is an isomorphism of monads.
-    In particular there is an isomorphism of algebras
-    \[
-        \HCoh\bigl(\catDMod{\stack X}\bigr)
-        \cong
-        \opalg{\GammadR\bigl(\stack X,\, p_{1,!} p₂^! k_{\stack X}\bigr)}.
-    \]
+  If $\stack X$ has properties \bc\ and \hbc, then there exists a canonical structure of monad on $p_{1,!}p₂^!$ and the morphism $p_{2,!}p₁^! → Δ^!Δ_!$ is an isomorphism of monads.
+  In particular there is an isomorphism of algebras
+  \[
+      \HCoh\bigl(\catDMod{\stack X}\bigr)
+      \cong
+      \opalg{\GammadR\bigl(\stack X,\, p_{1,!} p₂^! k_{\stack X}\bigr)}.
+  \]
 \end{Cor}
 
 \begin{proof}
-  This is just a restatement of Lemma~\ref{lem:pre:groupoid_monad_hol} applied to the construction in Section~\ref{sec:HH}.
+  Since $\Hom(k_{\stack X},\, \Delta^!\Delta_!k_{\stack x}) = \Hom(\Delta_!k_{\stack X},\, \Delta_!k_{\stack X}) \ne 0$, we see that $\Delta^!\Delta_!$ restricts to a monad on $\catKHol{\stack X}$.
+  Thus by the assumption $p_{1,!} p_2^!$ is also an endofunctor of $\catKHol{\stack X}$.
+  The statement now follows from a restriction of Lemma~\ref{lem:pre:groupoid_monad_hol} applied to the construction in Section~\ref{sec:HH}.
 \end{proof}
 
 \begin{Rem}
