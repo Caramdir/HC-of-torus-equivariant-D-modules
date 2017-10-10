@@ -966,7 +966,7 @@ We then have the following \emph{contraction principle} (cf.~also \cite[Proposit
 
 \begin{Thm}\label{thm:torus_quotient}
     Let $X$ be a normal variety with an action of a torus $T$.
-    Then $\stack X = X/T$ has properties \bc\ and \hbc.
+    Then the quotient stack $\stack X = X/T$ has properties \bc\ and \hbc.
 \end{Thm}
 
 \begin{proof}
@@ -982,7 +982,37 @@ We then have the following \emph{contraction principle} (cf.~also \cite[Proposit
 
 Theorem~\ref{thm:main} is now an immediate consequence of Theorem~\ref{thm:torus_quotient} and Corollary~\ref{cor:properties_imply_monads}
 
-[Put an example here.]
+\begin{Ex}
+  To illustrate let us compute $\HCoh(\catDMod{\as1/\Gm})$ where $\Gm$ acts in the usual way.
+  Let $i\colon \stack Z \to \ls\stack X$ be the inclusion of the fiber $\stack Z = \Gm \times \cs{\Gm}$ over the origin and $j\colon \stack U \to \ls\stack X$ the inclusion of the open complement $\stack U = \Gm/\Gm = \pt$.
+  Let $p\colon \stack X \to \pt$ be the structure map.
+  We have to compute $p_*p_{1,!}p_2^!k_{\stack X}$.
+  
+  First we note that $p_2^!k_{\stack X} = \omega_{\ls \stack X}$.
+  Consider now the distinguished triangle
+  \[
+    p_*p_{1,!}p_2^!i_!i^!\omega_{\ls \stack X} \to
+    p_*p_{1,!}p_2^!\omega_{\ls \stack X} \to
+    p_*p_{1,!}p_2^!j_*j^!\omega_{\ls \stack X}.
+  \]
+  The right term is just the cohomology of a point, i.e.~$k$.
+  The left term evaluates to
+  \[
+    \Gamma_c(\Gm, k_{\Gm}) \otimes \GammadR(\cs{\Gm},k_{\Gm}) \cong \bigl(k[-1] \oplus k[-2]\bigr) \otimes k[u]
+  \]
+  with $u$ in degree $2$.
+  As the zeroth Hochschild cohomology cannot vanish (it must contain the identity functor), the connecting morphism is zero.
+  Hence
+  \[
+    \HCoh(\catDMod{\as1/\Gm}) \cong k[x]
+  \]
+  with $x$ in degree $1$.
+  More generally
+  \[
+    \HCoh(\catDMod{\as n/\Gm^n}) \cong k[x_1,\dotsc,x_n].
+  \]
+  In a future note we plan to give explicit computations for general toric varieties.
+\end{Ex}
 
 \section{Base change and compactification}\label{sec:compactification}
 
