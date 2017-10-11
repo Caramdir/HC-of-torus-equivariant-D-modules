@@ -127,7 +127,7 @@ To each map from a graded-commutative ring $R$ to the center of $\cat C$ one ass
 This construction can be used to unify various theories of support in different areas of mathematics (though it does not yield the microlocal support of constructible sheaves mentioned above).
 
 We are led to consider the universal algebra acting on $\cat C$ by this construction, i.e.~the \emph{Hochschild cohomology} of $\cat C$.
-For a complete (pre-triangulated) dg category $\cat C$ the Hochschild cohomology is the dg algebra of derived endomorphisms of the identity functor of $\cat C$:
+For a complete pre-triangulated dg category $\cat C$ the Hochschild cohomology is the dg algebra of derived endomorphisms of the identity functor of $\cat C$:
 \[
     \HCoh(\cat C)
     = \mathbb{R}\mathrm{Hom}(\id[\cat C], \id[\cat C])
@@ -148,7 +148,7 @@ Representing the identity functor by its kernel, we obtain an isomorphism of dg 
     \HCoh(\catDMod{\stack X}) \cong \Hom_{\catDMod{X×X}}(Δ_*ω_{\stack X}, Δ_*ω_{\stack X}),
 \end{equation}
 where $Δ\colon \stack X × \stack X → \stack X$ is the diagonal morphism and $ω_{\stack X}$ is the dualizing module.
-In particular if $\stack X$ is a (separated) scheme, then $Δ$ is a closed embedding and $(Δ^*,Δ_*)$ adjunction combined with Kashiwara's Equivalence show that $\HCoh(\catDMod{\stack X})$ is isomorphic to the de~Rham cohomology of $\stack X$.
+In particular if $\stack X$ is a separated scheme, then $Δ$ is a closed embedding and $(Δ^*,Δ_*)$ adjunction combined with Kashiwara's Equivalence show that $\HCoh(\catDMod{\stack X})$ is isomorphic to the de~Rham cohomology of $\stack X$.
 However, if $\stack X$ is a general stack, then $Δ$ is not proper and the situation becomes more complicated.
 
 By Verdier duality and adjunction we can always rewrite \eqref{eq:intro:d-mod-hcoh} as
@@ -203,7 +203,7 @@ In essence, most of the familiar six functor formalism of holonomic D-modules wo
 It is convenient to rephrase Theorem~\ref{thm:main} as an equivalence of monads.
 Thus in Section~\ref{sec:monads} we review some constructions of monads in our setting.
 In Section~\ref{sec:HH} we explain how morphism~\eqref{eq:intro:central_cone} arises as a morphism of monads and make precise its relationship with Hochschild cohomology of $\catDMod{\stack X}$.
-As a simple application of this formalism, we also show that $\HCoh{\catDMod{\stack X}}$ always has a subalgebra isomorphic to $\opalg{\GammadR(\stack X,\ k_{\stack X})}$.
+As a simple application of this formalism, we show that $\HCoh\bigl(\catDMod{\stack X}\bigr)$ always has a subalgebra isomorphic to $\opalg{\GammadR(\stack X,\ k_{\stack X})}$.
 
 In Section~\ref{sec:base-change} we give a criterion for morphism~\eqref{eq:intro:central_cone} to be an isomorphism.
 In particular, we will use the contraction principle of Drinfeld--Gaitsgory \cite[Section~5.1]{DrinfeldGaitsgory:2015:CompactGenerationOfDModOnBunG} to understand the case of so-called contractive stacks.
@@ -244,7 +244,7 @@ Every quotient of a scheme of finite type over $k$ by an affine algebraic group 
 
 In order to correctly define categories of D-modules on stacks it is necessary to work with dg-categories.
 We refer to \cite{Keller:2006:OnDGCategories} for an introduction to dg categories.
-It is often convenient to regard (pretriangulated) dg categories as $k$-linear stable $(∞,1)$-categories \cite{Lurie:2009:HigherToposTheory,Lurie:2017-draft:HigherAlgebra}, which can be done via the nerve construction. % \cite{Cohn:arXiv:DGCategoriesAreStableInfinityCategories,Faonte:arXiv:SimplicialNerveOfAnAinfinityCategory}. %\cite[Section~1.3.1]{Lurie:2014-draft:HigherAlgebra}
+It is often convenient to regard pretriangulated dg categories as $k$-linear stable $(∞,1)$-categories \cite{Lurie:2009:HigherToposTheory,Lurie:2017-draft:HigherAlgebra}, which can be done via the nerve construction. % \cite{Cohn:arXiv:DGCategoriesAreStableInfinityCategories,Faonte:arXiv:SimplicialNerveOfAnAinfinityCategory}. %\cite[Section~1.3.1]{Lurie:2014-draft:HigherAlgebra}
 We will switch between those two languages without explicitly mentioning the intervening constructions and apply results from \cite{Lurie:2017-draft:HigherAlgebra} to dg categories.
 Fortunately, a superficial knowledge of dg/$∞$-categories should be sufficient for reading this article.
 
@@ -820,7 +820,7 @@ Thus
     \begin{enumerate}
         \item\label{lem:smooth_or_proper:bc} If $\Delta$ is either proper of smooth, then $\stack X$ has property \bc.
         \item\label{lem:smooth_or_proper:hbc} If $\Delta$ is proper, then $\stack X$ has property \hbc.
-        \item\label{lem:smooth_or_proper:scheme} If $\stack X$ is a (separated) scheme, then $\stack X$ has both properties \bc\ and \hbc.
+        \item\label{lem:smooth_or_proper:scheme} If $\stack X$ is a separated scheme, then $\stack X$ has both properties \bc\ and \hbc.
         \item\label{lem:smooth_or_proper:bg} Let $G$ be an affine algebraic group. Then the classifying stack $\cs{G}$ has both properties \bc\ and \hbc.
     \end{enumerate}
 \end{Lem}
