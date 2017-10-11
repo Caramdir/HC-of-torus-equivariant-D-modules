@@ -50,7 +50,8 @@ paper-nounicode.pdf: paper-nounicode.tex
 
 dist: paper-nounicode.pdf
 	cp -r /usr/ias/texlive/2014/texmf-dist/tex/latex/biblatex/* .
-	tar czvf arXiv.tar.gz *-nounicode.tex *-nounicode.bbl *.sty *.cls b* cbx lbx
+	tar czvf arXiv.tar.gz *-nounicode.tex *-nounicode.bbl *.cls
+#	tar czvf arXiv.tar.gz *-nounicode.tex *-nounicode.bbl *.sty *.cls b* cbx lbx
 
 clean:
-	rm *.aux *.bbl *.bcf *.blg *.fdb_latexmk *.fls *.log *.pdf *.run.xml paper-nounicode.*
+	rm -r *.aux *.bbl *.bcf *.blg *.fdb_latexmk *.fls *.log *.pdf *.run.xml paper-nounicode.* biblatex* blx* lbx bbx cbx
