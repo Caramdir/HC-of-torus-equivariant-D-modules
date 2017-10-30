@@ -1,4 +1,4 @@
-\documentclass[english]{ck-article}
+\documentclass{article}
 
 \title{Hochschild cohomology of torus equivariant D-modules}
 \author{Clemens Koppensteiner}
@@ -6,7 +6,75 @@
 
 %\usepackage{math-ag}
 
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+\usepackage{amsmath,amsfonts,amssymb,amsthm,thmtools}
+\usepackage{mathtools,extpfeil,xfrac}
+\usepackage{csquotes}
+\usepackage{microtype}
+\usepackage{tikz-cd}
+
+\usepackage[
+    backend=biber,
+    style=alphabetic,
+    maxnames=100,
+    maxalphanames=100,
+]{biblatex}
 \addbibresource{math.bib}
+
+\DeclareLabelalphaTemplate{
+    \labelelement{
+        \field[final]{shorthand}
+        \field{label}
+        \field[strwidth=1,strside=left]{labelname}
+    }
+}
+
+\DeclareFieldFormat{labelalpha}{#1}
+\DeclareFieldFormat{extraalpha}{#1}
+
+\defbibheading{bibliography}[\refname]{%
+    \bookmarksetupnext{level=section}
+    \phantomsection%
+    \section*{#1}%
+    \addcontentsline{toc}{section}{#1}%
+    \markboth{#1}{#1}%
+}
+
+\usepackage[colorlinks=false,unicode=true]{hyperref}
+\usepackage{bookmark}
+
+\theoremstyle{plain}
+\newtheorem{Thm}{Theorem}
+\newtheorem{Fact}[Thm]{Fact}
+\newtheorem{Claim}[Thm]{Claim}
+\newtheorem{Prop}[Thm]{Proposition}
+\newtheorem{Cor}[Thm]{Corollary}
+\newtheorem{CorAd}[Thm]{Corollary*}
+\newtheorem{Lem}[Thm]{Lemma}
+\newtheorem{LemAd}[Thm]{Lemma*}
+\newtheorem{Alg}[Thm]{Algorithm}
+\newtheorem{DefProp}[Thm]{Definition and Proposition}
+\newtheorem{Conjecture}[Thm]{Conjecture}
+
+\theoremstyle{definition}
+\newtheorem{Def}[Thm]{Definition}
+\newtheorem{Assumption}[Thm]{Assumption}
+\newtheorem{Construction}[Thm]{Construction}
+\newtheorem*{Notation}{Notation}
+
+\theoremstyle{remark}
+\newtheorem{Rem}[Thm]{Remark}
+\newtheorem{RemAd}[Thm]{Remark*}
+\newtheorem{Rems}[Thm]{Remarks}
+\newtheorem{Exercise}[Thm]{Exercise}
+\newtheorem{Q}[Thm]{Question}
+\newtheorem{Problem}[Thm]{Problem}
+\newtheorem{Warning}[Thm]{Warning}
+\declaretheorem[name=Example,sibling=Thm]{Ex}
+\declaretheorem[name=Examples,sibling=Ex]{Exs}
+
 
 % overrides
 \let\shortbar\bar
@@ -45,7 +113,7 @@
         {\left.#1\middle/#2\right.}%
         {\left.#1\middle/#2\right.}%
 }
-\newcommand\isoto\similarrightarrow         % isomorphisms
+\newcommand\isoto{\xrightarrow{\sim}}       % isomorphisms
 \newcommand\proj[1]{\operatorname{pr}_{#1}} % projection on a factor
 \newcommand{\HCoh}{\operatorname{HH}^\cx}   % Hochschild cohomology
 
@@ -102,6 +170,14 @@
 
 % Formatting of upper case roman numerals (in references).
 \newcommand{\RomanNum}[1]{\textsc{\MakeLowercase{#1}}}
+
+% Selecta base settings
+\textwidth=125mm
+\textheight=185mm
+\parindent=8mm
+\evensidemargin=0pt
+\oddsidemargin=0pt
+\frenchspacing
 
 \begin{document}
 \maketitle
