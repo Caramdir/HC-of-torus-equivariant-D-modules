@@ -306,7 +306,7 @@ This work has been partially supported by the National Science Foundation under 
 \section{D-modules on stacks}\label{sec:d-mods}
 
 We fix an algebraically closed base field $k$ of characteristic $0$.
-All stacks will be assumed to be algebraic over $k$ and quasi-compact with affine automorphism group (QCA).
+All stacks will be assumed to be algebraic over $k$ and quasi-compact with affine automorphism groups (QCA).
 Thus by definition for any stack $\stack X$ we have:
 \begin{itemize}
     \item The diagonal morphism $Δ\colon \stack X → \stack X × \stack X$ is schematic.
@@ -504,7 +504,7 @@ One simply sets $T = G ∘ F$ and $η$ and $μ$ are given by the adjunction mo
     \qquad\text{and}\qquad
     T² = G ∘ (F ∘ G) ∘ F → G ∘ F = T.
 \]
-We note that the correct construction in more complicated in the $∞$-categorical case and refer to \cite[Section~4.7]{Lurie:2017-draft:HigherAlgebra}.
+We note that the correct construction is more complicated in the $∞$-categorical case and refer to \cite[Section~4.7]{Lurie:2017-draft:HigherAlgebra}.
 For any $X ∈ \cat C$ the algebra construction above gives an isomorphism of algebras
 \[
     \Hom_{\cat C}(X, (GF)(X)) \cong
@@ -515,7 +515,7 @@ Another common way to obtain monads in geometry is via a groupoid.
 Recall that a groupoid $G_{\cx}$ in stacks consists of a stack $\stack G₀$ of \enquote{objects} and a stack $\stack G₁$ of \enquote{morphisms} together with
 \begin{itemize}
     \item \emph{source} and \emph{target} maps $s,t\colon \stack G₁ \rightrightarrows \stack G₀$,
-    \item a \emph{unit} $e\colon G₀ → G₁$,
+    \item a \emph{unit} $e\colon \stack G₀ → \stack G₁$,
     \item a \emph{multiplication} (or \emph{composition}) map $m\colon \stack G₁ \mathop{×}\limits_{s,\stack G₀,t} \stack G₁ → \stack G₁$,
     \item an \emph{inverse} map $ι\colon \stack G₁ → \stack G₁$,
 \end{itemize}
@@ -655,11 +655,11 @@ Thus there is a unit map
 \]
 and a counit map
 \[
-    ε\colon \cat C^\dual \otimes \cat C → \catVect
+    ε\colon \cat C \otimes \cat C^\dual → \catVect
 \]
 satisfying the usual compatibilities (cf.~\cite[Section~2]{BenZviNadler:arXiv:NonlinearTraces}).
 Let $u = η(k)$.
-To each continuous endofunctor $F$ of $\cat C$ we can associate its kernel $\id[\cat C^\dual] \otimes F(u) ∈ \cat C^\dual \otimes \cat C$ and conversely to each kernel $Q ∈ \cat C^\dual \otimes \cat C$ we can associate the endofunctor
+To each continuous endofunctor $F$ of $\cat C$ we can associate its kernel $\bigl(\id[\cat C^\dual] \otimes F\bigr)(u) ∈ \cat C^\dual \otimes \cat C$ and conversely to each kernel $Q ∈ \cat C^\dual \otimes \cat C$ we can associate the endofunctor
 \[
     \cat C
     \xrightarrow{\id[\cat C] \otimes Q}
@@ -758,12 +758,7 @@ Indeed this is a general phenomenon.
 
 \begin{Prop}
     \label{prop:mono-from-cohomology}%
-    There is a canonical monomorphism 
-    \[
-      \opalg{\GammadR\bigl(\stack X,\, k_{\stack X}\bigr)}
-        \hookrightarrow
-        \HCoh\bigl(\catDMod{\stack X}\bigr).
-    \]
+    The Hochschild cohomology $\HCoh\bigl(\catDMod{\stack X}\bigr)$ has $\opalg{\GammadR\bigl(\stack X,\, k_{\stack X}\bigr)}$ as a direct summand.
 \end{Prop}
 
 \begin{proof}
@@ -783,7 +778,8 @@ Indeed this is a general phenomenon.
         k_{\stack X} \xrightarrow{\eta} Δ^!Δ_! k_{\stack X} → \sheaf F \xrightarrow{δ}
     \]
     for some $\sheaf F \in \catDModHol{\stack X}$, we see that the connection morphism $δ$ is the zero morphism (indeed $\eta \circ \delta[1] = 0$ and $\eta$ is mono).
-    This in turn implies that the induced map
+    Thus the same is true after applying $\Hom(k_{\stack X}, \{-\})$.
+    In particular, the induced map
     \[
         \GammadR\bigl(\stack X,\, k_{\stack X}\bigr)
         →
@@ -791,7 +787,7 @@ Indeed this is a general phenomenon.
         \cong
         \opalg{\HCoh\bigl(\catDMod{\stack X}\bigr)}
     \]
-    on cohomology is a monomorphism as well.
+    is a split monomorphism.
 \end{proof}
 
 
