@@ -1,7 +1,7 @@
 default: paper-nounicode.pdf
 
 paper-nounicode.tex: paper.tex Makefile
-	cp paper{,-nounicode}.tex
+	cp paper.tex paper-nounicode.tex
 	sed -i -e 's/α/\\alpha /g' $@
 	sed -i -e 's/β/\\beta /g' $@
 	sed -i -e 's/γ/\\gamma /g' $@
