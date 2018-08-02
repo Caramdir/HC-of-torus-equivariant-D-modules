@@ -960,8 +960,9 @@ Thus we have to restrict ourselves to the following partial result which is suff
 
 Let $\stack X$ be a QCA stack with an action of $\Gm$.
 We call the action \emph{(globally) contractive} if it can be extended to an action of the monoid $\as 1$.
+In this case we have in particular an action of the monoid $\{0,1\} \subset \as 1$ on $\stack X$.
 Following the convention of \cite[Appendix~C]{DrinfeldGaitsgory:2015:CompactGenerationOfDModOnBunG} we denote by $\stack X^0$ the stack of $\{0,1\}$-equivariant maps $\{0\} \to \stack X$.
-The map $\{0\} \to \{0,1\}$ induces a \emph{contraction morphism} $\pi\colon \stack X \to \stack X^0$.
+The map $\{0\} \to \{0,1\}$ induces a \emph{contraction morphism} $\pi\colon \stack X \to \stack X^0$, while the map $\{0,1\} \to \{0\}$ induces an inclusion morphism $i\colon \stack X^0 \hookrightarrow \stack X$.
 
 We then have the following \emph{contraction principle} (cf.~also \cite[Proposition~3.2.2]{DrinfeldGaitsgory:2014:OnATheoremOfBraden}).
 
@@ -979,8 +980,18 @@ We then have the following \emph{contraction principle} (cf.~also \cite[Proposit
 \end{theorem}
 
 \begin{remark}
+    At first glance the requirement that the $\Gm$-action is trivial may seems paradoxical.
+    The example that the reader should keep in mind is the stack $\stack X = \as1/\Gm$, where the quotient is taken via the usual action of $\Gm$.
+    There is an action of $\Gm$ on $\stack X$ which comes from the action of $\Gm$ on $\as 1$.
+    This action is clearly trivial.
+    On the other hand it can be extended to an action of $\as 1$, again induced from the action on the cover.
+    This action is not trivial and is the one that defines $\stack X^0 = \cs{\Gm}$.
+\end{remark}
+
+\begin{remark}
   For our intended application in the proof of Theorem~\ref{thm:torus_quotient}, the special case of this statement for $\Gm$-quotient stacks is sufficient.
   In this case the statement can be proved directly without having to show the full \enquote{stacky} version, cf.~\cite[Proposition~5.3.2]{DrinfeldGaitsgory:2015:CompactGenerationOfDModOnBunG}.
+  We have elected to state the theorem as above in order to have a general version of the following proposition for future applications.
 \end{remark}
 
 \begin{proposition}\label{prop:contractive}
