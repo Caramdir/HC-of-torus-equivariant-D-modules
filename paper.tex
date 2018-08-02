@@ -1342,6 +1342,7 @@ With this setup we make the following definition.
 
 \begin{proof}
     Set $\stack U = U/G$.
+    Let us fix a compactification $\bar G$ of $G$ and let $\bar \Gamma \subset \bar G \times X \times X$ be as before.
     We will only show the second condition of Definition~\ref{def:good}, the first one is similar.
     Thus let $f\colon \stack Y₂ → \stack Y₁$ be a map of quotient stacks over $\stack U$ (and hence also over $U$).
     We note that since $\stack U$ is an open subset we have isomorphisms $\lsY[\stack Y_i]{\stack U} \cong \stack Y_i \XXtimes \stack U$.
@@ -1360,7 +1361,7 @@ With this setup we make the following definition.
             \lscY[\stack Y₂]{\stack X} \arrow[l, hook', "i^{\stack X}_{\stack Y₂}"']
         \end{tikzcd}
     \end{equation}
-    The vertical arrows are open embeddings and all squares are Cartesian (where we use the same compactification of $G$ for $\bar{\stack X}$ and $\bar{\stack U}$).
+    The vertical arrows are open embeddings and all squares are Cartesian (where we use the same compactification of $G$ for $\bar{\stack X}$ and $\bar{\stack U}$, the latter being presented by $\bar \Gamma \cap \bar G \times U \times U$).
     Thus
     \begin{equation*}
         i^{\stack U,*}_{\stack Y₂} {\cls f}^{\stack U,!} j_{\stack Y₁,!}^{\stack U} =
@@ -1374,7 +1375,7 @@ With this setup we make the following definition.
 A similar argument can be used to reduce the computation to a smooth cover.
 In particular we will want to reduce to computations on a cover by schemes.
 On such a cover we will use primes to indicate maps on schemes and will use $\sls{}$ instead of $\ls{}$ for the covers of the loop spaces.
-If we start with the cover $\bar Γ → \bar{\stack X}$, the pullbacks to the part of diagram \eqref{eq:diag:central1} of interest are
+If we start with the cover $\bar Γ → \bar{\stack X}$ as in the Section~\ref{sec:compactification:quotient}, the pullbacks to the part of diagram \eqref{eq:diag:central1} of interest are
 \begin{equation}
     \label{eq:diag:scheme-cover1}
     \begin{tikzcd}
@@ -1440,7 +1441,7 @@ Explicitly, if $h'\colon Y → X$ is a $G$-equivariant morphism of schemes induc
     } that for any $\stack Y → \stack X$ the stacks $\lscY{\stack U_i}$ form an open cover of $\lscY{\stack X}$.
     For this it suffices to show that the open subschemes $\sclsY \stack U_i$ cover $\sclsY \stack X$.
     Let $(g₁, y, g₂)$ be a point of $\sclsY \stack X$.
-    Then there exists some $U_i$ with $h'(y) ∈ U_i$.
+    Then there exists some $U_i$ with $h'(y) ∈ U_i$, where $h'\colon Y \to X$ induces the map $\stack Y \to \stack X$ as above.
     But then $g₁h'(y)$ is also in $U_i$ and hence $(h'(y), g₂, g₁h'(y)) ∈ \bar{\stack U}_i$.
     Thus $(g₁, y, g₂)$ is in $\sclsY \stack U_i$.
 
