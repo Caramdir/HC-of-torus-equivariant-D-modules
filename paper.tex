@@ -181,7 +181,7 @@ Representing the identity functor by its kernel, we obtain an isomorphism of dg 
     \HCoh(\catDMod{\stack X}) \cong \Hom_{\catDMod{X×X}}(Δ_*ω_{\stack X}, Δ_*ω_{\stack X}),
 \end{equation}
 where $Δ\colon \stack X \to \stack X \times \stack X$ is the diagonal morphism and $ω_{\stack X}$ is the dualizing module.
-In particular if $\stack X$ is a separated scheme, then $Δ$ is a closed embedding and $(Δ^*,Δ_*)$ adjunction combined with Kashiwara's Equivalence show that $\HCoh(\catDMod{\stack X})$ is isomorphic to the de~Rham cohomology of $\stack X$.
+In particular if $\stack X$ is a separated scheme, then $Δ$ is a closed embedding and $(Δ^*,Δ_*)$ adjunction combined with Kashiwara's Equivalence show that $\opalg{\HCoh(\catDMod{\stack X})}$ is isomorphic to the de~Rham cohomology of $\stack X$.
 However, if $\stack X$ is a general stack, then $Δ$ is not proper and the situation becomes more complicated.
 
 By Verdier duality and adjunction we can always rewrite \eqref{eq:intro:d-mod-hcoh} as
@@ -215,7 +215,7 @@ In this paper we investigate the morphism
 \begin{equation}\label{eq:intro:central_cone}
     p_{1,!}p₂^! k_{\stack X} → Δ^!Δ_! k_{\stack X}
 \end{equation}
-and thus when the naive isomorphism \eqref{eq:intro:naive} holds.
+and thus whether the naive isomorphism \eqref{eq:intro:naive} holds.
 As an application, we prove the following theorem, giving a class of stacks where \eqref{eq:intro:naive} is indeed an isomorphism.
 
 \begin{theorem}\label{thm:main}
@@ -535,7 +535,7 @@ The Cartesian diagram
     \end{tikzcd}
 \]
 induces a groupoid with $\stack{G}₀ = \stack X$ and $\stack{G}₁ = \stack X ×_{\stack Y} \stack X$.
-The above constructions now give two monads on $\catDMod{\stack{X}}$: one by $(f_*,f^!)$ adjunction and one from the groupoid structure.
+The above constructions give two monads on $\catDMod{\stack{X}}$: one by $(f_*,f^!)$ adjunction and one from the groupoid structure.
 The base change isomorphism
 \[
     p_{t,*} p_s^! → f^! f_*
@@ -685,7 +685,7 @@ which induces an isomorphism of algebras
     →
     \GammadR\bigl(\stack X,\, Δ^! Δ_! k_{\stack X}\bigr).
 \]
-Of course, if $\stack X$ is not an algebraic space, then $Δ$ is not proper (nor is it in general smooth).
+Of course, if $\stack X$ is QCA but not an algebraic space, then $Δ$ is not proper (nor is it in general smooth).
 Thus in general \eqref{eq:central_iso} is not an isomorphism and there is no canonical structure of monad on $p_{1,!} p₂^!$.
 We would like to apply Lemma~\ref{lem:pre:groupoid_monad_hol} to construct a monad in special cases.
 Thus the goal of the next section is to give a criterion for the assumptions of Lemma~\ref{lem:pre:groupoid_monad_hol}, i.e.~for base change to hold.
@@ -1596,16 +1596,16 @@ Dennis Gaitsgory and Nick Rozenblyum.
 
 \bibitem{GaitsgoryRozenblyum:2017:StudyInDAG:1}
 Dennis Gaitsgory and Nick Rozenblyum.
-\newblock \emph{Correspondences and Duality}, volume~1 of \emph{Mathematical
-  Surveys and Monographs}.
-\newblock American Mathematical Society, 2017{\natexlab{a}}.
+\newblock \emph{A Study in Derived Algebraic Geometry, Volume~1. Correspondences and Duality}.
+\newblock Number 221 in Mathematical Surveys and Monographs.
+  American Mathematical Society, 2017{\natexlab{a}}.
 \newblock ISBN 978-1-4704-3569-1.
 
 \bibitem{GaitsgoryRozenblyum:2017:StudyInDAG:2}
 Dennis Gaitsgory and Nick Rozenblyum.
-\newblock \emph{Deformations, Lie Theory and Formal Geometry}, volume~2 of
-  \emph{Mathematical Surveys and Monographs}.
-\newblock American Mathematical Society, 2017{\natexlab{b}}.
+\newblock \emph{A Study in Derived Algebraic Geometry, Volume~2. Deformations, Lie Theory and Formal Geometry}.
+\newblock Number 221 in Mathematical Surveys and Monographs.
+  American Mathematical Society, 2017{\natexlab{b}}.
 \newblock ISBN 978-1-4704-3570-7.
 
 \bibitem{KashiwaraSchapira:1994:SheavesOnManifolds}
@@ -1614,8 +1614,8 @@ Masaki Kashiwara and Pierre Schapira.
 \newblock Number 292 in Grundlehren der Mathematischen Wissenschaften.
   Springer-Verlag, Berlin, 1994.
 \newblock ISBN 3-540-51861-4.
-\newblock With a chapter in French by Christian Houzel, Corrected reprint of
-  the 1990 original.
+\newblock With a chapter in French by Christian Houzel.
+\newblock Corrected reprint of the 1990 original.
 
 \bibitem{Keller:2006:OnDGCategories}
 Bernhard Keller.
